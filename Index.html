@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RCM Hub | Dynamic CSV Portal</title>
+    <style>
+        :root { --nav-bg: #1c2833; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
+        
+        /* Sidebar */
+        .sidebar { width: 260px; background: var(--nav-bg); color: white; display: flex; flex-direction: column; }
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
+        .nav-item { padding: 15px 25px; cursor: pointer; color: #bdc3c7; transition: 0.3s; }
+        .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
+
+        /* Main Content */
+        .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        .top-bar { padding: 15px 40px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .view-container { padding: 40px; }
+
+        /* Table & Search */
+        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; font-size: 1rem; }
+        .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.9rem; position: sticky; top: 0; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+        
+        /* Utility */
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; }
+        .elig { background: #d6eaf8; color: #2e86c1; }
+        .tech { background: #fef5e7; color: #d68910; }
+        .rad { background: #d5f5e3; color: #1d8348; }
+        
+        .upload-btn { background: var(--accent); color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold; display: inline-block; }
+        #csvFileInput { display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header"><h2>RCM HUB</h2></div>
+        <div class="nav-item active" onclick="showView('home')">🏠 Dashboard</div>
+        <div class="nav-item" onclick="showView('search')">🔍 Denial Search</div>
+        <div class="nav-item" onclick="showView('radiology')">☢️ Radiology</div>
+        <div class="nav-item" onclick="showView('appeals')">📄 Appeals Vault</div>
+        <div style="margin-top: auto; padding: 20px; border-top: 1px solid #34495e;">
+            <label for="csvFileInput" class="upload-btn">📁 Update CSV Data</label>
+            <input type="file" id="csvFileInput" accept=".csv" onchange="handleFileUpload(event)">
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="top-bar">
+            <b id="view-title">Dashboard</b>
+            <span id="file-status" style="font-size: 0.8rem; color: #999;">Waiting for data...</span>
+        </div>
+        <div id="view-port" class="view-container"></div>
+    </div>
+
+    <script>
+        let masterData = [];
+
+        // 1. FILE UPLOAD ENGINE (FOR LOCAL CSV)
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                processData(text);
+                document.getElementById('file-status').innerText = "● Data Updated: " + file.name;
+                document.getElementById('file-status').style.color = "var(--success)";
+                showView('home');
+            };
+            reader.readAsText(file);
+        }
+
+        // 2. DATA PROCESSING
+        function processData(csvText) {
+            const lines = csvText.split('\n');
+            // Regex handles commas inside quotes (standard for CS pros)
+            masterData = lines.slice(1).map(line => {
+                if (!line.trim()) return null;
+                const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                return { 
+                    code: parts[0]?.replace(/"/g, ""), 
+                    cat: parts[1]?.replace(/"/g, ""), 
+                    desc: parts[2]?.replace(/"/g, ""), 
+                    res: parts[3]?.replace(/"/g, "") 
+                };
+            }).filter(d => d !== null);
+        }
+
+        // 3. ROUTER
+        function showView(view) {
+            const port = document.getElementById('view-port');
+            const items = document.querySelectorAll('.nav-item');
+            items.forEach(i => i.classList.remove('active'));
+            document.getElementById('view-title').innerText = view.toUpperCase();
+
+            if (view === 'home') {
+                port.innerHTML = `
+                    <div style="background:white; padding:30px; border-radius:8px;">
+                        <h1>RCM Command Dashboard</h1>
+                        <p>Welcome back, Ashok. Your database currently contains <b>${masterData.length}</b> records.</p>
+                        <hr>
+                        <h3>Quick Start:</h3>
+                        <ul>
+                            <li><b>Search:</b> Find CARC/RARC resolutions instantly.</li>
+                            <li><b>Radiology:</b> Specialty logic and CPT/ICD-10 mapping.</li>
+                            <li><b>Update:</b> Use the "Update CSV Data" button in the sidebar to load your latest master list.</li>
+                        </ul>
+                    </div>`;
+            } else if (view === 'search') {
+                port.innerHTML = `
+                    <input type="text" class="search-box" id="searchInp" onkeyup="filter()" placeholder="Search Code, Category or Keyword...">
+                    <div class="table-wrap">
+                        <table id="rcmTable">
+                            <thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead>
+                            <tbody>${renderRows(masterData)}</tbody>
+                        </table>
+                    </div>`;
+            } else if (view === 'radiology') {
+                const rad = masterData.filter(d => d.
