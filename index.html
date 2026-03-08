@@ -3,45 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Hub | Master Command Center</title>
+    <title>RCM Command Center | 2026 Edition</title>
     <style>
         :root {
-            --nav-bg: #1c2833;
-            --sidebar-bg: #212f3d;
+            --primary: #1c2833;
+            --sidebar: #212f3d;
             --accent: #3498db;
             --success: #27ae60;
-            --warning: #f1c40f;
-            --danger: #e74c3c;
-            --text-light: #ecf0f1;
-            --bg-light: #f4f7f6;
+            --bg: #f4f7f6;
+            --text: #2c3e50;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg-light); height: 100vh; overflow: hidden; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; color: var(--text); }
 
-        /* Sidebar */
-        .sidebar { width: 260px; background: var(--nav-bg); color: var(--text-light); display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
+        /* Sidebar Navigation */
+        .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; }
-        .sidebar-header h2 { margin: 0; font-size: 1.3rem; color: var(--accent); letter-spacing: 1px; }
+        .sidebar-header h2 { margin: 0; color: var(--accent); font-size: 1.2rem; letter-spacing: 1px; }
         
         .nav-list { flex: 1; padding: 20px 0; }
-        .nav-item { padding: 15px 25px; cursor: pointer; display: flex; align-items: center; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
-        .nav-item:hover { background: #34495e; color: white; }
-        .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
+        .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
+        .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
 
-        /* Main Content */
+        /* Main Workspace */
         .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
         .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .view-container { padding: 40px; }
 
-        /* Dashboard Cards */
-        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px; border-top: 4px solid var(--accent); }
-        
-        /* Search & Table */
+        /* Search & UI Components */
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; font-size: 1rem; outline: none; box-sizing: border-box; }
         .search-box:focus { border-color: var(--accent); }
+        
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.9rem; position: sticky; top: 0; }
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; text-transform: uppercase; z-index: 10; }
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
 
         /* Badges */
@@ -49,8 +44,10 @@
         .elig { background: #d6eaf8; color: #2e86c1; border-color: #3498db; }
         .tech { background: #fcf3cf; color: #9a7d0a; border-color: #f1c40f; }
         .rad { background: #d5f5e3; color: #1d8348; border-color: #27ae60; }
+        .mod { background: #ebdef0; color: #884ea0; border-color: #af7ac5; }
+        .payer { background: #fadbd8; color: #c0392b; border-color: #e74c3c; }
         
-        #loading { display: flex; justify-content: center; align-items: center; height: 100%; font-weight: bold; color: var(--accent); }
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -61,16 +58,18 @@
             <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
             <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
             <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology CPT</div>
+            <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifier Matrix</div>
+            <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
         </div>
     </div>
 
     <div class="main">
         <div class="top-bar">
-            <b id="view-title">Dashboard</b>
-            <span id="db-status" style="font-size: 0.85rem; color: #7f8c8d;">Connecting...</span>
+            <b id="view-title">DASHBOARD</b>
+            <span id="db-status">Connecting to CSV...</span>
         </div>
         <div id="view-port" class="view-container">
-            <div id="loading">Loading Database...</div>
+            <div style="text-align:center; padding-top:100px;"><h3>Loading Database...</h3></div>
         </div>
     </div>
 
@@ -78,119 +77,106 @@
         let masterData = [];
 
         // 1. DATA INITIALIZATION (FETCH FROM CSV)
-        async function initData() {
+        async function loadData() {
             try {
                 const response = await fetch('rcm_master_all.csv');
                 if (!response.ok) throw new Error("CSV not found");
-                const csvText = await response.text();
+                const text = await response.text();
                 
-                // Parse CSV - handles commas inside quotes
-                const rows = csvText.split('\n');
-                masterData = rows.slice(1).map(row => {
-                    const parts = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    if (parts.length < 4) return null;
-                    return {
-                        code: parts[0].trim().replace(/"/g, ""),
-                        cat: parts[1].trim().replace(/"/g, ""),
-                        desc: parts[2].trim().replace(/"/g, ""),
-                        res: parts[3].trim().replace(/"/g, "")
+                const lines = text.split('\n');
+                masterData = lines.slice(1).map(line => {
+                    // Optimized Regex for CSV parsing (handles quotes and commas)
+                    const p = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (p.length < 4) return null;
+                    return { 
+                        code: p[0].trim().replace(/"/g, ""), 
+                        cat: p[1].trim().replace(/"/g, ""), 
+                        desc: p[2].trim().replace(/"/g, ""), 
+                        res: p[3].trim().replace(/"/g, "") 
                     };
                 }).filter(d => d !== null);
 
-                document.getElementById('db-status').innerHTML = `<span style="color:var(--success)">●</span> Sync Complete: ${masterData.length} Records`;
+                document.getElementById('db-status').innerHTML = `<span style="color:var(--success)">●</span> Online: ${masterData.length} Records`;
                 showView('home');
-
             } catch (err) {
-                console.error(err);
-                document.getElementById('db-status').innerHTML = `<span style="color:var(--danger)">●</span> Connection Error`;
-                document.getElementById('view-port').innerHTML = `<h2>Error: rcm_master_all.csv not found.</h2><p>Please ensure the CSV file is in the same GitHub folder.</p>`;
+                document.getElementById('db-status').innerHTML = `<span style="color:red">●</span> Sync Failed`;
+                document.getElementById('view-port').innerHTML = "<h2>Database Error. Please ensure rcm_master_all.csv is uploaded.</h2>";
             }
         }
 
-        // 2. ROUTER LOGIC (SEPARATION OF CONCERNS)
+        // 2. NAVIGATION CONTROLLER
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
             
-            // UI Active State
+            // Toggle Active State
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
 
             if (view === 'home') {
                 port.innerHTML = `
                     <div class="card">
-                        <h1>Welcome, Ashok</h1>
-                        <p>Your RCM Hub is pulling data dynamically from <b>rcm_master_all.csv</b>.</p>
-                        <p>Total Database Size: <b>${masterData.length}</b> rows.</p>
+                        <h1>RCM Dashboard 2026</h1>
+                        <p>Currently managing <b>${masterData.length}</b> live RCM rules.</p>
                         <hr>
-                        <h3>Navigation Guide:</h3>
+                        <h3>Category Overview:</h3>
                         <ul>
-                            <li><b>Denial Search:</b> For CARC/RARC (CO, PR, OA) - <i>Excludes Radiology</i>.</li>
-                            <li><b>Radiology CPT:</b> Specialty imaging logic - <i>Includes 70000 series only</i>.</li>
+                            <li><b>Denial Search:</b> Core M, MA, and N series codes.</li>
+                            <li><b>Radiology CPT:</b> Specialized imaging medical necessity.</li>
+                            <li><b>Modifier Matrix:</b> Billing unbundling logic.</li>
+                            <li><b>Payer Matrix:</b> Payer-specific TFL and contact rules.</li>
                         </ul>
                     </div>`;
-            } 
-            
-            else if (view === 'search') {
-                // FILTER: Exclude Radiology for the Denial tab
-                const denials = masterData.filter(d => 
-                    !d.cat.toLowerCase().includes('rad') && !d.code.startsWith('7')
-                );
+            } else {
+                let filteredData = [];
+                let tableTitle = "";
 
-                port.innerHTML = `
-                    <h3>Denial Resolution (CARC/RARC)</h3>
-                    <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Search by denial code or keyword...">
-                    <div class="table-wrap"><table id="rcmTable">
-                        <thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead>
-                        <tbody>${renderRows(denials)}</tbody>
-                    </table></div>`;
-            } 
-            
-            else if (view === 'radiology') {
-                // FILTER: Only include Radiology for this tab
-                const radOnly = masterData.filter(d => 
-                    d.cat.toLowerCase().includes('rad') || d.code.startsWith('7')
-                );
+                if (view === 'search') {
+                    filteredData = masterData.filter(d => !d.code.startsWith('7') && !d.cat.toLowerCase().includes('mod') && !d.cat.toLowerCase().includes('payer'));
+                    tableTitle = "Denial Resolution (M, MA, N Codes)";
+                } else if (view === 'radiology') {
+                    filteredData = masterData.filter(d => d.code.startsWith('7') || d.cat.toLowerCase().includes('rad'));
+                    tableTitle = "Radiology & Imaging CPTs";
+                } else if (view === 'modifiers') {
+                    filteredData = masterData.filter(d => d.cat.toLowerCase().includes('mod'));
+                    tableTitle = "Modifier Matrix (25, 59, 26, TC)";
+                } else if (view === 'payer') {
+                    filteredData = masterData.filter(d => d.cat.toLowerCase().includes('payer'));
+                    tableTitle = "Payer Specific Rules (TFL & Contacts)";
+                }
 
-                port.innerHTML = `
-                    <h3>Radiology Specialty Matrix</h3>
-                    <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Search by CPT code (70450, 72148)...">
-                    <div class="table-wrap"><table id="rcmTable">
-                        <thead><tr><th>CPT</th><th>Category</th><th>Description</th><th>Resolution Logic</th></tr></thead>
-                        <tbody>${renderRows(radOnly)}</tbody>
-                    </table></div>`;
+                renderView(port, tableTitle, filteredData);
             }
         }
 
-        // 3. RENDER HELPER
-        function renderRows(data) {
-            if (data.length === 0) return '<tr><td colspan="4" style="text-align:center; padding:50px;">No records found.</td></tr>';
-            
-            return data.map(d => {
-                let badgeClass = 'tech';
-                const cat = d.cat.toLowerCase();
-                if (cat.includes('elig')) badgeClass = 'elig';
-                if (cat.includes('rad')) badgeClass = 'rad';
-
-                return `<tr>
-                    <td><b>${d.code}</b></td>
-                    <td><span class="badge ${badgeClass}">${d.cat}</span></td>
-                    <td>${d.desc}</td>
-                    <td>${d.res}</td>
-                </tr>`;
-            }).join('');
+        // 3. TABLE RENDERER
+        function renderView(port, title, data) {
+            port.innerHTML = `
+                <h3>${title}</h3>
+                <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Quick Search...">
+                <div class="table-wrap"><table id="rcmTable">
+                    <thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution Logic</th></tr></thead>
+                    <tbody>${data.map(d => {
+                        let c = 'tech';
+                        const cat = d.cat.toLowerCase();
+                        if (cat.includes('elig')) c = 'elig';
+                        else if (cat.includes('rad')) c = 'rad';
+                        else if (cat.includes('mod')) c = 'mod';
+                        else if (cat.includes('payer')) c = 'payer';
+                        
+                        return `<tr><td><b>${d.code}</b></td><td><span class="badge ${c}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
+                    }).join('')}</tbody>
+                </table></div>`;
         }
 
-        // 4. GLOBAL SEARCH FILTER
+        // 4. SEARCH LOGIC
         function filterTable() {
             let val = document.getElementById('searchInp').value.toUpperCase();
             let rows = document.querySelector("#rcmTable tbody").rows;
-            for(let i=0; i < rows.length; i++) {
-                rows[i].style.display = rows[i].innerText.toUpperCase().includes(val) ? "" : "none";
-            }
+            for(let i=0; i < rows.length; i++) rows[i].style.display = rows[i].innerText.toUpperCase().includes(val) ? "" : "none";
         }
 
-        window.onload = initData;
+        window.onload = loadData;
     </script>
 </body>
 </html>
