@@ -145,23 +145,28 @@
         }
 
         function renderView(port, title, data) {
-            port.innerHTML = `
-                <h3>${title}</h3>
-                <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Quick Search...">
-                <div class="table-wrap"><table id="rcmTable">
-                    <thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution Logic</th></tr></thead>
-                    <tbody>${data.map(d => {
-                        let c = 'tech';
-                        const cat = d.cat.toLowerCase();
-                        if (cat.includes('elig')) c = 'elig';
-                        else if (cat.includes('rad')) c = 'rad';
-                        else if (cat.includes('mod')) c = 'mod';
-                        else if (cat.includes('payer')) c = 'payer';
-                        
-                        return `<tr><td><b>${d.code}</b></td><td><span class="badge ${c}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
-                    }).join('')}</tbody>
-                </table></div>`;
-        }
+    port.innerHTML = `
+        <h3>${title}</h3>
+        <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Quick Search Payers or TFL...">
+        <div class="table-wrap"><table id="rcmTable">
+            <thead><tr><th>Payer/Code</th><th>Category</th><th>Details</th><th>Resolution & Contact Mode</th></tr></thead>
+            <tbody>${data.map(d => {
+                let badgeClass = 'tech';
+                const cat = d.cat.toLowerCase();
+                if (cat.includes('payer')) badgeClass = 'payer';
+                
+                // Add icon based on whether it's a Portal-only payer
+                const contactIcon = d.res.toLowerCase().includes('non-callable') ? '🌐 (Portal Only)' : '📞 (Callable)';
+                
+                return `<tr>
+                    <td><b>${d.code}</b></td>
+                    <td><span class="badge ${badgeClass}">${d.cat}</span></td>
+                    <td>${d.desc}</td>
+                    <td><b>${contactIcon}</b><br>${d.res}</td>
+                </tr>`;
+            }).join('')}</tbody>
+        </table></div>`;
+}
 
         function filterTable() {
             let val = document.getElementById('searchInp').value.toUpperCase();
@@ -173,3 +178,4 @@
     </script>
 </body>
 </html>
+
