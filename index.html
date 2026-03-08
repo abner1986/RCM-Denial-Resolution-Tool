@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Master Portal | 2026</title>
+    <title>RCM Hub | Live CSV Database</title>
     <style>
-        :root { --primary: #1c2833; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
+        :root { --primary: #1c2833; --accent: #3498db; --bg: #f4f7f6; --success: #27ae60; --danger: #e74c3c; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
         
+        /* Sidebar */
         .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
         .nav-item { padding: 15px 25px; cursor: pointer; color: #bdc3c7; transition: 0.3s; border-left: 4px solid transparent; }
         .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
 
+        /* Main Content */
         .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
         .top-bar { padding: 15px 40px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
         .view-container { padding: 40px; }
 
+        /* Search & Table */
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; font-size: 1rem; outline: none; }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
@@ -26,6 +29,9 @@
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
         .elig { background: #d6eaf8; color: #2e86c1; }
         .tech { background: #fef5e7; color: #d68910; }
+        .rad { background: #d5f5e3; color: #1d8348; }
+
+        #status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
     </style>
 </head>
 <body>
@@ -38,67 +44,99 @@
     </div>
 
     <div class="main">
-        <div class="top-bar"><b id="view-title">Dashboard</b><span style="color:var(--success)">● System Online</span></div>
-        <div id="view-port" class="view-container"></div>
+        <div class="top-bar">
+            <b id="view-title">Dashboard</b>
+            <span id="db-status"><span id="status-dot" style="background:#bbb"></span> Connecting...</span>
+        </div>
+        <div id="view-port" class="view-container">
+            <h3>Loading RCM Database...</h3>
+        </div>
     </div>
 
     <script>
-        // DATA IS EMBEDDED TO PREVENT CORS ERRORS
-        const rawData = `Code,Category,Description,Resolution
-CO 24,Eligibility,Capitation Agreement,Identify MCO/IPA holding risk via portal. Bill the capitated entity.
-CO 16,Technical,Lacks Information,Check RARC (N257/M51). Fix NPI/Tax ID/Address.
-CO 22,Eligibility,COB Error,Obtain Primary EOB. Attach and bill Secondary Payer.
-CO 27,Eligibility,Coverage Terminated,Verify DOS vs Term Date. Search for new policy or bill patient.
-CO 29,Technical,Timely Filing,Appeal with clearinghouse 'Accepted' report as proof of date.
-70450,Radiology,CT Head/Brain w/o Contrast,Verify Auth matches 'Without' contrast. Link to DX R51.9.
-72141,Radiology,MRI Lumbar Spine w/o Contrast,Requires 6 weeks conservative therapy notes for appeal.
-PR 1,Patient,Deductible,Transfer balance to patient responsibility and send statement.`;
-
         let masterData = [];
 
-        function initData() {
-            const lines = rawData.split('\n');
-            masterData = lines.slice(1).map(line => {
-                const parts = line.split(',');
-                return { code: parts[0], cat: parts[1], desc: parts[2], res: parts[3] };
-            });
-            showView('home');
+        // 1. THE FETCH FUNCTION
+        async function loadData() {
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('db-status');
+
+            try {
+                // Fetch the separate CSV file from your GitHub repo
+                const response = await fetch('rcm_master_all.csv');
+                
+                if (!response.ok) throw new Error("CSV file not found");
+
+                const csvText = await response.text();
+                
+                // Parse CSV lines
+                const lines = csvText.split('\n');
+                masterData = lines.slice(1).map(line => {
+                    // Regex handles commas inside quotes correctly
+                    const parts = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (parts.length < 4) return null;
+                    return { 
+                        code: parts[0].trim(), 
+                        cat: parts[1].trim(), 
+                        desc: parts[2].trim(), 
+                        res: parts[3].trim() 
+                    };
+                }).filter(item => item !== null);
+
+                statusDot.style.background = "var(--success)";
+                statusText.innerHTML = `<span id="status-dot" style="background:var(--success)"></span> Connected: ${masterData.length} Codes`;
+                showView('home');
+
+            } catch (err) {
+                console.error(err);
+                statusDot.style.background = "var(--danger)";
+                statusText.innerHTML = `<span id="status-dot" style="background:var(--danger)"></span> Error Loading CSV`;
+                document.getElementById('view-port').innerHTML = `
+                    <h2 style="color:var(--danger)">Database Connection Failed</h2>
+                    <p>Ensure <b>rcm_master_all.csv</b> is in the same folder as index.html.</p>
+                `;
+            }
         }
 
+        // 2. ROUTING ENGINE
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
             
-            // Fix Active State
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
 
             if (view === 'home') {
                 port.innerHTML = `
                     <div style="background:white; padding:30px; border-radius:8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-                        <h1>Hello, Ashok</h1>
-                        <p>RCM Master Database is active with <b>${masterData.length}</b> records.</p>
-                        <p>Use the <b>Denial Search</b> to resolve claims.</p>
+                        <h1>RCM Dashboard</h1>
+                        <p>Currently pulling data from: <b>rcm_master_all.csv</b></p>
+                        <p>Records synced: <b>${masterData.length}</b></p>
+                        <hr>
+                        <p>Welcome, Ashok. Select <b>Denial Search</b> to begin your shift.</p>
                     </div>`;
             } else if (view === 'search') {
                 port.innerHTML = `
-                    <input type="text" class="search-box" id="searchInp" onkeyup="filter()" placeholder="Search by Code, Category, or Keyword...">
+                    <input type="text" class="search-box" id="searchInp" onkeyup="filter()" placeholder="Search Code, Description, or Resolution...">
                     <div class="table-wrap"><table id="rcmTable">
                         <thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead>
                         <tbody>${renderRows(masterData)}</tbody>
                     </table></div>`;
             } else if (view === 'radiology') {
-                const rad = masterData.filter(d => d.code.startsWith('7'));
-                port.innerHTML = `<div class="table-wrap"><table id="rcmTable">
-                    <thead><tr><th>CPT</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead>
-                    <tbody>${renderRows(rad)}</tbody>
-                </table></div>`;
+                const rad = masterData.filter(d => d.code.startsWith('7') || d.cat.toLowerCase().includes('rad'));
+                port.innerHTML = `
+                    <h3>Radiology Specialty List</h3>
+                    <div class="table-wrap"><table id="rcmTable">
+                        <thead><tr><th>CPT</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead>
+                        <tbody>${renderRows(rad)}</tbody>
+                    </table></div>`;
             }
         }
 
+        // 3. UTILITIES
         function renderRows(data) {
             return data.map(d => {
-                const c = d.cat.includes('Elig') ? 'elig' : 'tech';
+                const c = d.cat.toLowerCase().includes('elig') ? 'elig' : (d.cat.toLowerCase().includes('rad') ? 'rad' : 'tech');
                 return `<tr><td><b>${d.code}</b></td><td><span class="badge ${c}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
             }).join('');
         }
@@ -111,7 +149,7 @@ PR 1,Patient,Deductible,Transfer balance to patient responsibility and send stat
             }
         }
 
-        window.onload = initData;
+        window.onload = loadData;
     </script>
 </body>
 </html>
