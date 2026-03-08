@@ -30,3 +30,26 @@ PR 2,Patient,Coinsurance,Move to patient responsibility.
 N257,Remark,Missing Provider Info,Verify Billing/Rendering NPI and Address in Box 33 and 24J.
 M51,Remark,Invalid Procedure Code,Correct CPT/HCPCS code and resubmit as Corrected Claim.
 MA 13,Remark,File Update Required,Provider must update NPI address or banking on the payer portal.
+Code,Category,Description,Resolution
+70450,Radiology,CT Head/Brain w/o Contrast,Verify DX R51.9 (Headache). Check for Auth if required by payer.
+70460,Radiology,CT Head/Brain w/ Contrast,Verify Auth specifies 'With' contrast. Link to tumor DX.
+70470,Radiology,CT Head/Brain w/o & w/ Contrast,Verify Auth for 'With and Without'. Check for allergic reactions notes.
+70486,Radiology,CT Maxillofacial w/o Contrast,Verify DX for sinus or facial trauma.
+72125,Radiology,CT Cervical Spine w/o Contrast,Verify trauma DX or degenerative disc disease logic.
+72128,Radiology,CT Thoracic Spine w/o Contrast,Ensure DX supports thoracic spine pain or injury.
+72131,Radiology,CT Lumbar Spine w/o Contrast,Check for previous X-ray results in notes for medical necessity.
+74150,Radiology,CT Abdomen w/o Contrast,Link to DX for abdominal pain (R10 series).
+74176,Radiology,CT Abd & Pelvis w/o Contrast,Common for kidney stones. Verify Auth covers both Abd and Pelvis.
+74177,Radiology,CT Abd & Pelvis w/ Contrast,Ensure GFR/Creatinine levels are in notes for IV contrast safety.
+74178,Radiology,CT Abd & Pelvis w/o & w/ Contrast,Verify medical necessity for multiphase study.
+70551,Radiology,MRI Brain w/o Contrast,Verify Auth matches CPT. Check for DX G35 (MS) or G44 (Migraine).
+70552,Radiology,MRI Brain w/ Contrast,Verify Auth for 'With' contrast. Check for DX related to neoplasm.
+70553,Radiology,MRI Brain w/o & w/ Contrast,Common for MS monitoring. Verify Auth for 'With and Without'.
+72141,Radiology,MRI Cervical Spine w/o Contrast,Requires 6 weeks conservative therapy notes (PT/Meds) for appeal.
+72146,Radiology,MRI Thoracic Spine w/o Contrast,Ensure DX supports thoracic radiculopathy or spinal cord compression.
+72148,Radiology,MRI Lumbar Spine w/o Contrast,Most denied CPT. Check for 6 weeks of conservative treatment history.
+72156,Radiology,MRI Cervical Spine w/o & w/ Contrast,Verify Auth for complex spinal disorders or post-op.
+73221,Radiology,MRI Upper Extremity Joint w/o Contrast,Includes Shoulder/Elbow/Wrist. Check for DX M25 series.
+73721,Radiology,MRI Lower Extremity Joint w/o Contrast,Includes Hip/Knee/Ankle. Link to DX for meniscus or ligament tear.
+74181,Radiology,MRI Abdomen w/o Contrast,Verify Auth. Common for liver or pancreas evaluation.
+
