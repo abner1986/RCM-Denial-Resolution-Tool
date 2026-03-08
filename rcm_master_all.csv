@@ -155,7 +155,7 @@ CO 204,Clinical,Service not covered under patient’s benefit plan,Check plan be
 CO 246,Contract,Non-payable reporting-only code,Remove reporting-only CPT/HCPCS code. Submit corrected claim.
 CO 252,Technical,Attachment required but not received,Upload operative note pathology report or invoice via payer portal and resubmit.
 CO 253,Eligibility,Coverage terminated due to non-payment of premium,Verify patient’s premium status. If lapsed bill patient directly.
-CO 256,Technical,Service not payable without prior certification,Request retro-authorization if possible. Otherwise, bill patient.
+CO 256,Technical,Service not payable without prior certification,Request retro-authorization if possible. Otherwise bill patient.
 CO 258,Coding,Service not furnished directly to patient,Verify CPT/HCPCS usage. Correct coding to reflect direct patient service.
 CO 259,Contract,Service denied for provider type,Check provider specialty enrollment. Update PECOS or reassign claim to eligible provider.
 CO 272,Eligibility,Coverage terminated due to death of patient,Verify DOS vs date of death. If after termination bill estate.
@@ -167,6 +167,7 @@ N386,Remark,Provider not certified/eligible,Verify provider enrollment with paye
 MA130,Remark,Missing patient ABN signature,Obtain signed ABN from patient. Attach and resubmit claim.
 MA131,Remark,Missing or invalid taxonomy code,Correct taxonomy in Box 33 or provider portal. Resubmit claim.
 MA15,Remark,Missing or invalid ZIP code,Correct patient/provider ZIP code. Resubmit claim.
+
 
 
 
