@@ -77,7 +77,8 @@ R06.02,Clinical,Shortness of Breath,FL/TX RULE: Supports Chest CT (71250). Check
 Z12.11,Clinical,Colon Cancer Screening,FL/TX RULE: Only allowed every 10 years for average risk. Check history.
 R91.8,Clinical,Nodule on Lung,FL/TX RULE: Supports CT Chest. Ensure previous X-ray date is in Box 19.
 M51.26,Clinical,Lumbar Disc Displacement,FL/TX RULE: High success for MRI Lumbar (72148). Link to radiculopathy notes.
-R31.9,Clinical,Hematuria, Unspecified,FL/TX RULE: Supports CT Urogram. Must specify if 'Gross' or 'Microscopic'.
+R31.9,Clinical,Hematuria Unspecified,FL/TX RULE: Supports CT Urogram. Must specify if 'Gross' or 'Microscopic'.
+
 
 
 
