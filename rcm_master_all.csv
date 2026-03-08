@@ -167,6 +167,10 @@ N386,Remark,Provider not certified/eligible,Verify provider enrollment with paye
 MA130,Remark,Missing patient ABN signature,Obtain signed ABN from patient. Attach and resubmit claim.
 MA131,Remark,Missing or invalid taxonomy code,Correct taxonomy in Box 33 or provider portal. Resubmit claim.
 MA15,Remark,Missing or invalid ZIP code,Correct patient/provider ZIP code. Resubmit claim.
+18,Technical,Duplicate Claim/Service,CARC 18: Verify original ICN on Availity. If paid: Write-off. If denied: Resubmit as Corrected Claim (Freq 7).
+76,Modifier,Repeat Procedure (Same MD),Use when the same doctor performs the same CPT twice on the same day to avoid CARC 18.
+77,Modifier,Repeat Procedure (Diff MD),Use when a different doctor performs the same CPT on the same day.
+
 
 
 
