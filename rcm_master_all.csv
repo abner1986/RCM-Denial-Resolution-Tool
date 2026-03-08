@@ -112,6 +112,15 @@ N104,Admin,Wrong Jurisdiction,CARC 109: Claim sent to wrong MAC/Carrier. Rebill 
 N574,Admin,Ordering MD Ineligible,CARC 183: The NPI in Box 17b is not eligible to refer. Verify NPI and PECOS status.
 N921,Admin,Appeal Time Limit Expired,CARC 29: Final Denial. Reconsideration period is closed. Check for administrative override.
 N921,Admin,Appeal Time Limit Expired,CARC 29: Final Denial. Reconsideration period is closed. Check for administrative override.
+BCBS-FL,Payer,Florida Blue (Commercial),TFL: 365 Days. Portal: Availity. Non-Callable for simple status. Call only for clinical appeals.
+BCBS-TX,Payer,BlueCross Texas (Commercial),TFL: 95 Days. Portal: Availity. High denial rate for Modifier -25. Use specific TFL logic.
+HUM-COMM,Payer,Humana Commercial,TFL: 180 Days. Portal: Availity. Callable for 'Check tracers' and 'Interest payments'.
+AET-COMM,Payer,Aetna Commercial,TFL: 120 Days. Portal: Availity. Non-Callable for 'Correction of DX'. Must resubmit as Corrected Claim.
+SUN-FL,Payer,Sunshine Health (FL Medicaid),TFL: 180 Days. Portal: WellCare/Sunshine. Callable for 'Coordination of Benefits' issues.
+SUP-TX,Payer,Superior Health (TX Medicaid),TFL: 95 Days. Portal: Superior Portal. Strictly Non-Callable for 'Timely Filing' denials.
+MCD-FL,Payer,Florida Medicaid (FMMIS),TFL: 12 months. Portal: FLMMIS. Callable for 'Recipient Eligibility' updates.
+MCD-TX,Payer,Texas Medicaid (TMHP),TFL: 95 Days. Portal: TMHP. Non-Callable for 'Missing Info'. Use 'Appeal' function in portal.
+MOL-TX,Payer,Molina Texas (Medicaid),TFL: 95 Days. Portal: Molina Portal. Callable for 'Authorization Mismatch' (CO 197).
 
 
 
