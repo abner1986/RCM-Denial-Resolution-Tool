@@ -56,27 +56,6 @@ Code,Category,Description,Resolution
 26,Modifier,Professional Component,CARC 16/M66: Apply when only the physician's interpretation is being billed.
 59,Modifier,Distinct Procedural Service,CARC 97/M15: Apply to unbundle a component. Check NCCI edits first.
 TC,Modifier,Technical Component,CARC 16/M66: Apply when billing for equipment/facility costs only.
-M1,Technical,X-ray not taken within 12 months,CARC 16/50: Verify if a previous X-ray exists. If not, perform X-ray or appeal with clinical justification.
-M2,Technical,Inpatient Payment Restriction,CARC 97: Not paid separately for inpatients. Write off or bill facility.
-M11,Technical,DME Zip Code Jurisdiction,CARC 109: Identify correct DME MAC based on patient zip and rebill.
-M14,Technical,Injection Bundle,CARC 97: No separate payment for injection. If distinct, add Modifier -25 to E/M.
-M15,Technical,Component Bundling,CARC 97: Services are components of same procedure. Use Modifier -59 if distinct.
-M19,Technical,Missing Oxygen Certification,CARC 16: Obtain and attach a signed Certificate of Medical Necessity (CMN).
-M20,Technical,Missing/Invalid HCPCS,CARC 16/185: Check CPT manual for current year. Fix code and resubmit.
-M23,Technical,Missing Invoice,CARC 252: Attach original invoice for drug/supply and resubmit.
-M29,Technical,Missing Operative Note,CARC 16/252: Upload Op-note to payer portal. Resubmit as Corrected Claim.
-M30,Technical,Missing Pathology Report,CARC 16/252: Obtain Path report and upload to portal.
-M31,Technical,Missing Radiology Report,CARC 16/252: Obtain Radiologist interpretation and upload to portal.
-M42,Admin,Form Needs MD Signature,CARC 16: Return form to attending MD for physical signature. Re-upload.
-M66,Technical,Radiology Prof/Tech Split,CARC 16: Rebill as two lines with Modifiers -26 and -TC.
-M81,Technical,Highest Level of Specificity,CARC 16: Code ICD-10 to the 5th, 6th, or 7th character. Do not use 'unspecified'.
-MA04,Eligibility,Secondary COB Missing Primary,CARC 22: Attach the Primary EOB and resubmit to the Secondary payer.
-MA120,Technical,Missing CLIA Number,CARC 16: Add the lab's CLIA number to Box 23 and resubmit.
-N4,Eligibility,Missing Prior Payer EOB,CARC 22: Obtain EOB from primary. Attach and resubmit to secondary.
-N30,Eligibility,Patient Ineligible,CARC 31: Re-verify insurance. Check for term date or coverage changes.
-N104,Admin,Wrong Jurisdiction,CARC 109: Misdirected claim. Identify correct regional MAC and rebill.
-N106,Admin,SNF Consolidated Billing,CARC 96: Service included in SNF stay. Request payment from the SNF, not insurance.
-N574,Admin,Ordering MD Ineligible,CARC 183: NPI in Box 17b cannot refer. Verify NPI and PECOS enrollment.
-N921,Admin,Appeal Time Limit Expired,CARC 29: Final Denial. Appeal window closed. Seek administrative override.
+
 
 
