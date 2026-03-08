@@ -17,12 +17,13 @@
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; }
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; z-index: 5; }
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
         .payer { background: #fadbd8; color: #c0392b; }
         .rad { background: #d5f5e3; color: #1d8348; }
         .mod { background: #ebdef0; color: #884ea0; }
+        .pain { background: #d6eaf8; color: #2e86c1; }
         .tech { background: #fcf3cf; color: #9a7d0a; }
         .card { background: white; padding: 30px; border-radius: 8px; border-top: 4px solid var(--accent); }
     </style>
@@ -32,55 +33,60 @@
         <div class="sidebar-header"><h2>RCM HUB 2026</h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
         <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
-        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology Matrix</div>
+        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology</div>
         <div class="nav-item" id="nav-pain" onclick="showView('pain')">💉 Pain Management</div>
-        <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifier Guide</div>
+        <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifiers</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
     </div>
     <div class="main">
-        <div class="top-bar"><b id="view-title">DASHBOARD</b><span id="db-status">Syncing...</span></div>
+        <div class="top-bar"><b id="view-title">DASHBOARD</b><span id="db-status">Initializing...</span></div>
         <div id="view-port" class="view-container"></div>
     </div>
     <script>
         let masterData = [];
         async function loadData() {
+            const status = document.getElementById('db-status');
             try {
                 const res = await fetch('rcm_master_all.csv');
+                if (!res.ok) throw new Error("File missing");
                 const text = await res.text();
                 masterData = text.split('\n').slice(1).map(l => {
                     const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                     if (p.length < 4) return null;
                     return { code: p[0].trim(), cat: p[1].trim(), desc: p[2].trim(), res: p[3].trim() };
                 }).filter(d => d !== null);
-                document.getElementById('db-status').innerHTML = `<span style="color:var(--success)">●</span> Records: ${masterData.length}`;
+                status.innerHTML = `<span style="color:var(--success)">●</span> Records: ${masterData.length}`;
                 showView('home');
-            } catch (e) { document.getElementById('db-status').innerText = "Load Error"; }
+            } catch (e) { status.innerHTML = `<span style="color:red">●</span> Sync Error: CSV Missing`; }
         }
+
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
+
             if (view === 'home') {
-                port.innerHTML = `<div class="card"><h1>FL & TX Jurisdiction Hub</h1><hr><p><b>Florida MAC JM:</b> First Coast<br><b>Texas MAC JH:</b> Novitas</p><p>Use the <b>Payer Matrix</b> to check for 🌐 Portal-Only vs 📞 Callable payers.</p></div>`;
+                port.innerHTML = `<div class="card"><h1>FL/TX RCM HUB</h1><p>Active Jurisdiction: <b>First Coast (FL) & Novitas (TX)</b></p><hr><h3>RCM Summary:</h3><ul><li>Denials: M, MA, N series</li><li>Advanced Imaging: 70000 series</li><li>Pain Mgmt: 60000 series</li></ul></div>`;
             } else {
                 let data = [];
-                if (view === 'search') data = masterData.filter(d => d.cat !== 'Payer' && d.cat !== 'Modifier' && !d.code.startsWith('7'));
+                if (view === 'search') data = masterData.filter(d => ['Technical', 'Admin', 'Clinical'].includes(d.cat));
                 else if (view === 'radiology') data = masterData.filter(d => d.code.startsWith('7') || d.cat === 'Radiology');
+                else if (view === 'pain') data = masterData.filter(d => d.cat === 'Pain Mgmt');
                 else if (view === 'modifiers') data = masterData.filter(d => d.cat === 'Modifier');
                 else if (view === 'payer') data = masterData.filter(d => d.cat === 'Payer');
-                else if (view === 'pain') data = masterData.filter(d => d.cat === 'PainMgmt');
-}
                 renderTable(port, data);
             }
         }
+
         function renderTable(port, data) {
-            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Quick filter..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution Logic</th></tr></thead><tbody>${data.map(d => {
-                let b = d.cat.toLowerCase().includes('payer') ? 'payer' : (d.cat.toLowerCase().includes('rad') ? 'rad' : (d.cat.toLowerCase().includes('mod') ? 'mod' : 'tech'));
+            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead><tbody>${data.map(d => {
+                let b = d.cat.toLowerCase().replace(' ', '-');
                 let contact = d.res.toLowerCase().includes('non-callable') ? '🌐 ' : (d.cat === 'Payer' ? '📞 ' : '');
                 return `<tr><td><b>${d.code}</b></td><td><span class="badge ${b}">${d.cat}</span></td><td>${d.desc}</td><td>${contact}${d.res}</td></tr>`;
             }).join('')}</tbody></table></div>`;
         }
+
         function f() {
             let v = document.getElementById('s').value.toUpperCase();
             let r = document.querySelector("#t tbody").rows;
@@ -90,5 +96,3 @@
     </script>
 </body>
 </html>
-
-
