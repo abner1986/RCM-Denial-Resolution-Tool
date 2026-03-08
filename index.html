@@ -59,7 +59,31 @@
                 showView('home');
             } catch (e) { status.innerHTML = `<span style="color:red">●</span> Sync Error: CSV Missing`; }
         }
+if (view === 'home') {
+    port.innerHTML = `
+        <div class="card">
+            <h1>RCM Hub: FL & TX Jurisdiction</h1>
+            <p>Managing claims for <b>MAC JM (Florida)</b> and <b>MAC JH (Texas)</b>.</p>
+            
+            <div style="text-align:center; margin: 20px 0;">
+                
 
+[Image of the healthcare revenue cycle management workflow]
+
+                <p style="font-size: 0.8rem; color: #7f8c8d;">Standard RCM Lifecycle: Submission to Resolution</p>
+            </div>
+
+            <hr>
+
+            <h3>Quick Links & Resources:</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">🌐 First Coast (Florida MAC JM)</a>
+                <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">🌐 Novitas (Texas MAC JH)</a>
+                <a href="https://www.cms.gov/medicare-coverage-database/search.aspx" target="_blank" class="btn-link">📖 CMS NCD/LCD Database</a>
+                <a href="https://www.availity.com/" target="_blank" class="btn-link">🔑 Availity Portal (All Payers)</a>
+            </div>
+        </div>`;
+}
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
@@ -96,3 +120,4 @@
     </script>
 </body>
 </html>
+
