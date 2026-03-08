@@ -1,48 +1,32 @@
-Code,Category,Description,Resolution Strategy
+Code,Category,Description,Resolution
 CO 1,Patient,Deductible,Transfer balance to patient responsibility and issue statement.
 CO 2,Patient,Coinsurance,Transfer balance to patient responsibility and issue statement.
 CO 3,Patient,Co-payment,Transfer balance to patient responsibility and issue statement.
-PR 1,Patient,Deductible,Transfer balance to patient responsibility.
-PR 2,Patient,Coinsurance,Transfer balance to patient responsibility.
-CO 4,Technical,Modifier Inconsistent,Verify CPT vs Modifier (e.g. -25 -59). Correct and resubmit as Corrected Claim.
-CO 16,Technical,Lacks Information,Check RARC (N257/M51). Fix missing NPI Tax ID or Modifiers. Resubmit.
+CO 4,Technical,Modifier Inconsistent,Verify CPT vs Modifier (e.g. -25 -59). Correct and resubmit.
+CO 16,Technical,Lacks Information,Check RARC (N257/M51). Fix missing NPI Tax ID or Modifiers.
 CO 18,Technical,Duplicate Claim,Check status of first claim. If paid write off. If pending do not resubmit.
-CO 19,Eligibility,Workers Comp Liability,Identify and bill the Workers Comp carrier. Obtain WC Claim Number.
+CO 19,Eligibility,Workers Comp Liability,Identify and bill the Workers Comp carrier.
 CO 22,Eligibility,COB Error,Verify Primary Payer. Obtain Primary EOB. Bill Secondary with EOB attached.
-CO 24,Eligibility,Capitation Agreement,Identify MCO/IPA holding risk via portal. Bill the capitated entity holding risk.
-CO 26,Eligibility,Coverage Not Started,Verify DOS vs Effective Date. If DOS is prior bill patient or check for COBRA.
+CO 24,Eligibility,Capitation Agreement,Identify MCO/IPA holding risk via portal. Bill the capitated entity.
+CO 26,Eligibility,Coverage Not Started,Verify DOS vs Effective Date. If DOS is prior bill patient.
 CO 27,Eligibility,Coverage Terminated,Verify DOS vs Term Date. Search for new active policy or bill patient.
-CO 29,Technical,Timely Filing,Appeal with clearinghouse 'Accepted' report as proof of date. Check Payer Matrix.
-CO 45,Contract,Contractual Adjustment,Standard write-off per provider contract. No further action needed.
+CO 29,Technical,Timely Filing,Appeal with clearinghouse 'Accepted' report as proof of date.
+CO 45,Contract,Contractual Adjustment,Standard write-off per provider contract.
 CO 50,Clinical,Medical Necessity,Appeal with clinical notes and signed Letter of Medical Necessity (LMN).
-CO 55,Clinical,Experimental Procedure,Common in genetic testing. Appeal with proof test is standard clinical practice.
-CO 58,Technical,Inappropriate Level of Care,Payer claims ER should be Outpatient. Appeal with proof of emergency.
-CO 59,Coding,Multiple Procedure Rule,Check NCCI edits. Apply Modifier -51 if appropriate or write off.
+CO 59,Coding,Multiple Procedure Rule,Check NCCI edits. Apply Modifier -51 if appropriate.
 CO 96,Contract,Non-covered Service,Verify plan benefits. If non-covered bill patient (check for signed ABN).
 CO 97,Coding,Bundled Service,Check NCCI edits. If service is distinct add Modifier -59 and resubmit.
-CO 107,Technical,Attachment Missing,Submit Op-notes Lab results or Invoice via portal/fax and resubmit.
-CO 109,Eligibility,Wrong Payer,Identify correct carrier through eligibility check and resubmit to correct payer.
-CO 162,Admin,State Mandated Rule,Check local state policy for DME or Drug rules and update claim.
-CO 167,Coding,Diagnosis Not Covered,Check LCD/NCD guidelines. Link covered ICD-10 to CPT and resubmit.
-CO 170,Admin,Facility Not Allowed,Check if facility is CLIA Certified for the specific lab test billed. Update Box 23.
-CO 171,Admin,Facility Type Mismatch,Check if rendering provider is credentialed for this specific facility type.
-CO 172,Coding,DX Mismatch,The ICD-10 does not support the CPT. Link high-level DX (e.g. Malignancy).
-CO 183,Admin,Referring MD Ineligible,Verify referring NPI. Ensure they are enrolled in the specific payer network.
-CO 185,Admin,Rendering MD Ineligible,Check provider credentialing status. Re-enroll or update NPPES registry.
+CO 107,Technical,Attachment Missing,Submit Op-notes or Invoice via portal/fax and resubmit.
+CO 109,Eligibility,Wrong Payer,Identify correct carrier through eligibility check and resubmit.
+CO 167,Coding,Diagnosis Not Covered,Check LCD/NCD guidelines. Link covered ICD-10 and resubmit.
 CO 197,Auth,Pre-Auth Absent,Check if Auth exists. If yes add to Box 23. If no request Retro-Auth.
-CO 204,Technical,Drug Not Covered,Check if drug is on payer formulary. Bill patient or appeal for exception.
-CO 223,Technical,Multiple Units Adjustment,Review CPT unit limits (MUE). Adjust units or appeal with justification.
-CO 232,Admin,Statutory Limit Reached,Provider reached max allowed payment for cycle. Review contract limits.
-CO 252,Technical,Attachment Required,Upload required documentation (Notes/Invoice) to portal and resubmit.
-B7,Admin,Provider Not Certified,Check if license or credentials expired before DOS. Update provider file.
-B15,Clinical,Service Incompatible,Review clinical protocol. Ensure drug matches the diagnosis and procedure.
-MA 13,Admin,File Update Required,Provider must update NPI address or banking on the payer portal.
+70450,Radiology,CT Head/Brain w/o Contrast,Verify Auth matches 'Without' contrast. Link to DX R51.9.
+72141,Radiology,MRI Lumbar Spine w/o Contrast,Requires 6 weeks conservative therapy notes for appeal.
+74176,Radiology,CT Abd/Pelvis w/o Contrast,Ensure DX supports medical necessity (e.g. K57.3).
+76700,Radiology,US Abdomen Complete,Verify documentation supports 'Complete'. If not downcode to 76705.
+77067,Radiology,Screening Mammogram,Verify 365-day frequency rule. Use DX Z12.31.
+PR 1,Patient,Deductible,Move to patient responsibility.
+PR 2,Patient,Coinsurance,Move to patient responsibility.
 N257,Remark,Missing Provider Info,Verify Billing/Rendering NPI and Address in Box 33 and 24J.
 M51,Remark,Invalid Procedure Code,Correct CPT/HCPCS code and resubmit as Corrected Claim.
-N30,Remark,Non-Network Provider,Check if patient has OON benefits. If not bill patient.
-70450,Radiology,CT Head/Brain w/o Contrast,Verify Auth matches 'Without' contrast. Link to DX R51.9 (Headache).
-72141,Radiology,MRI Lumbar Spine w/o Contrast,Requires 6 weeks conservative therapy notes for appeal. Link to M54.51.
-74176,Radiology,CT Abd/Pelvis w/o Contrast,Ensure DX supports medical necessity (e.g. K57.3 Diverticulitis).
-76700,Radiology,US Abdomen Complete,Verify documentation supports 'Complete' organs. If not downcode to 76705.
-77067,Radiology,Screening Mammogram,Verify 365-day frequency rule. Use DX Z12.31.
-71045,Radiology,Chest X-Ray (1 view),Ensure Modifier -26/-TC is correct if billing for professional/technical.
+MA 13,Remark,File Update Required,Provider must update NPI address or banking on the payer portal.
