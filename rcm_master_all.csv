@@ -56,6 +56,19 @@ Code,Category,Description,Resolution
 26,Modifier,Professional Component,CARC 16/M66: Apply when only the physician's interpretation is being billed.
 59,Modifier,Distinct Procedural Service,CARC 97/M15: Apply to unbundle a component. Check NCCI edits first.
 TC,Modifier,Technical Component,CARC 16/M66: Apply when billing for equipment/facility costs only.
+Code,Category,Description,Resolution
+MAC-JM,Payer,Florida (First Coast),TFL: 365 Days. LCD Search: Look for 'L33768' for Lumbar Spine MRI.
+MAC-JH,Payer,Texas (Novitas),TFL: 365 Days. LCD Search: Look for 'L35092' for CT of Abdomen/Pelvis.
+NCD-220.4,Radiology,Mammography NCD,Mandatory coverage for screening every 12 months for age 40+.
+LCD-L33768,Radiology,FL Lumbar Spine MRI,Must have 6 weeks of conservative therapy (PT/Meds) documented.
+LCD-L35092,Radiology,TX CT Abd/Pelvis,Requires GFR/Creatinine levels within 30-90 days for IV contrast.
+74177,Radiology,CT Abd/Pelvis w/ Contrast,TX/FL Rule: Verify DX supports acute symptoms (R10 series).
+72148,Radiology,MRI Lumbar Spine w/o,FL Rule: Denial CO-50 is common if 'Red Flags' (Trauma/Cancer) aren't in notes.
+M38,Technical,ABN Signed (GA),Modifier -GA must be present for Medicare FL/TX to allow patient billing.
+M39,Technical,No ABN Signed (GZ),Modifier -GZ must be used. Claim will deny as Provider Liability (Write-off).
+N386,Admin,NCD Determination,Decision based on National Policy. Visit CMS.gov and search NCD index.
+N115,Admin,LCD Determination,Decision based on Local Policy. Check First Coast (FL) or Novitas (TX) portal.
+
 
 
 
