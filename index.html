@@ -3,17 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Master | FL & TX Command Center</title>
+    <title>RCM Hub | FL & TX Command Center</title>
     <style>
-        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; }
+        :root { 
+            --primary: #1c2833; 
+            --sidebar: #212f3d; 
+            --accent: #3498db; 
+            --success: #27ae60; 
+            --bg: #f4f7f6; 
+            --text: #2c3e50; 
+        }
         body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
+        
+        /* Sidebar Navigation */
         .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
         .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
         .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
+        
+        /* Main Layout */
         .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
         .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .view-container { padding: 40px; }
+        
+        /* UI Components */
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
@@ -22,11 +35,13 @@
         
         /* Badges */
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid transparent; }
-        .pr { background: #f5b7b1; color: #943126; border-color: #e74c3c; } /* Red for Patient Responsibility */
-        .elig { background: #d6eaf8; color: #2e86c1; border-color: #3498db; }
-        .rad { background: #d5f5e3; color: #1d8348; border-color: #27ae60; }
-        .mod { background: #ebdef0; color: #884ea0; border-color: #af7ac5; }
+        .pain-mgmt { background: #d6eaf8; color: #2e86c1; border-color: #3498db; }
+        .radiology { background: #d5f5e3; color: #1d8348; border-color: #27ae60; }
+        .modifier { background: #ebdef0; color: #884ea0; border-color: #af7ac5; }
         .payer { background: #fadbd8; color: #c0392b; border-color: #e74c3c; }
+        .pr { background: #f5b7b1; color: #943126; border-color: #e74c3c; }
+        .technical, .clinical, .admin { background: #fcf3cf; color: #9a7d0a; border-color: #f1c40f; }
+
         .card { background: white; padding: 30px; border-radius: 8px; border-top: 4px solid var(--accent); }
         .btn-link { display: block; padding: 12px; background: #ebf5fb; color: #2e86c1; text-decoration: none; border-radius: 5px; border: 1px solid #3498db; text-align: center; font-weight: bold; margin-top: 10px; }
     </style>
@@ -35,8 +50,9 @@
     <div class="sidebar">
         <div class="sidebar-header"><h2>RCM HUB 2026</h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
+        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search (Master)</div>
         <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology</div>
+        <div class="nav-item" id="nav-pain" onclick="showView('pain')">💉 Pain Management</div>
         <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifiers</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
     </div>
@@ -59,45 +75,45 @@
                 showView('home');
             } catch (e) { document.getElementById('db-status').innerText = "Load Error"; }
         }
+
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
+
             if (view === 'home') {
                 port.innerHTML = `
                     <div class="card">
-                        <h1>Revenue Cycle Management</h1>
+                        <h1>Florida & Texas RCM Command</h1>
                         
 
 [Image of the healthcare revenue cycle management workflow]
 
                         <hr>
-                        <h3>Jurisdiction Links (FL & TX):</h3>
-                        <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">Florida (First Coast)</a>
-                        <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">Texas (Novitas)</a>
+                        <h3>Jurisdiction Links:</h3>
+                        <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">Florida First Coast (MAC JM)</a>
+                        <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">Texas Novitas (MAC JH)</a>
                     </div>`;
             } else {
                 let data = [];
-                if (view === 'search') data = masterData.filter(d => !d.code.startsWith('7') && d.cat !== 'Payer' && d.cat !== 'Modifier');
-                else if (view === 'radiology') data = masterData.filter(d => d.code.startsWith('7') || d.cat === 'Radiology');
+                // Search Logic: Denial Search includes Pain Management but excludes Payers/Modifiers
+                if (view === 'search') data = masterData.filter(d => d.cat !== 'Payer' && d.cat !== 'Modifier');
+                else if (view === 'radiology') data = masterData.filter(d => d.cat === 'Radiology' || d.code.startsWith('7'));
+                else if (view === 'pain') data = masterData.filter(d => d.cat === 'Pain Mgmt' || d.code.startsWith('6'));
                 else if (view === 'modifiers') data = masterData.filter(d => d.cat === 'Modifier');
                 else if (view === 'payer') data = masterData.filter(d => d.cat === 'Payer');
                 renderTable(port, data);
             }
         }
+
         function renderTable(port, data) {
-            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search (PR, Deductible, Code)..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution</th></tr></thead><tbody>${data.map(d => {
-                let catLower = d.cat.toLowerCase();
-                let b = 'tech';
-                if (catLower.includes('patient') || d.code.startsWith('PR')) b = 'pr';
-                else if (catLower.includes('elig')) b = 'elig';
-                else if (catLower.includes('rad')) b = 'rad';
-                else if (catLower.includes('mod')) b = 'mod';
-                else if (catLower.includes('payer')) b = 'payer';
-                return `<tr><td><b>${d.code}</b></td><td><span class="badge ${b}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
+            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search Codes, Descriptions, or Resolutions..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution</th></tr></thead><tbody>${data.map(d => {
+                let catClass = d.cat.toLowerCase().replace(' ', '-');
+                return `<tr><td><b>${d.code}</b></td><td><span class="badge ${catClass}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
             }).join('')}</tbody></table></div>`;
         }
+
         function f() {
             let v = document.getElementById('s').value.toUpperCase();
             let r = document.querySelector("#t tbody").rows;
