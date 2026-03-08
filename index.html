@@ -33,6 +33,7 @@
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
         <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
         <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology Matrix</div>
+        <div class="nav-item" id="nav-pain" onclick="showView('pain')">💉 Pain Management</div>
         <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifier Guide</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
     </div>
@@ -68,6 +69,8 @@
                 else if (view === 'radiology') data = masterData.filter(d => d.code.startsWith('7') || d.cat === 'Radiology');
                 else if (view === 'modifiers') data = masterData.filter(d => d.cat === 'Modifier');
                 else if (view === 'payer') data = masterData.filter(d => d.cat === 'Payer');
+                else if (view === 'pain') data = masterData.filter(d => d.cat === 'Pain Mgmt');
+}
                 renderTable(port, data);
             }
         }
@@ -87,3 +90,4 @@
     </script>
 </body>
 </html>
+
