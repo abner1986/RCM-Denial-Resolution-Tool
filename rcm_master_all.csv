@@ -142,14 +142,16 @@ R51.9,Clinical,Headache Unspecified,FL/TX DENIAL: Too generic for MRI. Use G44 s
 M54.50,Clinical,Low Back Pain,FL/TX DENIAL: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.1).
 74177,Radiology,CT Abd/Pelvis w/ Contrast,TX/FL Rule: Requires GFR/Creatinine levels within 90 days in notes.
 72148,Radiology,MRI Lumbar Spine w/o,FL Rule: Denial CO-50 common. Must prove 6 weeks of PT in medical records.
-62321,PainMgmt,ESI (Cervical/Thoracic) w/ Imaging,CARC 50: FL/TX Rule - Max 3-4 injections per year. Check previous DOS.
-62323,PainMgmt,ESI (Lumbar/Sacral) w/ Imaging,CARC 50: Ensure 4-6 weeks of conservative therapy (PT/Meds) is documented.
-64483,PainMgmt,Transforaminal ESI (Lumbar),CARC 151: Often denied as experimental if used for axial pain without radiculopathy.
-64493,PainMgmt,Facet Joint Injection (Lumbar),CARC 50: FL/TX Rule - Requires 80% relief from previous diagnostic block.
-64635,PainMgmt,RFA (Radiofrequency Ablation),CARC 50: Documentation must show 6 months of persistent pain after conservative tx.
-20552,PainMgmt,Trigger Point Injection (1-2 muscles),CARC 97: Often bundled into E/M. Use Modifier -25 on office visit.
-20553,PainMgmt,Trigger Point Injection (3+ muscles),CARC 119: Frequency limit. Usually max 3 sessions per 12 months.
-G0260,PainMgmt,Sacroiliac (SI) Joint Injection,CARC 16: Missing Imaging notes. FL/TX requires Fluoroscopy or CT guidance.
+62321,Pain Mgmt,ESI (Cervical/Thoracic) w/ Imaging,CARC 50: FL/TX Rule - Max 3-4 injections per year. Check previous DOS.
+62323,Pain Mgmt,ESI (Lumbar/Sacral) w/ Imaging,CARC 50: Ensure 4-6 weeks of conservative therapy (PT/Meds) is documented.
+64483,Pain Mgmt,Transforaminal ESI (Lumbar),CARC 151: Often denied as experimental if used for axial pain without radiculopathy.
+64493,Pain Mgmt,Facet Joint Injection (Lumbar),CARC 50: FL/TX Rule - Requires 80% relief from previous diagnostic block.
+64635,Pain Mgmt,RFA (Radiofrequency Ablation),CARC 50: Documentation must show 6 months of persistent pain after conservative tx.
+20552,Pain Mgmt,Trigger Point Injection (1-2 muscles),CARC 97: Often bundled into E/M. Use Modifier -25 on office visit.
+20553,Pain Mgmt,Trigger Point Injection (3+ muscles),CARC 119: Frequency limit. Usually max 3 sessions per 12 months.
+G0260,Pain Mgmt,Sacroiliac (SI) Joint Injection,CARC 16: Missing Imaging notes. FL/TX requires Fluoroscopy or CT guidance.
+
+
 
 
 
