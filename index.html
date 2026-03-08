@@ -61,7 +61,6 @@
             <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
             <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
             <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology CPT</div>
-            <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifiers</div>
         </div>
     </div>
 
@@ -152,15 +151,7 @@
                 const radOnly = masterData.filter(d => 
                     d.cat.toLowerCase().includes('rad') || d.code.startsWith('7')
                 );
-          else if (view === 'modifiers') {
-    const modOnly = masterData.filter(d => d.cat.toLowerCase().includes('mod'));
-    port.innerHTML = `
-        <h3>RCM Modifier Quick-Ref</h3>
-        <div class="table-wrap"><table>
-            <thead><tr><th>Mod</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead>
-            <tbody>${renderRows(modOnly)}</tbody>
-        </table></div>`;
-}
+
                 port.innerHTML = `
                     <h3>Radiology Specialty Matrix</h3>
                     <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Search by CPT code (70450, 72148)...">
@@ -203,5 +194,3 @@
     </script>
 </body>
 </html>
-
-
