@@ -3,179 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Master | FL & TX Jurisdiction</title>
+    <title>RCM Master | FL & TX Command Center</title>
     <style>
-        :root {
-            --primary: #1c2833;
-            --sidebar: #212f3d;
-            --accent: #3498db;
-            --success: #27ae60;
-            --bg: #f4f7f6;
-            --text: #2c3e50;
-        }
-
-        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; color: var(--text); }
-
-        /* Sidebar Navigation */
-        .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
-        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; }
-        .sidebar-header h2 { margin: 0; color: var(--accent); font-size: 1.2rem; letter-spacing: 1px; }
-        
-        .nav-list { flex: 1; padding: 20px 0; }
+        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; }
+        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
+        .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
+        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
         .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
         .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
-
-        /* Main Workspace */
         .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
-        .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .view-container { padding: 40px; }
-
-        /* Search & UI Components */
-        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; font-size: 1rem; outline: none; box-sizing: border-box; }
-        .search-box:focus { border-color: var(--accent); }
-        
+        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; text-transform: uppercase; z-index: 10; }
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; }
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
-
-        /* Badges */
-        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid transparent; }
-        .elig { background: #d6eaf8; color: #2e86c1; border-color: #3498db; }
-        .tech { background: #fcf3cf; color: #9a7d0a; border-color: #f1c40f; }
-        .rad { background: #d5f5e3; color: #1d8348; border-color: #27ae60; }
-        .mod { background: #ebdef0; color: #884ea0; border-color: #af7ac5; }
-        .payer { background: #fadbd8; color: #c0392b; border-color: #e74c3c; }
-        
-        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+        .payer { background: #fadbd8; color: #c0392b; }
+        .rad { background: #d5f5e3; color: #1d8348; }
+        .mod { background: #ebdef0; color: #884ea0; }
+        .tech { background: #fcf3cf; color: #9a7d0a; }
+        .card { background: white; padding: 30px; border-radius: 8px; border-top: 4px solid var(--accent); }
     </style>
 </head>
 <body>
-
     <div class="sidebar">
-        <div class="sidebar-header"><h2>RCM COMMAND</h2></div>
-        <div class="nav-list">
-            <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-            <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
-            <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology CPT</div>
-            <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifier Matrix</div>
-            <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
-        </div>
+        <div class="sidebar-header"><h2>RCM HUB 2026</h2></div>
+        <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
+        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search</div>
+        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology Matrix</div>
+        <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifier Guide</div>
+        <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
     </div>
-
     <div class="main">
-        <div class="top-bar">
-            <b id="view-title">DASHBOARD</b>
-            <span id="db-status">Connecting to CSV...</span>
-        </div>
-        <div id="view-port" class="view-container">
-            <div style="text-align:center; padding-top:100px;"><h3>Loading Database...</h3></div>
-        </div>
+        <div class="top-bar"><b id="view-title">DASHBOARD</b><span id="db-status">Syncing...</span></div>
+        <div id="view-port" class="view-container"></div>
     </div>
-
     <script>
         let masterData = [];
-
         async function loadData() {
             try {
-                const response = await fetch('rcm_master_all.csv');
-                if (!response.ok) throw new Error("CSV not found");
-                const text = await response.text();
-                
-                const lines = text.split('\n');
-                masterData = lines.slice(1).map(line => {
-                    const p = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                const res = await fetch('rcm_master_all.csv');
+                const text = await res.text();
+                masterData = text.split('\n').slice(1).map(l => {
+                    const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                     if (p.length < 4) return null;
-                    return { 
-                        code: p[0].trim().replace(/"/g, ""), 
-                        cat: p[1].trim().replace(/"/g, ""), 
-                        desc: p[2].trim().replace(/"/g, ""), 
-                        res: p[3].trim().replace(/"/g, "") 
-                    };
+                    return { code: p[0].trim(), cat: p[1].trim(), desc: p[2].trim(), res: p[3].trim() };
                 }).filter(d => d !== null);
-
-                document.getElementById('db-status').innerHTML = `<span style="color:var(--success)">●</span> Online: ${masterData.length} Records`;
+                document.getElementById('db-status').innerHTML = `<span style="color:var(--success)">●</span> Records: ${masterData.length}`;
                 showView('home');
-            } catch (err) {
-                document.getElementById('db-status').innerHTML = `<span style="color:red">●</span> Sync Failed`;
-                document.getElementById('view-port').innerHTML = "<h2>Database Error. Please ensure rcm_master_all.csv is uploaded.</h2>";
-            }
+            } catch (e) { document.getElementById('db-status').innerText = "Load Error"; }
         }
-
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
-            
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
-
             if (view === 'home') {
-                port.innerHTML = `
-                    <div class="card">
-                        <h1>RCM Dashboard 2026</h1>
-                        <p>Specialized for <b>MAC JM (FL)</b> and <b>MAC JH (TX)</b>.</p>
-                        <hr>
-                        <h3>Jurisdiction Quick-Links:</h3>
-                        <ul>
-                            <li><b>Florida:</b> First Coast Service Options (LCD/NCD).</li>
-                            <li><b>Texas:</b> Novitas Solutions (JH).</li>
-                        </ul>
-                        <p>Currently managing <b>${masterData.length}</b> live RCM rules.</p>
-                    </div>`;
+                port.innerHTML = `<div class="card"><h1>FL & TX Jurisdiction Hub</h1><hr><p><b>Florida MAC JM:</b> First Coast<br><b>Texas MAC JH:</b> Novitas</p><p>Use the <b>Payer Matrix</b> to check for 🌐 Portal-Only vs 📞 Callable payers.</p></div>`;
             } else {
-                let filteredData = [];
-                let tableTitle = "";
-
-                if (view === 'search') {
-                    filteredData = masterData.filter(d => !d.code.startsWith('7') && !d.cat.toLowerCase().includes('mod') && !d.cat.toLowerCase().includes('payer'));
-                    tableTitle = "Denial Resolution (M, MA, N Codes)";
-                } else if (view === 'radiology') {
-                    filteredData = masterData.filter(d => d.code.startsWith('7') || d.cat.toLowerCase().includes('rad'));
-                    tableTitle = "Radiology & Imaging CPTs (FL/TX Guidelines)";
-                } else if (view === 'modifiers') {
-                    filteredData = masterData.filter(d => d.cat.toLowerCase().includes('mod'));
-                    tableTitle = "Modifier Matrix (25, 59, 26, TC)";
-                } else if (view === 'payer') {
-                    filteredData = masterData.filter(d => d.cat.toLowerCase().includes('payer'));
-                    tableTitle = "Jurisdiction & Payer Rules";
-                }
-
-                renderView(port, tableTitle, filteredData);
+                let data = [];
+                if (view === 'search') data = masterData.filter(d => d.cat !== 'Payer' && d.cat !== 'Modifier' && !d.code.startsWith('7'));
+                else if (view === 'radiology') data = masterData.filter(d => d.code.startsWith('7') || d.cat === 'Radiology');
+                else if (view === 'modifiers') data = masterData.filter(d => d.cat === 'Modifier');
+                else if (view === 'payer') data = masterData.filter(d => d.cat === 'Payer');
+                renderTable(port, data);
             }
         }
-
-        function renderView(port, title, data) {
-    port.innerHTML = `
-        <h3>${title}</h3>
-        <input type="text" class="search-box" id="searchInp" onkeyup="filterTable()" placeholder="Quick Search Payers or TFL...">
-        <div class="table-wrap"><table id="rcmTable">
-            <thead><tr><th>Payer/Code</th><th>Category</th><th>Details</th><th>Resolution & Contact Mode</th></tr></thead>
-            <tbody>${data.map(d => {
-                let badgeClass = 'tech';
-                const cat = d.cat.toLowerCase();
-                if (cat.includes('payer')) badgeClass = 'payer';
-                
-                // Add icon based on whether it's a Portal-only payer
-                const contactIcon = d.res.toLowerCase().includes('non-callable') ? '🌐 (Portal Only)' : '📞 (Callable)';
-                
-                return `<tr>
-                    <td><b>${d.code}</b></td>
-                    <td><span class="badge ${badgeClass}">${d.cat}</span></td>
-                    <td>${d.desc}</td>
-                    <td><b>${contactIcon}</b><br>${d.res}</td>
-                </tr>`;
-            }).join('')}</tbody>
-        </table></div>`;
-}
-
-        function filterTable() {
-            let val = document.getElementById('searchInp').value.toUpperCase();
-            let rows = document.querySelector("#rcmTable tbody").rows;
-            for(let i=0; i < rows.length; i++) rows[i].style.display = rows[i].innerText.toUpperCase().includes(val) ? "" : "none";
+        function renderTable(port, data) {
+            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Quick filter..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution Logic</th></tr></thead><tbody>${data.map(d => {
+                let b = d.cat.toLowerCase().includes('payer') ? 'payer' : (d.cat.toLowerCase().includes('rad') ? 'rad' : (d.cat.toLowerCase().includes('mod') ? 'mod' : 'tech'));
+                let contact = d.res.toLowerCase().includes('non-callable') ? '🌐 ' : (d.cat === 'Payer' ? '📞 ' : '');
+                return `<tr><td><b>${d.code}</b></td><td><span class="badge ${b}">${d.cat}</span></td><td>${d.desc}</td><td>${contact}${d.res}</td></tr>`;
+            }).join('')}</tbody></table></div>`;
         }
-
+        function f() {
+            let v = document.getElementById('s').value.toUpperCase();
+            let r = document.querySelector("#t tbody").rows;
+            for(let i=0; i<r.length; i++) r[i].style.display = r[i].innerText.toUpperCase().includes(v) ? "" : "none";
+        }
         window.onload = loadData;
     </script>
 </body>
 </html>
-
