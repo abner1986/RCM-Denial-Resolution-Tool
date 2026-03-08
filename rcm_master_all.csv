@@ -1,7 +1,7 @@
 Code,Category,Description,Resolution
-CO 1,Patient,Deductible,Transfer balance to patient responsibility and issue statement.
-CO 2,Patient,Coinsurance,Transfer balance to patient responsibility and issue statement.
-CO 3,Patient,Co-payment,Transfer balance to patient responsibility and issue statement.
+CO 1,P_responsibility,Deductible,Transfer balance to patient responsibility and issue statement.
+CO 2,P_responsibility,Coinsurance,Transfer balance to patient responsibility and issue statement.
+CO 3,P_responsibility,Co-payment,Transfer balance to patient responsibility and issue statement.
 CO 4,Technical,Modifier Inconsistent,Verify CPT vs Modifier (e.g. -25 -59). Correct and resubmit.
 CO 16,Technical,Lacks Information,Check RARC (N257/M51). Fix missing NPI Tax ID or Modifiers.
 CO 18,Technical,Duplicate Claim,Check status of first claim. If paid write off. If pending do not resubmit.
@@ -25,8 +25,8 @@ CO 197,Auth,Pre-Auth Absent,Check if Auth exists. If yes add to Box 23. If no re
 74176,Radiology,CT Abd/Pelvis w/o Contrast,Ensure DX supports medical necessity (e.g. K57.3).
 76700,Radiology,US Abdomen Complete,Verify documentation supports 'Complete'. If not downcode to 76705.
 77067,Radiology,Screening Mammogram,Verify 365-day frequency rule. Use DX Z12.31.
-PR 1,Patient,Deductible,Move to patient responsibility.
-PR 2,Patient,Coinsurance,Move to patient responsibility.
+PR 1,P_responsibility,Deductible,Move to patient responsibility.
+PR 2,P_responsibility,Coinsurance,Move to patient responsibility.
 N257,Remark,Missing Provider Info,Verify Billing/Rendering NPI and Address in Box 33 and 24J.
 M51,Remark,Invalid Procedure Code,Correct CPT/HCPCS code and resubmit as Corrected Claim.
 MA 13,Remark,File Update Required,Provider must update NPI address or banking on the payer portal.
@@ -167,6 +167,7 @@ N386,Remark,Provider not certified/eligible,Verify provider enrollment with paye
 MA130,Remark,Missing patient ABN signature,Obtain signed ABN from patient. Attach and resubmit claim.
 MA131,Remark,Missing or invalid taxonomy code,Correct taxonomy in Box 33 or provider portal. Resubmit claim.
 MA15,Remark,Missing or invalid ZIP code,Correct patient/provider ZIP code. Resubmit claim.
+
 
 
 
