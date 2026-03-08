@@ -151,22 +151,23 @@ M54.50,Clinical,Low Back Pain,FL/TX DENIAL: Use M54.51 (Vertebrogenic) or specif
 20553,Pain Mgmt,Trigger Point Injection (3+ muscles),CARC 119: Frequency limit. Usually max 3 sessions per 12 months.
 G0260,Pain Mgmt,Sacroiliac (SI) Joint Injection,CARC 16: Missing Imaging notes. FL/TX requires Fluoroscopy or CT guidance.
 CO 170,Technical,Service not prescribed by physician,Verify ordering provider NPI. Attach signed physician order and resubmit.
-CO 204,Clinical,Service not covered under patient’s benefit plan,Check plan benefits. If excluded, bill patient or appeal with plan exception request.
+CO 204,Clinical,Service not covered under patient’s benefit plan,Check plan benefits. If excluded bill patient or appeal with plan exception request.
 CO 246,Contract,Non-payable reporting-only code,Remove reporting-only CPT/HCPCS code. Submit corrected claim.
-CO 252,Technical,Attachment required but not received,Upload operative note, pathology report, or invoice via payer portal and resubmit.
-CO 253,Eligibility,Coverage terminated due to non-payment of premium,Verify patient’s premium status. If lapsed, bill patient directly.
+CO 252,Technical,Attachment required but not received,Upload operative note pathology report or invoice via payer portal and resubmit.
+CO 253,Eligibility,Coverage terminated due to non-payment of premium,Verify patient’s premium status. If lapsed bill patient directly.
 CO 256,Technical,Service not payable without prior certification,Request retro-authorization if possible. Otherwise, bill patient.
 CO 258,Coding,Service not furnished directly to patient,Verify CPT/HCPCS usage. Correct coding to reflect direct patient service.
 CO 259,Contract,Service denied for provider type,Check provider specialty enrollment. Update PECOS or reassign claim to eligible provider.
-CO 272,Eligibility,Coverage terminated due to death of patient,Verify DOS vs date of death. If after termination, bill estate.
+CO 272,Eligibility,Coverage terminated due to death of patient,Verify DOS vs date of death. If after termination bill estate.
 CO 274,Technical,Service denied due to patient refusal,Document patient refusal. Bill patient if appropriate.
 N115,Remark,Decision based on LCD,Review LCD policy. Update diagnosis coding per LCD guidelines and resubmit.
-N290,Remark,Missing documentation for medical necessity,Attach clinical notes, imaging results, or LMN. Resubmit with supporting documentation.
+N290,Remark,Missing documentation for medical necessity,Attach clinical notes imaging results or LMN. Resubmit with supporting documentation.
 N362,Remark,Units exceed maximum allowed,Verify frequency limits. Adjust units or appeal with medical necessity justification.
 N386,Remark,Provider not certified/eligible,Verify provider enrollment with payer. Update NPI/PECOS and resubmit.
 MA130,Remark,Missing patient ABN signature,Obtain signed ABN from patient. Attach and resubmit claim.
 MA131,Remark,Missing or invalid taxonomy code,Correct taxonomy in Box 33 or provider portal. Resubmit claim.
 MA15,Remark,Missing or invalid ZIP code,Correct patient/provider ZIP code. Resubmit claim.
+
 
 
 
