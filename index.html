@@ -3,68 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Hub | FL & TX Command Center</title>
+    <title>RCM Master Command Center | 2026</title>
     <style>
-        :root { 
-            --primary: #1c2833; 
-            --sidebar: #212f3d; 
-            --accent: #3498db; 
-            --success: #27ae60; 
-            --bg: #f4f7f6; 
-            --text: #2c3e50; 
-        }
+        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
         
-        /* Sidebar Navigation */
+        /* Sidebar */
         .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
         .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
         .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
         
-        /* Main Layout */
+        /* Main Workspace */
         .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
         .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .view-container { padding: 40px; }
         
-        /* UI Components */
+        /* Clocks */
+        .clock-container { display: flex; gap: 20px; font-weight: bold; font-family: 'Courier New', Courier, monospace; }
+        .clock-box { background: #ebf5fb; padding: 5px 15px; border-radius: 5px; border: 1px solid var(--accent); color: var(--primary); }
+
+        /* Dashboard UI */
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); }
+        .grid-links { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .btn-link { display: block; padding: 12px; background: #ebf5fb; color: #2e86c1; text-decoration: none; border-radius: 5px; border: 1px solid #3498db; text-align: center; font-weight: bold; transition: 0.3s; }
+        .btn-link:hover { background: var(--accent); color: white; }
+
+        /* Tables & Search */
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
         th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; z-index: 10; }
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
         
-        /* Badges */
-        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; border: 1px solid transparent; }
-        .pain-mgmt { background: #d6eaf8; color: #2e86c1; border-color: #3498db; }
-        .radiology { background: #d5f5e3; color: #1d8348; border-color: #27ae60; }
-        .modifier { background: #ebdef0; color: #884ea0; border-color: #af7ac5; }
-        .payer { background: #fadbd8; color: #c0392b; border-color: #e74c3c; }
-        .pr { background: #f5b7b1; color: #943126; border-color: #e74c3c; }
-        .technical, .clinical, .admin { background: #fcf3cf; color: #9a7d0a; border-color: #f1c40f; }
-
-        .card { background: white; padding: 30px; border-radius: 8px; border-top: 4px solid var(--accent); }
-        .btn-link { display: block; padding: 12px; background: #ebf5fb; color: #2e86c1; text-decoration: none; border-radius: 5px; border: 1px solid #3498db; text-align: center; font-weight: bold; margin-top: 10px; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+        .pain-mgmt { background: #d6eaf8; color: #2e86c1; }
+        .radiology { background: #d5f5e3; color: #1d8348; }
+        .payer { background: #fadbd8; color: #c0392b; }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
         <div class="sidebar-header"><h2>RCM HUB 2026</h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Search (Master)</div>
+        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Master</div>
         <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">☢️ Radiology</div>
         <div class="nav-item" id="nav-pain" onclick="showView('pain')">💉 Pain Management</div>
         <div class="nav-item" id="nav-modifiers" onclick="showView('modifiers')">🛠️ Modifiers</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Matrix</div>
     </div>
+
     <div class="main">
-        <div class="top-bar"><b id="view-title">DASHBOARD</b><span id="db-status">Syncing...</span></div>
+        <div class="top-bar">
+            <b id="view-title">DASHBOARD</b>
+            <div class="clock-container">
+                <div class="clock-box">IST: <span id="ist-clock">--:--:--</span></div>
+                <div class="clock-box">EST: <span id="est-clock">--:--:--</span></div>
+            </div>
+            <span id="db-status">Syncing...</span>
+        </div>
         <div id="view-port" class="view-container"></div>
     </div>
+
     <script>
         let masterData = [];
+
+        // 1. CLOCK LOGIC (Starts immediately)
+        function startClocks() {
+            function update() {
+                const now = new Date();
+                const ist = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false });
+                const est = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false });
+                document.getElementById('ist-clock').innerText = ist;
+                document.getElementById('est-clock').innerText = est;
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // 2. DATA LOAD
         async function loadData() {
             try {
                 const res = await fetch('rcm_master_all.csv');
+                if (!res.ok) throw new Error("CSV not found");
                 const text = await res.text();
                 masterData = text.split('\n').slice(1).map(l => {
                     const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
@@ -76,6 +98,7 @@
             } catch (e) { document.getElementById('db-status').innerText = "Load Error"; }
         }
 
+        // 3. VIEW CONTROLLER
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
@@ -85,19 +108,27 @@
             if (view === 'home') {
                 port.innerHTML = `
                     <div class="card">
-                        <h1>Florida & Texas RCM Command</h1>
+                        <h1>Revenue Cycle Management</h1>
+                        <p>Specialized for <b>MAC JM (Florida)</b> and <b>MAC JH (Texas)</b>.</p>
                         
+                        <div style="text-align:center; margin: 30px 0;">
+                            
 
 [Image of the healthcare revenue cycle management workflow]
 
+                        </div>
+
                         <hr>
-                        <h3>Jurisdiction Links:</h3>
-                        <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">Florida First Coast (MAC JM)</a>
-                        <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">Texas Novitas (MAC JH)</a>
+                        <h3>Quick Resources:</h3>
+                        <div class="grid-links">
+                            <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">Florida (First Coast)</a>
+                            <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">Texas (Novitas)</a>
+                            <a href="https://www.availity.com/" target="_blank" class="btn-link">Availity Portal</a>
+                            <a href="https://www.cms.gov/medicare-coverage-database/search.aspx" target="_blank" class="btn-link">CMS LCD/NCD Lookup</a>
+                        </div>
                     </div>`;
             } else {
                 let data = [];
-                // Search Logic: Denial Search includes Pain Management but excludes Payers/Modifiers
                 if (view === 'search') data = masterData.filter(d => d.cat !== 'Payer' && d.cat !== 'Modifier');
                 else if (view === 'radiology') data = masterData.filter(d => d.cat === 'Radiology' || d.code.startsWith('7'));
                 else if (view === 'pain') data = masterData.filter(d => d.cat === 'Pain Mgmt' || d.code.startsWith('6'));
@@ -107,19 +138,31 @@
             }
         }
 
+        // 4. TABLE RENDERER
         function renderTable(port, data) {
-            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search Codes, Descriptions, or Resolutions..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution</th></tr></thead><tbody>${data.map(d => {
-                let catClass = d.cat.toLowerCase().replace(' ', '-');
-                return `<tr><td><b>${d.code}</b></td><td><span class="badge ${catClass}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
-            }).join('')}</tbody></table></div>`;
+            port.innerHTML = `
+                <input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search Codes or Logic...">
+                <div class="table-wrap"><table id="t">
+                    <thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution</th></tr></thead>
+                    <tbody>${data.map(d => {
+                        let b = d.cat.toLowerCase().replace(' ', '-');
+                        return `<tr><td><b>${d.code}</b></td><td><span class="badge ${b}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
+                    }).join('')}</tbody>
+                </table></div>`;
         }
 
+        // 5. SEARCH FILTER
         function f() {
             let v = document.getElementById('s').value.toUpperCase();
             let r = document.querySelector("#t tbody").rows;
             for(let i=0; i<r.length; i++) r[i].style.display = r[i].innerText.toUpperCase().includes(v) ? "" : "none";
         }
-        window.onload = loadData;
+
+        // Initialize Everything
+        window.onload = function() {
+            startClocks();
+            loadData();
+        };
     </script>
 </body>
 </html>
