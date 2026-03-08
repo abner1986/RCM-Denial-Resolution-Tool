@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Command Center | 2026 Edition</title>
+    <title>RCM Master | FL & TX Jurisdiction</title>
     <style>
         :root {
             --primary: #1c2833;
@@ -76,7 +76,6 @@
     <script>
         let masterData = [];
 
-        // 1. DATA INITIALIZATION (FETCH FROM CSV)
         async function loadData() {
             try {
                 const response = await fetch('rcm_master_all.csv');
@@ -85,7 +84,6 @@
                 
                 const lines = text.split('\n');
                 masterData = lines.slice(1).map(line => {
-                    // Optimized Regex for CSV parsing (handles quotes and commas)
                     const p = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                     if (p.length < 4) return null;
                     return { 
@@ -104,12 +102,10 @@
             }
         }
 
-        // 2. NAVIGATION CONTROLLER
         function showView(view) {
             const port = document.getElementById('view-port');
             document.getElementById('view-title').innerText = view.toUpperCase();
             
-            // Toggle Active State
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
 
@@ -117,15 +113,14 @@
                 port.innerHTML = `
                     <div class="card">
                         <h1>RCM Dashboard 2026</h1>
-                        <p>Currently managing <b>${masterData.length}</b> live RCM rules.</p>
+                        <p>Specialized for <b>MAC JM (FL)</b> and <b>MAC JH (TX)</b>.</p>
                         <hr>
-                        <h3>Category Overview:</h3>
+                        <h3>Jurisdiction Quick-Links:</h3>
                         <ul>
-                            <li><b>Denial Search:</b> Core M, MA, and N series codes.</li>
-                            <li><b>Radiology CPT:</b> Specialized imaging medical necessity.</li>
-                            <li><b>Modifier Matrix:</b> Billing unbundling logic.</li>
-                            <li><b>Payer Matrix:</b> Payer-specific TFL and contact rules.</li>
+                            <li><b>Florida:</b> First Coast Service Options (LCD/NCD).</li>
+                            <li><b>Texas:</b> Novitas Solutions (JH).</li>
                         </ul>
+                        <p>Currently managing <b>${masterData.length}</b> live RCM rules.</p>
                     </div>`;
             } else {
                 let filteredData = [];
@@ -136,20 +131,19 @@
                     tableTitle = "Denial Resolution (M, MA, N Codes)";
                 } else if (view === 'radiology') {
                     filteredData = masterData.filter(d => d.code.startsWith('7') || d.cat.toLowerCase().includes('rad'));
-                    tableTitle = "Radiology & Imaging CPTs";
+                    tableTitle = "Radiology & Imaging CPTs (FL/TX Guidelines)";
                 } else if (view === 'modifiers') {
                     filteredData = masterData.filter(d => d.cat.toLowerCase().includes('mod'));
                     tableTitle = "Modifier Matrix (25, 59, 26, TC)";
                 } else if (view === 'payer') {
                     filteredData = masterData.filter(d => d.cat.toLowerCase().includes('payer'));
-                    tableTitle = "Payer Specific Rules (TFL & Contacts)";
+                    tableTitle = "Jurisdiction & Payer Rules";
                 }
 
                 renderView(port, tableTitle, filteredData);
             }
         }
 
-        // 3. TABLE RENDERER
         function renderView(port, title, data) {
             port.innerHTML = `
                 <h3>${title}</h3>
@@ -169,7 +163,6 @@
                 </table></div>`;
         }
 
-        // 4. SEARCH LOGIC
         function filterTable() {
             let val = document.getElementById('searchInp').value.toUpperCase();
             let rows = document.querySelector("#rcmTable tbody").rows;
