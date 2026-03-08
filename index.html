@@ -99,23 +99,25 @@
             document.getElementById('nav-' + view).classList.add('active');
 
             if (view === 'home') {
-                port.innerHTML = `
-                    <div class="card">
-                        <h1>Revenue Cycle Management Workflow</h1>
-                        <p>Specialized for Florida (MAC JM) and Texas (MAC JH) jurisdictions.</p>
-                        
-                        
+    port.innerHTML = `
+        <div class="card">
+            <h1 style="color: #2c3e50; text-align: center;">RCM Command Center: 2026</h1>
+            <p style="text-align: center;">Specialized for <b>MAC JM (Florida)</b> and <b>MAC JH (Texas)</b> Operations.</p>
+            
+            <div style="text-align:center; margin: 20px 0;">
+                <img src="rcm-workflow.png" alt="RCM Workflow Diagram" style="width: 100%; max-width: 750px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+            </div>
 
-[Image of the healthcare revenue cycle management workflow]
-
-                        
-                        <hr>
-                        <h3>Quick Links:</h3>
-                        <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">Florida First Coast</a>
-                        <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">Texas Novitas</a>
-                        <a href="https://www.availity.com/" target="_blank" class="btn-link">Availity Portal</a>
-                    </div>`;
-            } else {
+            <hr>
+            <h3>Jurisdiction Quick-Links:</h3>
+            <div class="grid-links">
+                <a href="https://www.fcso.com/medicare/index.asp" target="_blank" class="btn-link">Florida (First Coast JM)</a>
+                <a href="https://www.novitas-solutions.com/" target="_blank" class="btn-link">Texas (Novitas JH)</a>
+                <a href="https://www.availity.com/" target="_blank" class="btn-link">Availity Portal</a>
+                <a href="https://www.cms.gov/medicare-coverage-database/search.aspx" target="_blank" class="btn-link">CMS LCD/NCD Search</a>
+            </div>
+        </div>`;
+} else {
                 let data = [];
                 if (view === 'search') data = masterData.filter(d => d.cat !== 'Payer' && d.cat !== 'Modifier');
                 else if (view === 'radiology') data = masterData.filter(d => d.cat === 'Radiology' || d.code.startsWith('7'));
@@ -146,3 +148,4 @@
     </script>
 </body>
 </html>
+
