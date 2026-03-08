@@ -69,8 +69,8 @@ M39,Technical,No ABN Signed (GZ),Modifier -GZ must be used. Claim will deny as P
 N386,Admin,NCD Determination,Decision based on National Policy. Visit CMS.gov and search NCD index.
 N115,Admin,LCD Determination,Decision based on Local Policy. Check First Coast (FL) or Novitas (TX) portal.
 R51.9,Clinical,Headache Unspecified,FL/TX DENIAL RISK: Too generic for MRI (70551). Use G44 series or specify 'with aura'.
-M54.50,Clinical,Low Back Pain, Unspecified,FL/TX DENIAL RISK: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.16).
-R10.9,Clinical,Abdominal Pain, Unspecified,FL/TX DENIAL RISK: For CT (74177), specify quadrant (e.g., R10.31 for RLQ).
+M54.50,Clinical,Low Back Pain Unspecified,FL/TX DENIAL RISK: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.16).
+R10.9,Clinical,Abdominal Pain Unspecified,FL/TX DENIAL RISK: For CT (74177), specify quadrant (e.g., R10.31 for RLQ).
 M25.561,Clinical,Pain in Right Knee,FL/TX RULE: Often denied if 6 weeks of conservative therapy (PT) is not in notes.
 G35,Clinical,Multiple Sclerosis,FL/TX RULE: Supports MRI Brain (70553). Ensure 'With and Without' contrast is authorized.
 R06.02,Clinical,Shortness of Breath,FL/TX RULE: Supports Chest CT (71250). Check for tobacco use DX (Z72.0).
@@ -78,6 +78,7 @@ Z12.11,Clinical,Colon Cancer Screening,FL/TX RULE: Only allowed every 10 years f
 R91.8,Clinical,Nodule on Lung,FL/TX RULE: Supports CT Chest. Ensure previous X-ray date is in Box 19.
 M51.26,Clinical,Lumbar Disc Displacement,FL/TX RULE: High success for MRI Lumbar (72148). Link to radiculopathy notes.
 R31.9,Clinical,Hematuria Unspecified,FL/TX RULE: Supports CT Urogram. Must specify if 'Gross' or 'Microscopic'.
+
 
 
 
