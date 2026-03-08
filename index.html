@@ -69,7 +69,7 @@
                 else if (view === 'radiology') data = masterData.filter(d => d.code.startsWith('7') || d.cat === 'Radiology');
                 else if (view === 'modifiers') data = masterData.filter(d => d.cat === 'Modifier');
                 else if (view === 'payer') data = masterData.filter(d => d.cat === 'Payer');
-                else if (view === 'pain') data = masterData.filter(d => d.cat === 'Pain Mgmt');
+                else if (view === 'pain') data = masterData.filter(d => d.cat === 'PainMgmt');
 }
                 renderTable(port, data);
             }
@@ -90,4 +90,5 @@
     </script>
 </body>
 </html>
+
 
