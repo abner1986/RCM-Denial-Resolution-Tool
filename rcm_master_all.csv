@@ -276,3 +276,1123 @@ P29,CARC,Liability fee schedule adjustment,Liability fee schedule write-off.
 P30,CARC,Exacerbation doc not complete,Provide medical records proving exacerbation of injury.
 P31,CARC,Exacerbation treatment exceeds time,Time limit for treating flared injury expired.
 P32,CARC,Payment adjusted due to Apportionment,WC rule mapping injury percentages.
+M1,RARC,X-ray date missing/invalid,Check chart for X-ray taken within 12 months. Update Box 19 and resubmit.
+M2,RARC,Inpatient Bundle,CARC 97: Service included in the Inpatient PPS. Write off per contract.
+M3,RARC,Duplicate Equipment,CARC 18: Verify if patient already has same/similar equipment. If yes write off.
+M4,RARC,Last monthly installment for DME,Informational: Track DME rental capping.
+M5,RARC,Rental payments up to 15 months,Informational: Check DME capping rules.
+M6,RARC,Must service item for lifetime,Informational: Provider responsible for DME maintenance.
+M7,RARC,No rental payments after purchase,DME billing rule. Write-off rental charges.
+M8,RARC,Blood gas test invalid,Cannot accept tests by medical supplier or while on oxygen.
+M9,RARC,Tenth rental month,Alert: Must offer patient purchase option for DME.
+M10,RARC,Purchases limited to 1st/10th month,DME billing rule.
+M11,RARC,DME Zip Code Jurisdiction,CARC 109: Rebill to the correct DME carrier servicing the patient zip code.
+M12,RARC,Diagnostic Purchased Services,CARC 16: Ensure claim indicates if purchased services are included. Fix Box 20.
+M13,RARC,Visit Limit - One per Specialty,CARC 119: Only one initial visit per specialty allowed. Change to follow-up code.
+M14,RARC,Injection Bundle,CARC 97: Injection included in E/M. If distinct add Modifier 25 to the office visit.
+M15,RARC,Component Bundling,CARC 97: Services are components of same procedure. Use Modifier 59 if distinct.
+M16,RARC,See web site for policy details,Informational: Check payer portal.
+M17,RARC,Payment approved exception,Informational: Provider liability waived this time only.
+M18,RARC,Approved for home use only,Verify POS. SNF/Hospital is not 'Home'.
+M19,RARC,Missing Oxygen Certification,CARC 16: Obtain and attach a signed CMN.
+M20,RARC,Missing/Invalid HCPCS,CARC 185: Crosswalk HCPCS to current year.
+M21,RARC,Missing/invalid place of residence,Update patient address/POS and resubmit.
+M22,RARC,Missing/invalid miles traveled,Ambulance logic: Update mileage units and resubmit.
+M23,RARC,Missing invoice,CARC 252: Attach original invoice for drug/supply and resubmit.
+M24,RARC,Missing/invalid doses per vial,Pharmacy/Drug logic: Update units.
+M25,RARC,Substantiate Level of Service,CARC 50: Downcode to lower E/M or appeal with full medical records.
+M26,RARC,Must refund patient,Statutory requirement: Overcharged patient. Issue refund.
+M27,RARC,Provider liable for waived charges,Provider liability limitation. Appeal if due care was exercised.
+M28,RARC,Does not qualify for Part B,Part A exhausted. Cannot bill Part B.
+M29,RARC,Missing operative note,CARC 252: Upload Op-Report to Payer Portal and resubmit.
+M30,RARC,Missing Pathology Report,CARC 252: Obtain Path report and upload to portal.
+M31,RARC,Missing radiology report,Attach imaging report. Ensure DX matches claim.
+M32,RARC,Conditional payment made,Informational: Primary payer decision pending.
+M36,RARC,11th rental month,Cannot pay until purchase option is given for DME.
+M37,RARC,Age Restriction (Under 35),CARC 96: Service not covered. Bill patient.
+M38,RARC,ABN Signed (GA),Modifier GA must be present for Medicare FL/TX to allow patient billing.
+M39,RARC,No ABN Signed (GZ),Modifier GZ must be used. Claim will deny as Provider Liability.
+M40,RARC,Claim must be assigned,Provider setup error. Update assignment.
+M41,RARC,Patient has no legal obligation,Statutory exclusion. Write-off.
+M42,RARC,Form Needs MD Signature,CARC 16: Return form to Attending MD for physical signature.
+M44,RARC,Missing condition code,Institutional logic: Update UB-04 form.
+M45,RARC,Missing occurrence code,Institutional logic: Update UB-04 form.
+M46,RARC,Missing occurrence span code,Institutional logic: Update UB-04 form.
+M47,RARC,Missing Payer Claim Control Number,Verify ICN for corrected claim in Box 22.
+M49,RARC,Missing value code,Institutional logic: Update UB-04 form.
+M50,RARC,Missing revenue code,Institutional logic: Update UB-04 form.
+M51,RARC,Invalid Procedure Code,Correct CPT/HCPCS code and resubmit.
+M52,RARC,Missing 'from' date of service,Update DOS on claim line.
+M53,RARC,Missing days or units,Update units/days field and resubmit.
+M54,RARC,Missing total charges,Ensure charge amounts are entered.
+M55,RARC,Self-administered anti-emetic drugs,Pharmacy logic. Not covered unless with oral anti-cancer drug.
+M56,RARC,Missing payer identifier,Update Payer ID in clearinghouse.
+M59,RARC,Missing 'to' date of service,Update DOS on claim line.
+M60,RARC,Missing Certificate of Medical Necessity,Ensure Box 23 has CMN date. Attach form and resubmit.
+M61,RARC,FDA clinical trial expired,Research logic. Write-off.
+M62,RARC,Missing treatment authorization code,Add Prior Auth number to Box 23.
+M64,RARC,Missing other diagnosis,Add secondary ICD-10 to support medical necessity.
+M65,RARC,One interpreting physician charge,Submit separate claim for each interpreting physician.
+M66,RARC,Professional Component only,Payment limited to interpretation. Add Modifier 26 to CPT.
+M67,RARC,Missing other procedure code,Update claim data.
+M69,RARC,Documentation to justify modified procedure,Modifier 22/59 used without notes. Appeal with records.
+M70,RARC,NDC translated to HCPCS,Informational: Continue to submit NDC on future claims.
+M71,RARC,Payment reduced due to overlap,Bundling logic.
+M73,RARC,HPSA/Scarcity bonus on prof component only,Rebill with professional/technical split.
+M74,RARC,Does not qualify for HPSA bonus,Provider location not in scarcity area.
+M75,RARC,Multichannel tests combined,Lab bundling logic.
+M76,RARC,Missing Diagnosis,CARC 16: Verify Box 21. Add highest level of specificity (ICD-10).
+M77,RARC,Invalid place of service,Verify POS (e.g., 11 vs 22).
+M79,RARC,Missing charge,Update fee amount.
+M80,RARC,Not covered during same session/date,Bundled service. Check NCCI edits.
+M81,RARC,Highest Specificity Required,CARC 16: Avoid 'Unspecified' codes. Use 5th/6th character ICD-10.
+M82,RARC,Age restriction (Under 50),Check screening guidelines. Bill patient if routine.
+M83,RARC,Patient not classified high risk,Update DX to high-risk ICD-10 if applicable.
+M84,RARC,Medical code sets not in effect,Use codes valid for that specific DOS.
+M85,RARC,Subjected to review of E/M services,Medical review process.
+M86,RARC,Payment already made for same/similar,Duplicate check. Verify ICN.
+M87,RARC,Subjected to CFO-CAP prepayment review,Medical review process.
+M89,RARC,Not covered more than once under 40,Frequency limit check.
+M90,RARC,Not covered more than once in 12 months,Frequency limit check.
+M91,RARC,Different CLIA numbers,Split lab claim by CLIA certification.
+M93,RARC,Break in therapy - new capped rental,DME logic.
+M94,RARC,No break in therapy,DME logic.
+M95,RARC,Subjected to HHI medical review,Home Health audit.
+M96,RARC,Technical component to inpatient facility,Bill hospital for TC. Bill payer for PC (-26).
+M97,RARC,Payment included in facility reimbursement,Global billing rule.
+M99,RARC,Missing Universal Product/Serial Number,DME/Device logic. Update and resubmit.
+M100,RARC,Oral anti-emetic drug logic,Pharmacy logic.
+M102,RARC,Not FDA approved equipment,Appeal with clinical trial data if applicable.
+M103,RARC,Break in therapy - reduced level,DME logic.
+M104,RARC,Break in therapy - new rental period,DME logic.
+M105,RARC,No break in therapy - reduced level,DME logic.
+M107,RARC,Payment reduced hematocrit exceeded 36.5%,ESRD/Dialysis logic.
+M109,RARC,Bundled teleconsultation payment,Send 25% of payment to referring practitioner.
+M111,RARC,Chiropractic x-ray refused,Statutory exclusion. Bill patient.
+M112,RARC,DMEPOS Competitive Bidding Program,DME pricing logic.
+M113,RARC,Prior to current contract period for DMEPOS,DME pricing logic.
+M114,RARC,DMEPOS Competitive Bidding Program Demo,DME pricing logic.
+M115,RARC,Non-contract supplier,DME exclusion.
+M116,RARC,Processed under demonstration project,Project ending alert.
+M117,RARC,Must be submitted via electronic claim,Paper claim rejected. Submit via clearinghouse.
+M119,RARC,Missing/invalid NDC,Update National Drug Code and resubmit.
+M121,RARC,Covered only with cryosurgical ablation,Bundling logic.
+M122,RARC,Missing level of subluxation,Chiropractic logic. Update claim.
+M123,RARC,Missing drug name/strength/dosage,Pharmacy/J-code logic. Update Box 19 or 24.
+M124,RARC,Missing patient owns equipment indicator,DME logic.
+M125,RARC,Missing period of time needed,Update length of need for supply/equipment.
+M126,RARC,Missing individual lab codes,Lab panel logic. Unbundle into specific tests.
+M127,RARC,Missing patient medical record,Upload clinical notes via portal and resubmit.
+M129,RARC,Missing x-ray availability indicator,Update claim indicators.
+M130,RARC,Missing invoice for intraocular lens,Attach lens invoice and resubmit.
+M131,RARC,Missing physician financial relationship form,Compliance logic. Submit required form.
+M132,RARC,Missing pacemaker registration form,Attach required registry form.
+M133,RARC,Who performed purchased diagnostic test,Update provider info for purchased services.
+M134,RARC,Financial interest in facility,Stark Law flag.
+M135,RARC,Missing plan of treatment,Attach therapy plan of care.
+M136,RARC,Missing physician supervision indicator,Update teaching physician modifier (GC/GE).
+M137,RARC,Part B coinsurance under demo,Demonstration logic.
+M138,RARC,Patient not enrolled in demonstration,Check patient eligibility.
+M139,RARC,Exceeds demonstration coverage limit,Demonstration logic.
+M141,RARC,Missing physician certified plan of care,Attach signed plan of care.
+M142,RARC,Missing ADA Certificate of Recognition,Diabetic education logic. Attach certificate.
+M143,RARC,Provider must update license info,Credentialing flag. Update PECOS/Payer portal.
+M144,RARC,Pre/post-op care included in surgery,Global period logic. Use Mod 24/25 if unrelated.
+MA01,RARC,Appeal Rights Alert,Informational: Follow appeal instructions. Write to payer within 120 days.
+MA02,RARC,Appeal Rights Alert (180 days),Informational: 180-day appeal window.
+MA04,RARC,Secondary COB Missing Primary,CARC 22: Attach the Primary Payer EOB and resubmit to Secondary.
+MA07,RARC,Forwarded to Medicaid,Informational: Crossover claim.
+MA08,RARC,Not forwarded to Medigap,Submit paper claim directly to secondary.
+MA09,RARC,Processed as assigned,Informational processing.
+MA10,RARC,Refund overpayment to patient,Patient paid too much. Issue refund check.
+MA12,RARC,No right to bill for services,Credentialing/Assignment error.
+MA13,RARC,Patient Responsibility Alert,Informational: Do not bill patient for amounts not marked with PR group code.
+MA14,RARC,Patient in employer prepaid plan,HMO out-of-network alert.
+MA15,RARC,Claim separated to expedite,Informational: Split claim processing.
+MA16,RARC,Covered by Black Lung Program,Bill Federal Black Lung Program.
+MA17,RARC,Primary payer refund excess,COB logic. Contact other insurer.
+MA18,RARC,Forwarded to supplemental insurer,Informational: Crossover claim.
+MA19,RARC,Not sent to Medigap due to invalid info,Fix secondary insurance data and bill directly.
+MA20,RARC,SNF stay not covered for convenience,Medical necessity denial for SNF.
+MA21,RARC,SSA mismatch name/sex,Verify patient spelling and gender against Medicare card.
+MA22,RARC,Payment < $1 suppressed,Informational.
+MA23,RARC,Demand bill approved,Informational.
+MA24,RARC,Christian Science / SNF bill,Institutional logic.
+MA25,RARC,Hospice provider change limit,Hospice election logic.
+MA26,RARC,Previously informed of rule,Warning flag.
+MA27,RARC,Missing entitlement number/name,Check Member ID.
+MA28,RARC,Receipt of notice is information only,Unassigned claim alert.
+MA30,RARC,Missing type of bill,Institutional logic: Update UB-04.
+MA31,RARC,Missing beginning/ending dates,Update billing period.
+MA32,RARC,Missing covered days,Institutional logic: Update UB-04.
+MA33,RARC,Missing non-covered days,Institutional logic: Update UB-04.
+MA34,RARC,Missing coinsurance days,Institutional logic: Update UB-04.
+MA35,RARC,Missing lifetime reserve days,Institutional logic: Update UB-04.
+MA36,RARC,Missing patient name,Update patient demographics.
+MA37,RARC,Missing patient address,Update patient demographics.
+MA39,RARC,Missing gender,Update patient demographics.
+MA40,RARC,Missing admission date,Institutional logic: Update UB-04.
+MA41,RARC,Missing admission type,Institutional logic: Update UB-04.
+MA42,RARC,Missing admission source,Institutional logic: Update UB-04.
+MA43,RARC,Missing patient status,Institutional logic: Update UB-04 (e.g. 01 vs 30).
+MA44,RARC,No appeal rights based on law,Final statutory denial.
+MA45,RARC,Payment held in special account,Informational.
+MA46,RARC,New information considered but no payment,Appeal upheld denial.
+MA47,RARC,Provider opted out of Medicare,Bill patient directly per opt-out agreement.
+MA48,RARC,Missing Responsible Party Address,CARC 16: Update patient/guarantor address in the system and rebill.
+MA50,RARC,Missing Investigational Device/Clinical Trial num,Update claim with trial registry number.
+MA53,RARC,Missing Competitive Bidding Demo ID,DME logic.
+MA54,RARC,Hospice certification not timely,Hospice billing logic.
+MA55,RARC,Revoked religious non-medical health care,Coverage logic.
+MA56,RARC,Opted out - limiting charge applies,Opt-out limit logic.
+MA57,RARC,Patient revoked religious non-medical care,Coverage logic.
+MA58,RARC,Missing release of information indicator,Update Box 12 (Signature on File).
+MA59,RARC,Refund overpayment to patient,Issue refund for excess patient payment.
+MA60,RARC,Missing patient relationship to insured,Update relationship code (e.g., 18 for self).
+MA61,RARC,Missing social security number,Update SSN if required by payer.
+MA62,RARC,Telephone review decision,Informational.
+MA63,RARC,Missing principal diagnosis,Ensure Primary ICD-10 is listed first.
+MA64,RARC,Need primary and secondary info,Tertiary COB logic. Bill with both EOBs.
+MA65,RARC,Missing admitting diagnosis,Institutional logic: Update UB-04.
+MA66,RARC,Missing principal procedure code,Institutional logic: Update UB-04.
+MA67,RARC,Correction to a prior claim,Informational: Processing adjusted claim.
+MA68,RARC,Did not crossover incomplete info,Supply complete secondary data or use PLANID.
+MA69,RARC,Missing remarks,Add required text to Box 19.
+MA70,RARC,Missing provider signature,Update Box 31 signature indicator.
+MA71,RARC,Missing provider signature date,Update signature date.
+MA72,RARC,Patient overpaid assigned services,Issue refund to patient.
+MA73,RARC,Medicare demonstration (managed care),Informational routing logic.
+MA74,RARC,Replaces earlier payment,Informational: Re-issued check/EFT.
+MA75,RARC,Missing patient signature,Update Box 12/13.
+MA76,RARC,Missing HHA/Hospice provider identifier,Care plan oversight logic.
+MA77,RARC,Refund patient less payer payments,Patient credit balance check.
+MA79,RARC,Billed in excess of interim rate,Institutional logic.
+MA80,RARC,Informational notice - Demo project,Institutional logic.
+MA81,RARC,Missing provider/supplier signature,Update signature block.
+MA83,RARC,Did not indicate primary or secondary,Update COB indicator.
+MA84,RARC,National Emphysema Treatment Trial logic,Study coordinator contact required.
+MA88,RARC,Missing primary insured address/phone,Update COB demographics.
+MA89,RARC,Missing patient relationship to primary,Update COB relationship code.
+MA90,RARC,Missing employment status,Update patient employment status.
+MA91,RARC,Result of appeal filed,Informational: Appeal outcome.
+MA92,RARC,Missing plan information for other insurance,Update COB details.
+MA93,RARC,Non-PIP claim,Institutional logic.
+MA94,RARC,Missing 'Attending physician not hospice employee',Add statement to Box 19.
+MA96,RARC,Patient not enrolled in managed care plan,Check eligibility for active plan.
+MA97,RARC,Missing Medicare Managed Care Demo number,Update claim.
+MA99,RARC,Missing Medigap information,Update Box 9 data.
+MA100,RARC,Missing date of current illness,Add onset date to Box 14.
+MA103,RARC,Hemophilia Add On,Specific DRG/Pharmacy logic.
+MA106,RARC,PIP (Periodic Interim Payment) claim,Institutional logic.
+MA107,RARC,Paper claim > 3 items in field 19,Reduce text in Box 19 or bill electronically.
+MA108,RARC,Paper claim > 1 item in field 23,Clean up Prior Auth box.
+MA109,RARC,Processed per ASC guidelines,ASC payment logic.
+MA110,RARC,Missing outside entity indicator,Check 'Yes' or 'No' in Box 20.
+MA111,RARC,Missing purchase price/lab address,Update Box 20 amount and Box 32 facility.
+MA112,RARC,Missing group practice information,Update Box 33 billing provider.
+MA113,RARC,Invalid TIN per IRS,Correct Tax ID in Box 25 and resubmit.
+MA114,RARC,Missing information on where services furnished,Update Box 32 Service Facility.
+MA115,RARC,Missing physical location in HPSA,HPSA bonus logic. Update Box 32.
+MA116,RARC,Missing 'Homebound' statement,Add "Homebound" to Box 19 for at-home lab services.
+MA117,RARC,Assessed $1.00 user fee,Administrative fee.
+MA118,RARC,VA facility claim alert,VA billing logic.
+MA120,RARC,Missing CLIA certification number,CARC 16: Add the lab's CLIA number to Box 23 and resubmit.
+MA121,RARC,Missing x-ray date,Update Box 19 or specific date field.
+MA122,RARC,Missing initial treatment date,Update Box 14.
+MA123,RARC,Center not selected for study,Trial exclusion.
+MA125,RARC,Payment constitutes payment in full,Cannot balance bill.
+MA126,RARC,Pancreas transplant needs kidney transplant,Transplant coverage logic.
+MA128,RARC,Missing FDA approval number,Update claim for IDE.
+MA130,RARC,Missing patient ABN signature,Obtain signed ABN from patient. Attach and resubmit claim.
+MA131,RARC,Missing or invalid taxonomy code,Correct taxonomy in Box 33 or provider portal. Resubmit claim.
+MA132,RARC,Adjustment to pre-demonstration rate,Pricing logic.
+MA133,RARC,Overlaps inpatient stay,Rebill only outpatient services outside the stay.
+MA134,RARC,Missing facility provider number,Update Box 32.
+N1,RARC,Appeal decision in writing,Informational: Follow plan appeal guidelines.
+N2,RARC,Most appropriate course of treatment,Medical necessity check.
+N3,RARC,Missing consent form,Attach signed consent and resubmit.
+N4,RARC,Missing Prior Payer EOB,CARC 22: Obtain EOB from primary and attach to the secondary claim.
+N5,RARC,EOB received claim not on file,Submit the actual claim data with the EOB.
+N6,RARC,FEHB Medicare limit,Federal pricing limit.
+N7,RARC,Consideration under Major Medical,Benefit category routing.
+N8,RARC,Crossover denied complete data not forwarded,Resubmit directly to secondary with EOB.
+N9,RARC,Estimated amount previous payer may pay,COB estimation logic.
+N10,RARC,Adjustment based on professional consult/review,Medical review adjustment.
+N11,RARC,Denial reversed because of medical review,Appeal successful.
+N12,RARC,Member not enrolled in applicable Medicare,Patient liable for Medicare portion if not enrolled.
+N13,RARC,Payment based on PC/TC modifiers,Modifier 26/TC logic applied.
+N15,RARC,Newborn must be billed separately,Split baby charges from mother.
+N16,RARC,Out-of-Pocket maximum met,Patient Responsibility is zero.
+N19,RARC,Incidental to primary procedure,Bundled. Check NCCI edits.
+N20,RARC,Not payable with other service,Bundled. Check NCCI edits.
+N21,RARC,Line item separated,Informational: Claim splitting.
+N22,RARC,Code Changed by Payer,Informational: Payer cross-walked your code to a more accurate one. Update your records.
+N23,RARC,Patient liability affected by COB,Informational: COB calculation.
+N24,RARC,Missing EFT banking information,Update provider EFT enrollment.
+N25,RARC,Administrative claims payment services only,TPA processing alert.
+N26,RARC,Missing itemized bill/statement,Attach detailed itemization and resubmit.
+N27,RARC,Missing treatment number,Update authorization or case number.
+N28,RARC,Consent form requirements not fulfilled,Check consent signatures/dates.
+N30,RARC,Patient Ineligible,CARC 31: Re-verify insurance. Check for coverage termination or plan changes.
+N31,RARC,Missing prescribing provider identifier,Update NPI of prescribing doctor.
+N32,RARC,Submit by provider who rendered service,Check billing vs rendering NPI.
+N33,RARC,No record of health check,Preventative requirement not met.
+N34,RARC,Incorrect claim form/format,E.g., Billed professional services on institutional UB-04.
+N35,RARC,Program integrity/utilization review,Audit hold/denial.
+N36,RARC,Meet primary payer requirements,Fix primary denial before billing secondary.
+N37,RARC,Missing tooth number/letter,Dental logic: Update claim.
+N39,RARC,Procedure incompatible with tooth,Dental logic: Verify code vs tooth.
+N40,RARC,Missing radiology film(s),Attach X-ray images.
+N42,RARC,Missing mental health assessment,Attach psychological evaluation.
+N43,RARC,Bed hold or leave days exceeded,Institutional logic.
+N45,RARC,Payment based on authorized amount,Auth limit applied.
+N46,RARC,Missing admission hour,Institutional logic.
+N47,RARC,Conflicts with another inpatient stay,Check overlap with another facility.
+N48,RARC,Claim info disagrees with other insurance,Mismatched COB data.
+N49,RARC,Court ordered coverage needs validation,Legal custody/support logic.
+N50,RARC,Missing discharge information,Institutional logic.
+N51,RARC,Electronic interchange agreement not on file,Setup EDI with clearinghouse/payer.
+N52,RARC,Patient not enrolled in billing provider plan,HMO roster error.
+N53,RARC,Missing point of pick-up address,Ambulance logic.
+N54,RARC,Inconsistent with pre-certified services,Mismatch between Auth and Billed CPT.
+N55,RARC,Procedures for billing with group not followed,Check Group/Individual NPI setup.
+N56,RARC,Procedure code incorrect/valid for dates,Check code active dates.
+N57,RARC,Missing prescribing date,Pharmacy/DME logic.
+N58,RARC,Missing patient liability amount,COB logic: Include patient pay amount.
+N59,RARC,Refer to provider manual,Informational.
+N61,RARC,Rebill services on separate claims,Split claim logic.
+N62,RARC,Dates span multiple rate periods,Split dates.
+N63,RARC,Rebill services on separate claim lines,Unbundle line items.
+N64,RARC,From and to dates must be different,Check date spans.
+N65,RARC,Procedure code/rate cannot be determined,Check fee schedule.
+N67,RARC,Prof services included in facility payment,Demonstration project bundling.
+N68,RARC,Prior payment cancelled - demo project,Refund requested. Contact facility.
+N69,RARC,PPS code changed by system,Institutional payment logic.
+N70,RARC,Consolidated billing applies,SNF/Home Health bundling.
+N71,RARC,Processed as assigned claim,Mandatory assignment logic.
+N72,RARC,PPS code changed by medical reviewers,Audit downgrade.
+N74,RARC,Resubmit covering only one calendar month,Split dates by month.
+N75,RARC,Missing tooth surface information,Dental logic.
+N76,RARC,Missing number of riders,Ambulance logic.
+N77,RARC,Missing designated provider number,Update required ID.
+N78,RARC,EPSDT components not completed,Medicaid preventative logic.
+N79,RARC,Incompatible with patient location,POS mismatch.
+N80,RARC,Missing prenatal screening information,OB/GYN logic.
+N81,RARC,Procedure incompatible with tooth surface,Dental logic.
+N82,RARC,Must accept insurance payment as full,Cannot balance bill.
+N83,RARC,No appeal rights based on demo project,Final denial.
+N84,RARC,Further installment payments forthcoming,Informational.
+N85,RARC,Final installment payment,Informational.
+N86,RARC,Failed trial of pelvic muscle exercise required,Medical necessity pre-requisite.
+N87,RARC,Home use of biofeedback not covered,POS exclusion.
+N88,RARC,Conditional payment - HHA episode,Home health bundling risk.
+N89,RARC,Payment info forwarded to >1 payer,Informational COB.
+N90,RARC,Covered only when performed by attending,Provider credentialing limit.
+N91,RARC,Services not included in appeal review,Appeal scope limit.
+N92,RARC,Not certified for digital mammography,Facility credentialing error.
+N93,RARC,Submit separate claim for each POS,Split claims by Place of Service.
+N94,RARC,Specific taxonomy code required,Update Box 33b.
+N95,RARC,Provider type may not bill this service,Scope of practice limit.
+N96,RARC,Patient must be refractory to conventional therapy,Medical necessity criteria.
+N97,RARC,Patient excluded due to specific diseases,Medical necessity criteria.
+N98,RARC,Successful test stimulation required,Medical necessity pre-requisite.
+N99,RARC,Patient must demonstrate ability to record voiding diary,Medical necessity criteria.
+N103,RARC,Prisoner/custody exclusion,Bill Federal/State authority.
+N104,RARC,Wrong Jurisdiction,CARC 109: Claim sent to wrong MAC/Carrier. Rebill correct region.
+N105,RARC,Misdirected claim for RRB,Bill Railroad Medicare (Palmetto GBA).
+N106,RARC,Payment made to SNF only,Bill the SNF directly.
+N107,RARC,Must be billed on inpatient claim,Hospital billing logic.
+N108,RARC,Missing upgrade information,DME logic (ABN related).
+N109,RARC,Chosen for complex review,Medical audit pending.
+N110,RARC,Not certified for film mammography,Facility credential limit.
+N111,RARC,No appeal right except duplicate,Cannot appeal a duplicate denial.
+N112,RARC,Excluded from electronic remittance,Check paper EOB.
+N113,RARC,Only one initial visit covered,Frequency limit.
+N114,RARC,Ambulance fee schedule transition,Ambulance pricing logic.
+N115,RARC,Decision based on LCD,Check Florida (First Coast) or Texas (Novitas) LCD for the billed CPT to find 'Allowed' DX codes.
+N116,RARC,Conditional payment - HHA episode home,Home Health bundling risk.
+N117,RARC,Paid only once in a lifetime,Frequency limit (e.g., Appendectomy).
+N118,RARC,Not paid if billed more than once every 28 days,Frequency limit.
+N119,RARC,Not paid if 5+ days in SNF within 28 days,Frequency limit/SNF logic.
+N120,RARC,Home health partial episode payment,HHA payment adjustment.
+N121,RARC,Part B does not pay during SNF stay,Consolidated billing. Bill SNF.
+N122,RARC,Add-on code cannot be billed by itself,Must bill with primary CPT code.
+N123,RARC,Split service/portion of units,Informational.
+N124,RARC,Denied for less extensive service (Patient Liable),ABN on file. Bill patient.
+N125,RARC,Denied for less extensive service (Must refund),No ABN. Refund patient.
+N126,RARC,Individual deported,Coverage exclusion.
+N127,RARC,Misdirected for UMWA,Bill United Mine Workers.
+N128,RARC,Prior to coverage portion,Eligibility limit.
+N129,RARC,Not eligible due to age,Age limit restriction.
+N130,RARC,Consult plan benefit documents,Check specific plan rules.
+N131,RARC,Total payments cannot exceed allowance,COB overpayment limit.
+N132,RARC,Excluded provider grace period ending,OIG exclusion alert.
+N133,RARC,Predetermination processing,Informational.
+N134,RARC,Scheduled payment,Informational.
+N135,RARC,Record fees patient responsibility,Administrative fee logic.
+N136,RARC,AZ appeal information,State specific notice.
+N137,RARC,Provider may file complaint,State specific notice.
+N138,RARC,Dental Advisor second review,Dental appeal logic.
+N139,RARC,Non-participating provider appeal rules,TRICARE/Dental appeal limit.
+N140,RARC,OCONUS provider appeal rules,TRICARE appeal limit.
+N141,RARC,Not residing in long-term care facility,POS mismatch.
+N142,RARC,Original claim denied - submit new,Do not use replacement frequency 7.
+N143,RARC,Not in hospice program,Hospice status mismatch.
+N144,RARC,Rate changed during dates,Split claim at rate change date.
+N146,RARC,Missing screening document,Attach required forms.
+N147,RARC,Missing patient ID for per diem rate,LTC facility logic.
+N148,RARC,Missing date of last menstrual period,OB/GYN logic.
+N149,RARC,Rebill all services on a single claim,Consolidate claims.
+N150,RARC,Missing model number,DME logic.
+N151,RARC,Face-to-face contact requirement not met,Telehealth/Consult logic.
+N152,RARC,Missing replacement claim information,Ensure ICN is in Box 22.
+N153,RARC,Missing room and board rate,Institutional logic.
+N154,RARC,Payment delayed for provider address,Update credentialing address.
+N155,RARC,Other insurance not on file,Patient must update COB with payer.
+N156,RARC,Patient responsible for difference,Elective treatment limit.
+N157,RARC,Transportation destination not covered,Ambulance modifier logic.
+N158,RARC,Vehicle other than ambulance not covered,Transport logic.
+N159,RARC,Mileage not covered when patient not in ambulance,Ambulance logic.
+N160,RARC,Patient must choose option,DME purchase vs rent option.
+N161,RARC,Covered only when associated service covered,Bundling/Prerequisite check.
+N162,RARC,Test not included in Lab Certification,CLIA mismatch.
+N163,RARC,Medical record does not support code,Downcode or appeal.
+N167,RARC,Exceeds post-transplant limit,Coverage limit.
+N170,RARC,New/revised CMN needed,DME logic.
+N171,RARC,Repair not covered or exceeded price,DME logic.
+N172,RARC,Patient not liable for updated service,Provider liability.
+N173,RARC,No qualifying hospital stay dates,SNF 3-day rule check.
+N174,RARC,Not covered but patient liability limited,PR group limitation.
+N175,RARC,Missing review organization approval,Attach PRO/QIO auth.
+N176,RARC,Ship registry/waters rules,Maritime coverage limits.
+N177,RARC,Other insurer indicated no additional payment,COB exhaustion.
+N178,RARC,Missing pre-operative images,Attach visual fields/images.
+N179,RARC,Info requested from member,Patient must contact payer.
+N180,RARC,Does not meet criteria for category,Check code definition.
+N181,RARC,Info required from another provider,Need referring MD notes.
+N182,RARC,Bill according to schedule,Plan frequency limit.
+N183,RARC,Predetermination advisory,Informational.
+N184,RARC,Rebill technical/professional separately,Split 26 and TC.
+N185,RARC,Do not resubmit,Final denial/processing alert.
+N186,RARC,Non-Availability Statement required,TRICARE MTF logic.
+N187,RARC,Appeal review request limits,Informational.
+N188,RARC,Approved level of care mismatch,Auth covers different code.
+N189,RARC,One-time exception paid,Informational.
+N190,RARC,Missing contract indicator,Pricing setup error.
+N191,RARC,Provider update insurance info,Credentialing file error.
+N192,RARC,Patient is Medicaid/QMB,Cannot balance bill QMB patient.
+N193,RARC,Covered by other federal/state program,E.g. Veterans Affairs/Indian Health.
+N194,RARC,TC not paid if equipment not owned,Bill professional component only.
+N195,RARC,Technical component must be billed separately,Split bill logic.
+N196,RARC,Patient eligible for other primary coverage,COB investigation needed.
+N197,RARC,Subscriber must update info directly,Patient COB verification needed.
+N198,RARC,Rendering provider must be affiliated,Link Rendering NPI to Group NPI.
+N199,RARC,Audit payment/recoupment,Informational: Review finding.
+N200,RARC,Professional component must be billed separately,Split bill logic.
+N202,RARC,Additional explanation sent separately,Wait for detailed letter.
+N203,RARC,Missing anesthesia time,Add minute units to claim.
+N204,RARC,Under review for pre-existing condition,Submit past 12 months records.
+N205,RARC,Information illegible,Resubmit clear copies of notes.
+N206,RARC,Documentation mismatch,Notes do not support claim data.
+N207,RARC,Missing weight,Anesthesia/NICU logic.
+N208,RARC,Missing DRG code,Institutional logic.
+N209,RARC,Missing TIN,Add Tax ID to Box 25.
+N210,RARC,You may appeal this decision,Informational.
+N211,RARC,You may not appeal this decision,Final or non-appealable denial.
+N212,RARC,Point of Service benefit,Processed out-of-network.
+N213,RARC,Missing DRG exempt status,Institutional logic.
+N214,RARC,Missing history of related surgery,Post-op/Modifier logic.
+N215,RARC,Secondary payer does not require primary claim,Direct bill allowed.
+N216,RARC,No coverage/patient not enrolled in benefit,Plan exclusion. Bill patient.
+N217,RARC,Pay only one site of service per claim,Split POS on separate claims.
+N218,RARC,Must service item for patient need,DME maintenance rule.
+N219,RARC,Payment based on previous payer allowed,COB pricing logic.
+N220,RARC,See web site for dispute instructions,Informational.
+N221,RARC,Missing Admitting H&P,Attach hospital History and Physical.
+N222,RARC,Incomplete Admitting H&P,Ensure H&P has required details.
+N223,RARC,Missing doc of benefit during initial treatment,Therapy/Rehab logic.
+N224,RARC,Incomplete doc of benefit during initial treatment,Therapy/Rehab logic.
+N226,RARC,Incomplete ADA Certificate,Diabetic education logic.
+N227,RARC,Incomplete CMN,DME logic: Ensure Certificate of Medical Necessity is signed.
+N228,RARC,Incomplete consent form,Check patient signature.
+N229,RARC,Incomplete contract indicator,Pricing logic.
+N230,RARC,Incomplete patient owns equipment indicator,DME logic.
+N231,RARC,Incomplete intraocular lens invoice,Ensure discounts are shown.
+N232,RARC,Incomplete itemized bill,Submit fully detailed bill.
+N233,RARC,Incomplete operative note,Ensure surgical report is legible and signed.
+N234,RARC,Incomplete oxygen certification,DME logic.
+N235,RARC,Incomplete pacemaker registration,Attach valid registry form.
+N236,RARC,Incomplete pathology report,Ensure tissue origin is clear.
+N237,RARC,Incomplete medical record,Submit complete chart notes.
+N238,RARC,Incomplete physician certified plan of care,Therapy/Home Health logic.
+N239,RARC,Incomplete physician financial form,Compliance logic.
+N240,RARC,Incomplete radiology report,Ensure radiologist signature is present.
+N241,RARC,Incomplete review organization approval,PRO/QIO logic.
+N242,RARC,Incomplete radiology films,Submit clear images.
+N243,RARC,Incomplete screening document,Preventative logic.
+N244,RARC,Incomplete pre-operative images,Vision/Surgical logic.
+N245,RARC,Incomplete other insurance plan info,Fix COB details.
+N246,RARC,State regulated patient payment limits,Cannot balance bill.
+N247,RARC,Missing assistant surgeon taxonomy,Update Box 33b for AS.
+N248,RARC,Missing assistant surgeon name,Update claim info.
+N249,RARC,Missing assistant surgeon primary ID,Update AS NPI.
+N250,RARC,Missing assistant surgeon secondary ID,Update AS state license/legacy ID.
+N251,RARC,Missing attending provider taxonomy,Institutional logic.
+N252,RARC,Missing attending provider name,Institutional logic.
+N253,RARC,Missing attending provider primary ID,Institutional logic.
+N254,RARC,Missing attending provider secondary ID,Institutional logic.
+N255,RARC,Missing billing provider taxonomy,Update Box 33b.
+N256,RARC,Missing billing provider name,Update Box 33.
+N257,RARC,Missing Provider Info,Verify Billing/Rendering NPI and Address in Box 33 and 24J. Update and resubmit Corrected Claim.
+N258,RARC,Missing billing provider address,Update Box 33.
+N259,RARC,Missing billing provider secondary ID,Update Tax ID/Legacy ID.
+N260,RARC,Missing billing provider contact info,Update EDI setup.
+N261,RARC,Missing operating provider name,Institutional logic.
+N262,RARC,Missing operating provider primary ID,Institutional logic.
+N263,RARC,Missing operating provider secondary ID,Institutional logic.
+N264,RARC,Missing ordering provider name,Update Box 17.
+N265,RARC,Missing ordering provider primary ID,Update Box 17b.
+N266,RARC,Missing ordering provider address,Update claim data.
+N267,RARC,Missing ordering provider secondary ID,Update Box 17a.
+N268,RARC,Missing ordering provider contact info,Update claim data.
+N269,RARC,Missing other provider name,Update claim data.
+N270,RARC,Missing other provider primary ID,Update claim data.
+N271,RARC,Missing other provider secondary ID,Update claim data.
+N272,RARC,Missing other payer attending ID,COB logic.
+N273,RARC,Missing other payer operating ID,COB logic.
+N274,RARC,Missing other payer other provider ID,COB logic.
+N275,RARC,Missing other payer purchased service ID,COB logic.
+N276,RARC,Missing other payer referring ID,COB logic.
+N277,RARC,Missing other payer rendering ID,COB logic.
+N278,RARC,Missing other payer service facility ID,COB logic.
+N279,RARC,Missing pay-to provider name,Update EDI setup.
+N280,RARC,Missing pay-to provider primary ID,Update EDI setup.
+N281,RARC,Missing pay-to provider address,Update EDI setup.
+N282,RARC,Missing pay-to provider secondary ID,Update EDI setup.
+N283,RARC,Missing purchased service provider ID,Update Box 32 NPI.
+N284,RARC,Missing referring provider taxonomy,Update Box 17.
+N285,RARC,Missing referring provider name,Update Box 17.
+N286,RARC,Missing referring provider primary ID,Update Box 17b.
+N287,RARC,Missing referring provider secondary ID,Update Box 17a.
+N288,RARC,Missing rendering provider taxonomy,Update Box 24J/33b.
+N289,RARC,Missing rendering provider name,Update claim data.
+N290,RARC,Missing doc for medical necessity,Attach clinical notes imaging results or LMN. Resubmit.
+N291,RARC,Missing rendering provider secondary ID,Update state license.
+N292,RARC,Missing service facility name,Update Box 32.
+N293,RARC,Missing service facility primary ID,Update Box 32a.
+N294,RARC,Missing service facility address,Update Box 32.
+N295,RARC,Missing service facility secondary ID,Update Box 32b.
+N296,RARC,Missing supervising provider name,Update claim data.
+N297,RARC,Missing supervising provider primary ID,Update claim data.
+N298,RARC,Missing supervising provider secondary ID,Update claim data.
+N299,RARC,Missing occurrence dates,Institutional logic.
+N300,RARC,Missing occurrence span dates,Institutional logic.
+N301,RARC,Missing procedure dates,Institutional logic.
+N302,RARC,Missing other procedure dates,Institutional logic.
+N303,RARC,Missing principal procedure date,Institutional logic.
+N304,RARC,Missing dispensed date,Pharmacy/DME logic.
+N305,RARC,Missing injury/accident date,Update Box 14.
+N306,RARC,Missing acute manifestation date,Update Box 14.
+N307,RARC,Missing adjudication/payment date,COB logic.
+N308,RARC,Missing appliance placement date,Dental/Ortho logic.
+N309,RARC,Missing assessment date,Therapy logic.
+N310,RARC,Missing relinquished care date,Global surgery logic.
+N311,RARC,Missing return to work date,Workers Comp logic.
+N312,RARC,Missing begin therapy date,Therapy logic.
+N313,RARC,Missing certification revision date,Home Health/Therapy logic.
+N314,RARC,Missing diagnosis date,Update claim data.
+N315,RARC,Missing disability from date,Workers Comp/Disability logic.
+N316,RARC,Missing disability to date,Workers Comp/Disability logic.
+N317,RARC,Missing discharge hour,Institutional logic.
+N318,RARC,Missing discharge/end of care date,Institutional logic.
+N319,RARC,Missing hearing/vision prescription date,Audiology/Optometry logic.
+N320,RARC,Missing Home Health Certification Period,Home Health logic.
+N321,RARC,Missing last admission period,Institutional logic.
+N322,RARC,Missing last certification date,Therapy logic.
+N323,RARC,Missing last contact date,Update claim data.
+N324,RARC,Missing last seen/visit date,Update claim data.
+N325,RARC,Missing last worked date,Workers Comp logic.
+N326,RARC,Missing last x-ray date,Chiropractic/Ortho logic. Update Box 19.
+N327,RARC,Missing other insured birth date,COB logic.
+N328,RARC,Missing Oxygen Saturation Test date,DME logic.
+N329,RARC,Missing patient birth date,Update Box 3.
+N330,RARC,Missing patient death date,Update claim data.
+N331,RARC,Missing physician order date,DME/Lab logic.
+N332,RARC,Missing prior hospital discharge date,Update Box 18.
+N333,RARC,Missing prior placement date,Dental/DME logic.
+N334,RARC,Missing re-evaluation date,Therapy logic.
+N335,RARC,Missing referral date,Update claim data.
+N336,RARC,Missing replacement date,DME/Dental logic.
+N337,RARC,Missing secondary diagnosis date,Update claim data.
+N338,RARC,Missing shipped date,Pharmacy/DME logic.
+N339,RARC,Missing similar illness/symptom date,Update Box 15.
+N340,RARC,Missing subscriber birth date,Update Box 11a.
+N341,RARC,Missing surgery date,Update claim data.
+N342,RARC,Missing test performed date,Lab logic.
+N343,RARC,Missing TENS trial start date,Pain Mgmt/DME logic.
+N344,RARC,Missing TENS trial end date,Pain Mgmt/DME logic.
+N345,RARC,Date range not valid with units,Check DOS span vs Units billed.
+N346,RARC,Missing oral cavity designation,Dental logic.
+N347,RARC,Purchased service already paid,Duplicate check for outside labs.
+N348,RARC,Chose different supplier to bill,DME assignment logic.
+N349,RARC,Administration method/drug required,J-code/NDC logic.
+N350,RARC,Missing description for NOC code,Add specific description for unlisted CPT to Box 19.
+N351,RARC,Service outside approved plan dates,Check Auth dates.
+N352,RARC,No scheduled payments - submit each visit,Frequency billing logic.
+N353,RARC,Benefits estimated - submit claim,Predetermination alert.
+N354,RARC,Incomplete invoice,Attach valid invoice showing cost.
+N355,RARC,Refund patient exception rules,Advance Notice/Refund logic.
+N356,RARC,Not covered with non-covered service,Bundling logic.
+N357,RARC,Time frame requirements not met,Check spacing between related services (e.g. 2nd ESI).
+N358,RARC,Submit additional doc for review,Appeal with records.
+N359,RARC,Missing height,Anesthesia/DME logic.
+N360,RARC,Predetermination COB not calculated,Submit primary EOB with actual claim.
+N362,RARC,Units exceed maximum allowed,Verify frequency limits. Adjust units or appeal with medical necessity justification.
+N363,RARC,New policies affecting determination soon,Informational.
+N364,RARC,Must waive deductible/coinsurance,Contractual limit on PR.
+N366,RARC,Requested info not provided,Submit requested records to reopen claim.
+N367,RARC,Forwarded to Consumer Spending Account,FSA/HSA payment routing.
+N368,RARC,Appeal previously adjudicated claim,Duplicate appeal logic.
+N369,RARC,Deficient according to state law,Compliance warning.
+N370,RARC,Exceeds rental months,DME capping logic.
+N371,RARC,Transfer title of equipment,DME ownership change.
+N372,RARC,Only maintenance/service covered,DME capped rental logic.
+N373,RARC,Refunding erroneous primary payer,Recoupment action.
+N374,RARC,Part A exhausted need Part B RA,SNF/Hospital COB logic.
+N375,RARC,Missing dependent eligibility info,Patient must update COB/Student status.
+N376,RARC,Patient on active military duty,TRICARE is primary.
+N377,RARC,Payment based on replacement claim,Informational: Freq 7 processed.
+N378,RARC,Missing prescription quantity,Pharmacy logic.
+N379,RARC,Claim vs line info mismatch,Balance claim totals.
+N380,RARC,Original processed - submit corrected,Do not submit as new. Use Freq 7.
+N381,RARC,Consult contract for restrictions,Review provider manual.
+N382,RARC,Missing patient identifier,Update Member ID.
+N383,RARC,Cosmetic service not covered,Exclusion. Bill patient.
+N384,RARC,Body part already removed,Anatomical impossibility check.
+N385,RARC,Admission notification not timely,Authorization penalty.
+N386,RARC,NCD Policy Reference,Reference the National Coverage Determination (CMS.gov) for clinical support requirements.
+N387,RARC,Submit to other insurer for supplement,COB routing logic.
+N388,RARC,Missing prescription number,Pharmacy logic.
+N389,RARC,Duplicate prescription number,Pharmacy logic.
+N390,RARC,Service cannot be billed separately,Bundled. Check NCCI edits.
+N391,RARC,Missing emergency department records,Attach ER notes.
+N392,RARC,Incomplete emergency records,Ensure notes are signed.
+N393,RARC,Missing progress notes,Attach daily clinic notes.
+N394,RARC,Incomplete progress notes,Ensure notes support CPT billed.
+N395,RARC,Missing laboratory report,Attach lab results.
+N396,RARC,Incomplete laboratory report,Ensure lab report matches DX.
+N397,RARC,No benefits for incomplete service,Service must be completed to bill.
+N398,RARC,Missing elective consent form,Attach signed consent.
+N399,RARC,Incomplete elective consent form,Verify signatures.
+N400,RARC,Submit claims electronically,Paper claim warning.
+N401,RARC,Missing periodontal charting,Dental logic.
+N402,RARC,Incomplete periodontal charting,Dental logic.
+N403,RARC,Missing facility certification,Credentialing logic.
+N404,RARC,Incomplete facility certification,Credentialing logic.
+N405,RARC,Covered only when donor insurer denies,Transplant COB logic.
+N406,RARC,Covered only when recipient insurer denies,Transplant COB logic.
+N407,RARC,Not approved EDI submitter,Check clearinghouse setup.
+N408,RARC,Does not cover prior deductibles,COB logic.
+N409,RARC,Accident service time frame limit,Workers Comp/Auto logic.
+N410,RARC,Not covered unless prescription changes,Refill limitation.
+N411,RARC,Allowed 1 time in 6-month period,Frequency limit.
+N412,RARC,Allowed 2 times in 12-month period,Frequency limit.
+N413,RARC,Allowed 2 times in benefit year,Frequency limit.
+N414,RARC,Allowed 4 times in 12-month period,Frequency limit.
+N415,RARC,Allowed 1 time in 18-month period,Frequency limit.
+N416,RARC,Allowed 1 time in 3-year period,Frequency limit.
+N417,RARC,Allowed 1 time in 5-year period,Frequency limit.
+N418,RARC,Misrouted claim,Send to correct payer address.
+N419,RARC,Retroactive rate change adjustment,Payer reprocessing alert.
+N420,RARC,COB/TPL retroactive adjustment,Recoupment due to primary payer change.
+N421,RARC,Review organization retroactive adjustment,Audit recoupment.
+N422,RARC,Contract incentive program adjustment,Bonus/Withhold processing.
+N423,RARC,Non-standard program adjustment,Specific plan logic.
+N424,RARC,Geographic area requirement not met,Out of network/state logic.
+N425,RARC,Statutorily excluded service,Write-off or bill patient with ABN.
+N426,RARC,No coverage when self-administered,Pharmacy Part D vs Part B logic.
+N427,RARC,Eyeglasses covered only after cataract surgery,Vision/Medicare logic.
+N428,RARC,Not covered in this place of service,Verify POS code restrictions.
+N429,RARC,Not covered when considered routine,Update DX if service was diagnostic.
+N430,RARC,Procedure code inconsistent with units,Check Medically Unlikely Edits (MUE).
+N431,RARC,Not covered with this procedure,Bundling edit.
+N432,RARC,Recovery Audit adjustment,RAC audit recoupment.
+N433,RARC,Resubmit using only NPI,Remove legacy IDs.
+N434,RARC,Missing Present on Admission indicator,Institutional POA logic.
+N435,RARC,Exceeds frequency without support doc,Appeal with medical necessity notes.
+N436,RARC,Injury claim not accepted - mandatory medical paid,Workers Comp logic.
+N437,RARC,Charges reconsidered if injury accepted,Workers Comp pending liability.
+N438,RARC,Jurisdiction only accepts paper claims,Print and mail claim.
+N439,RARC,Missing anesthesia physical status,Add P1-P6 modifier.
+N440,RARC,Incomplete anesthesia physical status,Verify P-modifier.
+N441,RARC,Missed appointment not covered,Bill patient directly for no-show fee.
+N442,RARC,Payment based on alternate fee schedule,Payer pricing logic.
+N443,RARC,Missing total time or begin/end time,Anesthesia/Therapy logic.
+N444,RARC,Missing High Cost Outlier form,Workers Comp facility logic.
+N445,RARC,Missing document for actual cost,Attach invoice.
+N446,RARC,Incomplete document for actual cost,Attach clear invoice.
+N447,RARC,Payment based on generic equivalent,Pharmacy logic.
+N448,RARC,Not included in fee schedule,Verify if CPT is covered under contract.
+N449,RARC,Payment based on comparable drug/service,Unlisted code pricing logic.
+N450,RARC,Covered only when performed by primary MD,HMO referral logic.
+N451,RARC,Missing Admission Summary Report,Attach hospital admit notes.
+N452,RARC,Incomplete Admission Summary,Check hospital notes.
+N453,RARC,Missing Consultation Report,Attach consult notes.
+N454,RARC,Incomplete Consultation Report,Check consult notes.
+N455,RARC,Missing Physician Order,Attach signed order.
+N456,RARC,Incomplete Physician Order,Check order signature/details.
+N457,RARC,Missing Diagnostic Report,Attach test results.
+N458,RARC,Incomplete Diagnostic Report,Check test results.
+N459,RARC,Missing Discharge Summary,Attach hospital discharge notes.
+N460,RARC,Incomplete Discharge Summary,Check discharge notes.
+N461,RARC,Missing Nursing Notes,Attach facility notes.
+N462,RARC,Incomplete Nursing Notes,Check facility notes.
+N463,RARC,Missing support data for claim,Attach relevant medical records.
+N464,RARC,Incomplete support data,Check attached records.
+N465,RARC,Missing Physical Therapy Notes,Attach PT daily notes.
+N466,RARC,Incomplete Physical Therapy Notes,Check PT notes.
+N467,RARC,Missing Tests and Analysis Report,Attach lab/test data.
+N468,RARC,Incomplete Tests and Analysis Report,Check lab/test data.
+N469,RARC,Subject to appeal process (MMA),Medicare Part D appeal routing.
+N470,RARC,Completes mandatory medical limit,Benefit exhausted.
+N471,RARC,Missing HIPPS Rate Code,Home Health/SNF logic.
+N472,RARC,Payment issued to another provider,Duplicate/Global billing check.
+N473,RARC,Missing certification,Attach required certification.
+N474,RARC,Incomplete certification,Check certification.
+N475,RARC,Missing completed referral form,Attach HMO referral.
+N476,RARC,Incomplete referral form,Check HMO referral.
+N477,RARC,Missing Dental Models,Dental orthotics logic.
+N478,RARC,Incomplete Dental Models,Dental orthotics logic.
+N479,RARC,Missing EOB,Attach primary payer EOB.
+N480,RARC,Incomplete EOB,Ensure EOB shows patient name and DOS.
+N481,RARC,Missing Models,Dental/Surgical logic.
+N482,RARC,Incomplete Models,Dental/Surgical logic.
+N485,RARC,Missing Physical Therapy Certification,Attach PT plan of care.
+N486,RARC,Incomplete Physical Therapy Certification,Check PT plan of care.
+N487,RARC,Missing Prosthetics/Orthotics Cert,Attach required form.
+N488,RARC,Incomplete Prosthetics/Orthotics Cert,Check required form.
+N489,RARC,Missing referral form,Attach required HMO referral.
+N490,RARC,Incomplete referral form,Check required HMO referral.
+N491,RARC,Missing Exclusionary Rider Condition,Check plan rider limits.
+N492,RARC,Network provider may bill member if agreed,ABN/Waiver logic.
+N493,RARC,Missing Doctor First Report of Injury,Workers Comp logic.
+N494,RARC,Incomplete Doctor First Report of Injury,Workers Comp logic.
+N495,RARC,Missing Supplemental Medical Report,Workers Comp logic.
+N496,RARC,Incomplete Supplemental Medical Report,Workers Comp logic.
+N497,RARC,Missing Permanent Impairment Report,Workers Comp logic.
+N498,RARC,Incomplete Permanent Impairment Report,Workers Comp logic.
+N499,RARC,Missing Medical Legal Report,Workers Comp/Liability logic.
+N500,RARC,Incomplete Medical Legal Report,Workers Comp/Liability logic.
+N501,RARC,Missing Vocational Report,Workers Comp logic.
+N502,RARC,Incomplete Vocational Report,Workers Comp logic.
+N503,RARC,Missing Work Status Report,Workers Comp logic.
+N504,RARC,Incomplete Work Status Report,Workers Comp logic.
+N505,RARC,Only real-time estimates included,Informational pre-determination.
+N506,RARC,Estimate of member liability,Informational pre-determination.
+N507,RARC,Plan distance requirements not met,Ambulance/Travel logic.
+N508,RARC,Real-time response represents member resp,Informational adjudication.
+N509,RARC,FSA has sufficient funds,Informational account status.
+N510,RARC,FSA does not contain sufficient funds,Informational account status.
+N511,RARC,FSA info not available,Informational account status.
+N512,RARC,Initial remit real-time without change,Informational adjudication.
+N513,RARC,Initial remit real-time with change,Informational adjudication.
+N516,RARC,Mismatch between NPI and EIN,Verify Tax ID and NPI linkage.
+N517,RARC,Resubmit new claim with requested info,Do not appeal. Correct data and bill.
+N518,RARC,No separate payment for oxygen accessories,Bundled into oxygen equipment.
+N519,RARC,Invalid combination of HCPCS modifiers,Check modifier rules (e.g. cannot use 59 and XU).
+N520,RARC,Payment made from Consumer Spending Account,HSA/FSA logic.
+N521,RARC,Mismatch provider info vs system,Verify credentialing demographics.
+N522,RARC,Duplicate of crossover claim,Do not bill secondary directly if it crossed over.
+N523,RARC,Outlier limit met,Institutional payment logic.
+N524,RARC,Payment constitutes payment in full,Cannot balance bill.
+N525,RARC,Not covered within global period,Global surgery edit. Use Modifier 24/79 if unrelated.
+N526,RARC,Not qualified for recovery based on size,COB recovery logic.
+N527,RARC,Processed as primary prior to recovery demand,COB priority logic.
+N528,RARC,Patient entitled to Institutional Services only,Part A only coverage.
+N529,RARC,Patient entitled to Professional Services only,Part B only coverage.
+N530,RARC,Not Qualified for Recovery based on enrollment,COB logic.
+N531,RARC,Not qualified for recovery based on premium,COB logic.
+N532,RARC,Not qualified for recovery based on disability,COB logic.
+N533,RARC,Indian Health Services facility under GHP,Specific facility logic.
+N534,RARC,Individual policy employer does not sponsor,COB/Eligibility logic.
+N535,RARC,Adjusted based on POS,Site of service differential (e.g. Office vs Facility rate).
+N536,RARC,Not changing prior payer patient responsibility,COB logic for non-covered secondary.
+N537,RARC,No records of services found in history,Check for missing prerequisite claim.
+N538,RARC,Facility responsible for payment to outside providers,Under arrangement/CB logic.
+N539,RARC,Appeals/waiver requests denied,Final denial alert.
+N540,RARC,Adjusted based on interrupted stay policy,Hospital transfer logic.
+N541,RARC,Mismatch insurance type code,Correct insurance type (e.g. Medicare vs Medicaid).
+N542,RARC,Missing income verification,Patient eligibility logic.
+N543,RARC,Incomplete income verification,Patient eligibility logic.
+N544,RARC,Ordering provider match alert,Update ordering NPI in your system.
+N545,RARC,eRx Incentive penalty,Quality reporting penalty.
+N546,RARC,eRx Incentive reduction reversal,Quality reporting adjustment.
+N547,RARC,Refund request processed previously,Recoupment logic.
+N548,RARC,Calendar year deductible met,Informational.
+N549,RARC,Calendar year OOP maximum met,Informational.
+N550,RARC,Must revalidate enrollment info,PECOS revalidation warning!
+N551,RARC,ASC Quality Reporting Program adjustment,Facility quality penalty.
+N552,RARC,Reversal of previous withhold,Quality bonus payout.
+N554,RARC,Missing Family Planning Indicator,Medicaid specific logic.
+N555,RARC,Missing medication list,Attach required records.
+N556,RARC,Incomplete medication list,Check required records.
+N557,RARC,Not payable under service area - specimen,Bill plan where specimen collected.
+N558,RARC,Not payable under service area - equipment,Bill plan where equipment received.
+N559,RARC,Not payable under service area - Ordering MD,Bill plan where Ordering MD located.
+N560,RARC,Claim not received within 60 days of NOA,Pilot program timely filing limit.
+N561,RARC,Bundled claim includes readmissions,Resubmit for corrected payment.
+N562,RARC,Provider number mismatch on NOA,Bundled payment logic.
+N563,RARC,Missing patient notice of non-coverage,No ABN on file. Provider liable.
+N564,RARC,Patient did not meet demo criteria,Trial/Demo exclusion.
+N565,RARC,Non-payable code requires modifier,Quality code needs modifier (e.g. 1P).
+N566,RARC,Requires functional reporting,Therapy G-code/Modifier required.
+N567,RARC,Not covered when considered preventative,Update DX to diagnostic if patient has symptoms.
+N568,RARC,Initial payment NOA Bundled Payment,Demonstration logic.
+N569,RARC,Not covered for reported diagnosis,Check LCD/NCD for allowed ICD-10.
+N570,RARC,Missing credentialing data,Update provider file with payer.
+N571,RARC,Payment issued quarterly by other payer,Capitation/Bonus logic.
+N572,RARC,Requires non-payable reporting codes,Quality reporting required to pay claim.
+N573,RARC,Overpayment refund requested by other payer,Recoupment logic.
+N574,RARC,Ordering MD Ineligible,CARC 183: Verify NPI in Box 17b and PECOS status. Update and resubmit.
+N575,RARC,Mismatch ordering provider name,Verify Box 17 text against NPI registry.
+N576,RARC,Not related to reported incident,Check accident date and DX.
+N577,RARC,Personal Injury Protection Coverage,Auto accident logic.
+N578,RARC,Coverages do not apply to this loss,Auto accident limits.
+N579,RARC,Medical Payments Coverage,Auto accident logic.
+N580,RARC,Based on insurance policy provisions,P&C specific limitation.
+N581,RARC,Investigation of coverage pending,P&C hold.
+N582,RARC,Benefits suspended pending patient cooperation,Patient must reply to Auto insurer.
+N583,RARC,Patient not occupant of insured vehicle,Auto coverage exclusion.
+N584,RARC,Noncompliance with statutory conditions,P&C denial.
+N585,RARC,Benefits exhausted final injury settlement,P&C limit. Bill health plan.
+N586,RARC,Injured party does not qualify,P&C exclusion.
+N587,RARC,Policy benefits exhausted,P&C limit.
+N588,RARC,Patient instructed not to pay bills,Patient direction to P&C carrier.
+N589,RARC,Intoxicated/impaired exclusion,P&C coverage exclusion.
+N590,RARC,Missing independent medical exam,P&C requirement.
+N591,RARC,Payment based on IME/UR,P&C adjustment.
+N592,RARC,Not initial prescription/exceeds allowed,Pharmacy/P&C limit.
+N593,RARC,Failure to attend IME,P&C denial.
+N594,RARC,Missing Application for Benefits,Patient must submit form to P&C.
+N595,RARC,Missing Assignment of Benefits,Patient must sign AOB for P&C.
+N596,RARC,Missing Medical Authorization,Patient must sign form for P&C.
+N597,RARC,Apportionment of care,P&C split payment logic.
+N598,RARC,Health care policy is primary,Bill standard health insurance first.
+N599,RARC,Florida No-Fault Statute calculation,Auto fee schedule adjustment.
+N600,RARC,Based on applicable fee schedule,P&C pricing logic.
+N601,RARC,Hawaii MVI Law calculation,State Auto logic.
+N602,RARC,Based on Redbook maximum allowance,Pharmacy pricing logic.
+N603,RARC,New Jersey PIP fee schedule,State Auto logic.
+N604,RARC,New York No-Fault fee schedule,State Auto logic.
+N605,RARC,New York APR-DRG,State Auto institutional logic.
+N606,RARC,Oregon WC fee schedule,State WC logic.
+N607,RARC,Non-compensable conditions,WC denial.
+N608,RARC,110% Medicare Fee Schedule Act 6,State Auto pricing logic.
+N609,RARC,80% billed amount Act 6,State Auto pricing logic.
+N610,RARC,Payment based on appropriate level of care,Downcode adjustment.
+N611,RARC,Claim in litigation,Hold claim pending settlement.
+N612,RARC,Not authorized to treat injured workers,WC credentialing error.
+N613,RARC,Ordering provider must update enrollment,PECOS alert for referring MD.
+N614,RARC,Check 835 segment for info,EDI data flag.
+N615,RARC,Exchange grace period month 1,ACA payment hold.
+N616,RARC,Exchange grace period month 1 alert,ACA payment hold.
+N617,RARC,Exchange grace period month 2 or 3,ACA claim pended/denied.
+N618,RARC,Claim will reprocess if premium paid,ACA payment hold.
+N619,RARC,Coverage terminated non-payment,ACA policy cancelled. Bill patient.
+N620,RARC,Quality reporting procedure code only,G/F code logic.
+N621,RARC,Charges for forms/notes not payable,Administrative fee denial.
+N622,RARC,Not covered based on date of injury,WC date logic.
+N623,RARC,Deemed unproven/experimental,Medical necessity denial.
+N624,RARC,WC claim withdrawn,Bill primary health plan.
+N625,RARC,Missing WC Claim Number,Update Box 11b.
+N626,RARC,E/M not payable with chiropractic,Specialty bundling logic.
+N628,RARC,Outpatient follow up same day disallowed,Bundling logic.
+N629,RARC,Reviews/notes not requested,Informational.
+N630,RARC,Referral not authorized by attending,WC/HMO referral missing.
+N631,RARC,Code not on fee schedule - comparable paid,Pricing logic.
+N633,RARC,Additional anesthesia time not allowed,Anesthesia units cut.
+N634,RARC,Calculated based on anesthesia time,Anesthesia pricing logic.
+N635,RARC,Calculated based on base units plus time,Anesthesia pricing logic.
+N636,RARC,Reimbursable only once per injury,WC frequency limit.
+N637,RARC,Consults not allowed once treatment rendered,Global surgical/treatment logic.
+N638,RARC,Paid per home health fee schedule,HHA pricing logic.
+N639,RARC,Paid per inpatient rehab fee schedule,IRF pricing logic.
+N640,RARC,Exceeds frequency allowed,Frequency limit cut.
+N641,RARC,Paid based on number of body areas,Therapy/Chiro logic.
+N642,RARC,Adjusted when billed as individual tests,Lab panel bundling logic.
+N643,RARC,Not Covered in state fee schedule,State WC/Medicaid denial.
+N644,RARC,Paid per bilateral procedure rule,Modifier 50 pricing logic (150%).
+N645,RARC,Mark-up allowance,Pricing logic.
+N646,RARC,Adjusted for assistant guidelines,Modifier 80/AS pricing logic (16%).
+N647,RARC,Adjusted based on DRG,Institutional pricing.
+N648,RARC,Adjusted based on Stop Loss,Institutional pricing.
+N649,RARC,Payment based on invoice,Cost-based pricing logic.
+N650,RARC,Policy not in effect for date of loss,P&C coverage exclusion.
+N651,RARC,No PIP/MedPay on policy,Auto coverage exclusion.
+N652,RARC,DOS before date of loss,P&C date mismatch.
+N653,RARC,Date of injury mismatch,Correct injury date in Box 14.
+N654,RARC,Adjusted based on MMI,WC limitation logic.
+N655,RARC,Payment based on geographic region,GPCI pricing logic.
+N656,RARC,Interest payment included,State prompt pay logic.
+N657,RARC,Bill with appropriate code,Coding error.
+N658,RARC,Not considered medical expenses,Exclusion.
+N659,RARC,Exempt from sales tax,Tax logic.
+N660,RARC,Sales tax included,Tax logic.
+N661,RARC,Doc does not support medical necessity,Appeal with robust clinical records.
+N662,RARC,Consideration upon receipt of final bill,Institutional logic.
+N663,RARC,Adjusted based on agreed amount,LOA pricing logic.
+N664,RARC,Adjusted based on legal settlement,Lien/Settlement logic.
+N665,RARC,Unlicensed provider not reimbursable,Credentialing denial.
+N666,RARC,Only one E/M at this level covered,Frequency limit for high-level E/M.
+N667,RARC,Missing prescription,Pharmacy/DME logic.
+N668,RARC,Incomplete prescription,Pharmacy/DME logic.
+N669,RARC,Adjusted based on Medicare fee schedule,Pricing logic.
+N670,RARC,Subject to MPPR rule,Multiple Procedure Payment Reduction applied.
+N671,RARC,Payment based on cost-charge ratio,Institutional pricing.
+N672,RARC,Applied to Health Insurance Offset,Recoupment logic.
+N673,RARC,Calculated based on outpatient per diem,Institutional pricing.
+N674,RARC,Pre-requisite service required,Sequence billing logic.
+N675,RARC,Additional info required from injured party,P&C logic.
+N676,RARC,Does not qualify for Outpatient Facility Fee,POS mismatch.
+N677,RARC,Films/Images will not be returned,Informational.
+N678,RARC,Missing post-op images,Attach required surgical/vision images.
+N679,RARC,Incomplete post-op images,Check image quality/dates.
+N680,RARC,Missing date of previous extractions,Dental logic.
+N681,RARC,Missing full arch series,Dental logic.
+N682,RARC,Missing history of prior periodontal,Dental logic.
+N683,RARC,Missing prior treatment documentation,Attach past medical records.
+N684,RARC,Specialty claim submitted as general,Check claim form type.
+N685,RARC,Missing Prosthesis/Crown Code,Dental logic.
+N686,RARC,Missing questionnaire,Patient must submit COB/Accident details.
+N687,RARC,Reversal due to retroactive disenrollment,Recoupment - patient lost coverage.
+N688,RARC,Reversal due to medical review,Recoupment - failed audit.
+N689,RARC,Reversal due to rate change,Recoupment - fee schedule updated.
+N690,RARC,Reversal due to provider appeal,Informational - appeal processed.
+N691,RARC,Reversal due to patient appeal,Informational - appeal processed.
+N692,RARC,Reversal due to incorrect rate,Recoupment - pricing error fix.
+N693,RARC,Reversal due to provider cancellation,Informational - void claim processed.
+N694,RARC,Reversal due to provider resubmission,Informational - corrected claim processed.
+N695,RARC,Reversal due to incorrect patient responsibility,Recoupment - copay/deductible fix.
+N696,RARC,Reversal due to COB/TPL adjustment,Recoupment - other payer found.
+N697,RARC,Reversal due to contract incentive,Recoupment/Adjustment.
+N698,RARC,Reversal due to non-payment of premiums,Recoupment - ACA grace period failed.
+N699,RARC,PQRS Incentive Program,Quality adjustment.
+N700,RARC,EHR Incentive Program,Quality adjustment.
+N701,RARC,Value-based Payment Modifier,Quality adjustment.
+N702,RARC,Based on review of previously adjudicated claims,History check denial.
+N703,RARC,Incompatible with previous claims,History check denial (e.g. right leg already amputated).
+N704,RARC,Do not appeal - resubmit corrected,Do not send appeal form. Fix data and submit as new.
+N705,RARC,Incomplete documentation,Attach complete records.
+N706,RARC,Missing documentation,Attach required records.
+N707,RARC,Incomplete orders,Check physician orders.
+N708,RARC,Missing orders,Attach physician orders.
+N709,RARC,Incomplete notes,Check clinic notes.
+N710,RARC,Missing notes,Attach clinic notes.
+N711,RARC,Incomplete summary,Check summary details.
+N712,RARC,Missing summary,Attach summary.
+N713,RARC,Incomplete report,Check report details.
+N714,RARC,Missing report,Attach report.
+N715,RARC,Incomplete chart,Check chart details.
+N716,RARC,Missing chart,Attach chart.
+N717,RARC,Incomplete doc of face-to-face exam,Check telehealth/DME notes.
+N718,RARC,Missing doc of face-to-face exam,Attach required F2F notes.
+N719,RARC,Penalty applied plan requirements not met,Contractual penalty.
+N720,RARC,Patient overpaid you,Issue refund check to patient.
+N721,RARC,Covered only in clinical trial,Add Modifier Q0 and Trial Number if applicable.
+N722,RARC,Patient must use WCSA funds,WC Set Aside logic.
+N723,RARC,Patient must use LSA funds,Liability Set Aside logic.
+N724,RARC,Patient must use NFSA funds,No-Fault Set Aside logic.
+N725,RARC,Liability insurer reported ORM,Liability carrier is primary.
+N726,RARC,Conditional payment not allowed,Must bill primary first.
+N727,RARC,No-fault insurer reported ORM,Auto carrier is primary.
+N728,RARC,WC insurer reported ORM,WC carrier is primary.
+N729,RARC,Missing patient medical record,Attach clinical notes.
+N730,RARC,Incomplete patient medical record,Ensure notes support DOS and CPT.
+N731,RARC,Incomplete mental health assessment,Check psych notes.
+N732,RARC,Unlicensed facility not reimbursable,Credentialing flag.
+N733,RARC,Regulatory surcharges paid to state,Administrative logic.
+N734,RARC,Eligible only when unable to work,Disability/WC logic.
+N736,RARC,Incomplete Sleep Study Report,Check CPAP/Sleep notes.
+N737,RARC,Missing Sleep Study Report,Attach sleep study.
+N738,RARC,Incomplete Vein Study Report,Check vascular notes.
+N739,RARC,Missing Vein Study Report,Attach vascular notes.
+N740,RARC,FSA insufficient funds,Patient responsibility.
+N741,RARC,Site neutral payment,Hospital outpatient clinic pricing logic.
+N743,RARC,Services related to employment accident,Bill Workers Comp.
+N744,RARC,Services related to auto accident,Bill Auto Insurance.
+N745,RARC,Missing Ambulance Report,Attach trip report.
+N746,RARC,Incomplete Ambulance Report,Check trip report for zip codes/times.
+N747,RARC,Misdirected claim submit to patient state plan,BlueCard/Medicaid routing logic.
+N748,RARC,Related hospital charges not received,Holding professional claim until facility bills.
+N749,RARC,Missing Blood Gas Report,Attach ABG results.
+N750,RARC,Incomplete Blood Gas Report,Check ABG results.
+N751,RARC,Patient covered under Part D,Pharmacy benefit logic. Bill PBM.
+N752,RARC,Missing HIPPS TAC,Home Health logic.
+N753,RARC,Missing Attachment Control Number,PWK segment missing on electronic claim.
+N754,RARC,Missing Referring Provider Qualifier,Update Box 17 qualifier (e.g. DN).
+N755,RARC,Missing ICD Indicator,Update Box 21 with '0' for ICD-10.
+N756,RARC,Missing point of drop-off address,Ambulance logic.
+N757,RARC,Adjusted based on Federal Indian Fees,IHS pricing logic.
+N758,RARC,Adjusted based on prior auth decision,Auth limited payment.
+N759,RARC,Adjusted based on NEMA XR-29,Radiology equipment penalty logic.
+N760,RARC,Facility not authorized for service,Credentialing flag.
+N761,RARC,Provider not authorized for service,Scope of practice/Credentialing flag.
+N762,RARC,Not certified for Tomosynthesis,Mammography facility limit.
+N763,RARC,Demo code not appropriate,Remove demonstration code.
+N764,RARC,Missing Hematocrit value,Add lab value to claim.
+N765,RARC,Does not cover previous coinsurance,COB logic. Bill patient.
+N766,RARC,Does not cover previous co-payment,COB logic. Bill patient.
+N767,RARC,Provider must be enrolled in Medicaid state,Out-of-state Medicaid credentialing limit.
+N768,RARC,Incomplete initial evaluation report,Therapy logic.
+N769,RARC,Lateral diagnosis required,ICD-10 needs specific Right/Left code.
+N770,RARC,Adjustment request processed,Informational.
+N771,RARC,Cannot charge more than limiting charge,Non-PAR provider Medicare limit.
+N772,RARC,Rebill urgent/ancillary separately,Split ER vs Lab/Rad claims.
+N773,RARC,Drug not from specialty vendor,White-bagging/Pharmacy limit.
+N774,RARC,TPA fee information,Administrative alert.
+N775,RARC,Adjusted for x-ray on film,Penalty for non-digital imaging.
+N776,RARC,Not a covered Telehealth service,Check POS 02 / Modifier 95 rules.
+N777,RARC,Missing Assignment of Benefits Indicator,Update Box 27 to 'Yes'.
+N778,RARC,Missing PCP Information,HMO logic. Add PCP NPI.
+N779,RARC,Wait for original claim to finalize,Do not send Freq 7 until Freq 1 is processed.
+N780,RARC,Missing end therapy date,Therapy logic.
+N781,RARC,QMB Deductible warning,Do not bill QMB patient. Bill secondary Medicaid.
+N782,RARC,QMB Coinsurance warning,Do not bill QMB patient. Bill secondary Medicaid.
+N783,RARC,QMB Copayment warning,Do not bill QMB patient. Bill secondary Medicaid.
+N784,RARC,Missing comprehensive procedure code,Bundling logic.
+N785,RARC,Missing current radiology film/images,Attach required images.
+N786,RARC,Orthodontic limitation,Dental logic.
+N787,RARC,PHP requires 20 hours/week,Partial Hospitalization logic.
+N788,RARC,TPA did not receive information,Submit requested records to TPA.
+N789,RARC,Clinical Trial not covered,Benefit exclusion.
+N790,RARC,Not accredited for product/service,Credentialing exclusion.
+N791,RARC,Missing history & physical report,Attach H&P.
+N792,RARC,Incomplete history & physical report,Check H&P notes.
+N794,RARC,Adjusted based on technology used,Equipment penalty.
+N795,RARC,Resubmit as purchase,DME logic (Rent vs Buy).
+N796,RARC,Missing Hemoglobin value,ESRD/Lab logic. Add Hgb value.
+N797,RARC,Missing date qualifier,Update EDI segment.
+N798,RARC,Submit void request then new claim,Use Freq 8 then Freq 1.
+N799,RARC,Submit individual NPI not group,Update Box 24J.
+N800,RARC,Only one service date per claim,Split multi-day claims.
+N801,RARC,IHS facility under GHP,Specific facility logic.
+N802,RARC,Not payable under service area - Rendering MD,Bill plan where MD is located.
+N803,RARC,Submission is responsibility of Contracted Group,Capitation/IPA logic.
+N804,RARC,Processed through OCE,Hospital outpatient logic applied.
+N805,RARC,Processed through CCE,Correct coding edits applied.
+N806,RARC,Included in Global transplant allowance,Transplant bundling.
+N807,RARC,MIPS payment adjustment,Quality reporting modifier applied.
+N808,RARC,Not covered for provider type/specialty,Taxonomy limit.
+N809,RARC,Fee schedule adjusted based on prior bidding,DME pricing logic.
+N810,RARC,Processed at in-network level due to disaster,COVID/Disaster override logic.
+N811,RARC,Missing Federal Sequestration from Prior Payer,COB logic.
+N812,RARC,Dates span greater than 18 months,Split claim dates.
+N815,RARC,Missing NDC Unit Count,Update Pharmacy segment.
+N816,RARC,Missing NDC Unit of Measure,Add UN, ML, GR, etc.
+N817,RARC,Lab required to report private payor data,PAMA compliance alert.
+N818,RARC,Dates do not match EVV System,Electronic Visit Verification mismatch.
+N819,RARC,Patient not enrolled in EVV,EVV logic.
+N820,RARC,EVV units do not meet visit requirements,EVV logic.
+N821,RARC,EVV visit not found,EVV logic.
+N822,RARC,Missing procedure modifier,CARC 16: Check for lateral (RT/LT) or professional (26/TC) modifiers.
+N823,RARC,Incomplete procedure modifier,Verify modifier usage.
+N824,RARC,EVV data must be submitted through Vendor,EVV logic.
+N825,RARC,Early intervention guidelines not met,Pediatric/Medicaid logic.
+N826,RARC,Did not meet MSSP inclusion criteria,ACO logic.
+N827,RARC,Missing FIPS Code,Add county/state code.
+N828,RARC,Payment suppressed due to contracted funding,Hold logic.
+N829,RARC,Missing Diagnostics Exchange Z-Code,MolDX/Genetic testing requirement.
+N830,RARC,No Surprise Act (NSA) Protection,Patient cannot be balance-billed. Accept QPA payment or negotiate.
+N831,RARC,Did not respond to revalidation requests,PECOS enrollment frozen. Contact Medicare.
+N832,RARC,Duplicate occurrence code,Institutional logic. Remove duplicate.
+N833,RARC,Patient share of cost waived,Informational.
+N834,RARC,Exempt from sales/health tax,Tax logic.
+N835,RARC,Unrelated treatment reduced,Multiple procedure reduction applied.
+N836,RARC,Provider W9 not on file,Submit W9 to payer for setup.
+N837,RARC,Missing modifier was added,Informational: Payer fixed your coding.
+N838,RARC,Service postponed due to disaster,Benefit year applied backward.
+N839,RARC,Level of service exceeds compensable condition,WC downcode logic.
+N840,RARC,WC claim filed with different state,Bill correct state WC.
+N841,RARC,North Dakota Admin Rule,State specific logic.
+N842,RARC,Patient cannot be billed for charges,Provider liability. Write-off.
+N843,RARC,Missing CBSA code,Institutional location pricing logic.
+N844,RARC,Processed per Nebraska OON Emergency Act,State surprise billing logic.
+N845,RARC,Nebraska OON Emergency Act alert,State surprise billing logic.
+N846,RARC,NDC does not correspond to HCPCS,Verify drug crosswalk.
+N847,RARC,NDC billed is obsolete,Check active NDC codes.
+N848,RARC,NDC cannot be associated with product,Verify NDC formatting.
+N849,RARC,Tooth missing prior to effective date,Dental exclusion.
+N850,RARC,Missing narrative explaining service,Add description to Box 19.
+N851,RARC,Payment reduced for therapy assistant,Modifier CQ/CO penalty applied.
+N852,RARC,Pay-to and rendering TIN do not match,Check group linkage.
+N853,RARC,Modalities per session exceeds maximum,Therapy frequency cut.
+N854,RARC,Exhaust appeal levels with primary OHI,Secondary COB logic.
+N855,RARC,Subject to ERISA jurisdiction,Self-funded plan logic.
+N856,RARC,Not subject to ERISA jurisdiction,Fully insured plan logic.
+N857,RARC,Refund collected copayment,Recoupment logic.
+N858,RARC,State OON Emergency Care Act applied,State surprise billing logic.
+N859,RARC,Federal No Surprise Act applied,Provider Liability: Cannot collect from patient.
+N860,RARC,Federal NSA QPA used,Informational on payment rate.
+N861,RARC,Mismatch Patient Liability/Share of Cost,Medicaid logic.
+N862,RARC,Cost share compliant with NSA,Informational.
+N863,RARC,NSA All Payer Model Agreement,State pricing logic.
+N864,RARC,NSA applies to emergency services,NSA logic.
+N865,RARC,NSA applies to OON providers at INN facility,NSA hospital logic.
+N866,RARC,NSA applies to air ambulance,NSA transport logic.
+N867,RARC,Cost sharing based on state law per NSA,NSA pricing logic.
+N868,RARC,Cost sharing based on All-Payer Model per NSA,NSA pricing logic.
+N869,RARC,Cost sharing based on QPA per NSA,NSA pricing logic.
+N870,RARC,Cost sharing based on billed amount per NSA,NSA pricing logic.
+N871,RARC,Initial payment based on state law per NSA,NSA pricing logic.
+N872,RARC,Final payment based on state law per NSA,NSA pricing logic.
+N873,RARC,Final payment based on All-Payer Model per NSA,NSA pricing logic.
+N874,RARC,Final payment determined through open negotiation,NSA appeal won.
+N875,RARC,Final payment equals IDR selection,NSA arbitration won.
+N876,RARC,NSA Denial - Initiate open negotiation,NSA appeal logic.
+N877,RARC,NSA Initial payment - Initiate open negotiation,NSA appeal logic.
+N878,RARC,Notice/Consent not compliant with NSA,Cannot balance bill. Invalid waiver.
+N879,RARC,Notice/Consent not permitted for services,Cannot balance bill emergency/ancillary.
+N880,RARC,Original claim closed adjustment under new claim,Informational: Freq 7 processed.
+N881,RARC,Client Obligation for HCBS,Medicaid patient responsibility.
+N882,RARC,Valid consent to waive NSA balance billing,Patient signed NSA waiver. Can bill patient.
+N883,RARC,Processed according to state law,Informational.
+N884,RARC,Submit info if service was at INN facility,NSA data request.
+N885,RARC,Payer disagrees NSA applies,OON payment denial. Must appeal.
+N886,RARC,277 RFAI sent,Payer requested medical records electronically.
+N887,RARC,Non-PAR Medicare Advantage Appeal Rights,Submit Waiver of Liability form to appeal.
+N888,RARC,Electronic request for additional info sent,Check portal for info request.
+N889,RARC,Originally processed in real-time,Informational.
+N890,RARC,EVV Data Element Requirements not met,EVV denial logic.
+N891,RARC,Max allowable paid by primary,Secondary COB write-off.
+N892,RARC,Does not meet criteria for Delay Reason Code,Timely filing denial logic.
+N893,RARC,Missing child medical evaluation form,Medicaid logic.
+N894,RARC,Subject to reservation of rights,Informational hold/recoupment logic.
+N895,RARC,Negotiated fee schedule for specialty drug,Pharmacy pricing logic.
+N896,RARC,Missing trauma activation sheet,Facility ER logic.
+N897,RARC,Missing proof of member payment,Patient reimbursement logic.
+N898,RARC,Missing RUG codes,SNF pricing logic.
+N899,RARC,Missing Initial Evaluation Report,Therapy logic.
+N900,RARC,Missing Therapy Notes/Report,Attach PT/OT/ST notes.
+N901,RARC,Incomplete Therapy Notes/Report,Check therapy notes.
+N902,RARC,Missing Health Risk Assessment,Attach HRA form.
+N903,RARC,Incomplete Health Risk Assessment,Check HRA form.
+N904,RARC,Transportation vendor responsible,Ambulance routing logic.
+N905,RARC,Opted out of Medicare (Patient not responsible),Cannot bill patient.
+N906,RARC,Under age 45 (Preventative),FL/TX Rule: Check DX if patient is high risk.
+N907,RARC,340B ceiling lower than MFP,Drug pricing logic.
+N908,RARC,Drug purchased at MFP,Drug pricing logic.
+N909,RARC,Alternative refund calculation,Drug pricing logic.
+N910,RARC,Contact manufacturer regarding eligibility,Drug pricing logic.
+N911,RARC,Wait for Part D corrected data,Pharmacy logic.
+N912,RARC,Hospice election not found,Verify Hospice status. If not hospice appeal.
+N913,RARC,Multiple EVV records exist,EVV duplicate logic.
+N914,RARC,Processed per CA AB-72,State pricing logic.
+N915,RARC,Predetermination not allowed,Plan logic.
+N916,RARC,Third party will render payment,TPA logic.
+N917,RARC,Alternative refund MFP below 340B,Drug pricing logic.
+N918,RARC,CMS excludes compounded drug event,Pharmacy logic.
+N919,RARC,Out-of-pocket maximum met,Patient Responsibility: $0.00.
+N920,RARC,Payment hold - contract renegotiation,Track only. Payment pending signed contract.
+N921,RARC,Appeal time limit expired,Final Denial. Past the 120-180 day window.
+N922,RARC,Missing primary care dentist info,Obtain PCD Name/NPI from ID card or Portal.
+
