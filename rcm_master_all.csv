@@ -1395,4 +1395,70 @@ N919,RARC,Out-of-pocket maximum met,Patient Responsibility: $0.00.
 N920,RARC,Payment hold - contract renegotiation,Track only. Payment pending signed contract.
 N921,RARC,Appeal time limit expired,Final Denial. Past the 120-180 day window.
 N922,RARC,Missing primary care dentist info,Obtain PCD Name/NPI from ID card or Portal.
+71046,Diagnostic Radiology,Chest X-ray 2 views,Check ordering provider documentation. Verify Auth if required by specific HMOs.
+71045,Diagnostic Radiology,Chest X-ray single view,CARC 97: Verify if bundled with E/M. Ensure Modifier 26 or TC is applied correctly based on POS.
+71100,Diagnostic Radiology,X-ray ribs unilateral,CARC 16: Confirm correct side. Must append Modifier RT or LT.
+72040,Diagnostic Radiology,Cervical spine X-ray 2-3 views,CARC 50: Check trauma diagnosis. Ensure neck pain/injury ICD-10 is listed.
+72070,Diagnostic Radiology,Thoracic spine X-ray 2 views,Verify documentation and ensure ICD matches the thoracic region.
+72100,Diagnostic Radiology,Lumbar spine X-ray 2-3 views,CARC 50: Medical necessity edit. Must prove conservative therapy if billed for chronic pain.
+73030,Diagnostic Radiology,Shoulder X-ray complete,CARC 16: Missing modifier. Confirm laterality and append RT or LT.
+73560,Diagnostic Radiology,Knee X-ray 1-2 views,CARC 16: Missing modifier. Verify correct CPT vs views and append RT or LT.
+73610,Diagnostic Radiology,Ankle X-ray complete,CARC 97: Check bundling edits. If distinct from another lower extremity X-ray use Modifier 59/XU.
+74018,Diagnostic Radiology,Abdominal X-ray single view,Confirm order and diagnosis. Ensure DX supports acute abdominal pain (R10 series).
+70450,CT Scan,CT Head without contrast,CARC 50: Check authorization and ensure ICD supports necessity (e.g. severe headache G44).
+70460,CT Scan,CT Head with contrast,Verify contrast billing. Ensure a corresponding Q-Code or A-Code for the contrast agent is billed.
+70470,CT Scan,CT Head with and without contrast,Confirm both phases (w/ and w/o) are documented in the radiologist report.
+71250,CT Scan,CT Chest without contrast,Verify place of service. Ensure DX supports shortness of breath or lung nodule.
+71260,CT Scan,CT Chest with contrast,Check contrast units and ensure National Drug Code (NDC) is provided for the contrast.
+71270,CT Scan,CT Chest w/wo contrast,Validate imaging protocol. Check for authorization covering both phases.
+74150,CT Scan,CT Abdomen without contrast,CARC 197: Check authorization. Ensure DX matches the authorized condition.
+74160,CT Scan,CT Abdomen with contrast,Confirm contrast documentation and ensure contrast supply code is billed correctly.
+74176,CT Scan,CT Abdomen & Pelvis without contrast,CARC 97: Check bundling edits. Abdomen and Pelvis are combined in this single code.
+74177,CT Scan,CT Abdomen & Pelvis with contrast,Verify diagnosis necessity. FL/TX Rule: Verify GFR/Creatinine levels within 90 days.
+70551,MRI,MRI Brain without contrast,CARC 197: Verify prior authorization matches the exact CPT.
+70552,MRI,MRI Brain with contrast,Confirm contrast billing. Must include A-Code (Gadolinium) with valid NDC.
+70553,MRI,MRI Brain w/wo contrast,Check documentation. Ensure radiologist report details both pre and post-contrast findings.
+72141,MRI,MRI Cervical spine without contrast,CARC 50: Verify ICD and symptoms. Requires 6 weeks conservative therapy notes (PT/Meds).
+72146,MRI,MRI Thoracic spine without contrast,Check order and report. Ensure DX supports thoracic radiculopathy or trauma.
+72148,MRI,MRI Lumbar spine without contrast,CARC 50: Validate medical necessity. Most denied CPT. Must show 6 weeks of conservative treatment.
+72156,MRI,MRI Cervical spine w/wo contrast,Verify contrast units. Check authorization for complex spinal disorders or post-op.
+73721,MRI,MRI Lower extremity joint,CARC 16: Confirm laterality. Must append Modifier RT or LT.
+73723,MRI,MRI Lower extremity w/wo contrast,Check authorization. Ensure contrast agent (A-code) is billed with exact NDC.
+74183,MRI,MRI Abdomen w/wo contrast,Validate documentation. Ensure liver/pancreas protocol is authorized.
+76536,Ultrasound,Thyroid ultrasound,Verify physician order. Check for nodule or goiter diagnosis.
+76641,Ultrasound,Breast ultrasound complete,Confirm screening vs diagnostic. Append RT or LT.
+76642,Ultrasound,Breast ultrasound limited,CARC 50: Check medical necessity. Use when evaluating a specific quadrant/lump.
+76700,Ultrasound,Complete abdominal ultrasound,CARC 16: Verify documentation. Report must detail all 8 abdominal organs or downcode to 76705.
+76705,Ultrasound,Limited abdominal ultrasound,Confirm order details for specific organ evaluation (e.g. gallbladder only).
+76801,Ultrasound,OB ultrasound first trimester,Check pregnancy diagnosis. Ensure gestational age aligns with CPT.
+76805,Ultrasound,OB ultrasound after first trimester,Verify gestational age is > 14 weeks 0 days.
+76817,Ultrasound,Transvaginal ultrasound,Confirm clinical indication. Check if bundled with pelvic ultrasound (76856).
+93970,Ultrasound,Duplex scan extremity veins complete,CARC 50: Check DVT diagnosis. Append RT/LT or 50 for bilateral.
+93971,Ultrasound,Duplex scan extremity veins limited,Verify symptoms. Used for unilateral or limited venous evaluation.
+78012,Nuclear Medicine,Thyroid uptake scan,Verify radiopharmaceutical A-code is billed alongside the scan.
+78306,Nuclear Medicine,Bone scan whole body,Confirm isotope billing. Ensure oncology/metastasis DX is linked.
+78452,Nuclear Medicine,Myocardial perfusion imaging,Check stress test documentation. Ensure corresponding A-code (e.g. A9500) is billed.
+78607,Nuclear Medicine,Brain imaging SPECT,CARC 50: Verify medical necessity. Often requires extensive neurological documentation.
+78815,Nuclear Medicine,PET scan whole body,CARC 50: Check oncology diagnosis. Verify Auth matches the exact PET code.
+78816,Nuclear Medicine,PET scan whole body w/ CT,CARC 197: Confirm authorization covers concurrent CT.
+78226,Nuclear Medicine,Hepatobiliary imaging,Verify isotope units and check medical necessity for gallbladder function.
+78264,Nuclear Medicine,Gastric emptying study,Confirm clinical notes detail gastroparesis or delayed emptying.
+78472,Nuclear Medicine,Cardiac blood pool imaging,Check documentation. Ensure MUGA scan Auth is on file.
+78582,Nuclear Medicine,Pulmonary perfusion imaging,Verify diagnosis (e.g. Pulmonary Embolism).
+A4215,HCPCS Supply,Sterile needle,CARC 97: Routine supply bundled into the primary procedure. Write-off.
+A4216,HCPCS Supply,Sterile water saline,CARC 97: Routine supply bundled into the primary procedure. Write-off.
+A4641,HCPCS Radiopharm,Diagnostic radiopharmaceutical,CARC 252: Unlisted agent. Verify units billed and attach manufacturer invoice.
+A9500,HCPCS Radiopharm,Technetium Tc-99m sestamibi,Check isotope documentation. Requires valid 11-digit NDC format in Box 24.
+A9502,HCPCS Radiopharm,Tc-99m tetrofosmin,Verify nuclear medicine use. Link to cardiac imaging (e.g. 78452).
+A9575,HCPCS Contrast,MRI contrast agent gadolinium,CARC 16: Missing/Invalid NDC. Confirm units match radiologist dosage notes.
+A9585,HCPCS Contrast,Gadobutrol contrast agent,Verify contrast usage. Check Medically Unlikely Edits (MUE) for maximum units.
+A9698,HCPCS Contrast,Barium sulfate contrast,Check supply billing. Often bundled depending on the GI procedure.
+Q9950,HCPCS Contrast,Echo contrast agent,Verify units. Ensure billed with echocardiography CPT.
+Q9951,HCPCS Contrast,Perflutren lipid microspheres,Check documentation. Requires valid 11-digit NDC format.
+Q9952,HCPCS Contrast,Definity contrast,Confirm contrast use. Link to specific cardiac ultrasound.
+Q9965,HCPCS Contrast,Low osmolar contrast material,Verify dosage units for CT scan contrast. Rebill with proper NDC if denied.
+Q9966,HCPCS Contrast,Contrast material 300 mg iodine,Check radiology report. Ensure primary CT code specifies 'With Contrast'.
+Q9967,HCPCS Contrast,Contrast material 370 mg iodine,CARC 16: Verify units billed. Ensure NDC code matches exact concentration.
+Q9981,HCPCS Contrast,Radiology contrast supply,Confirm usage documentation. Verify if payer requires specific Q or A code instead.
+
 
