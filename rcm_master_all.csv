@@ -1,172 +1,278 @@
-Code	Category	Description	Resolution
-1	CARC	Deductible	Transfer balance to patient responsibility and issue statement.
-2	CARC	Coinsurance	Transfer balance to patient responsibility and issue statement.
-3	CARC	Co-payment	Transfer balance to patient responsibility and issue statement.
-4	CARC	Modifier Inconsistent	Verify CPT vs Modifier (e.g. -25 -59). Correct and resubmit.
-16	CARC	Lacks Information	Check RARC (N257/M51). Fix missing NPI Tax ID or Modifiers.
-18	CARC	Duplicate Claim	Check status of first claim. If paid write off. If pending do not resubmit.
-19	CARC	Workers Comp Liability	Identify and bill the Workers Comp carrier.
-22	CARC	COB Error	Verify Primary Payer. Obtain Primary EOB. Bill Secondary with EOB attached.
-24	CARC	Capitation Agreement	Identify MCO/IPA holding risk via portal. Bill the capitated entity.
-26	CARC	Coverage Not Started	Verify DOS vs Effective Date. If DOS is prior bill patient.
-27	CARC	Coverage Terminated	Verify DOS vs Term Date. Search for new active policy or bill patient.
-29	CARC	Timely Filing	Appeal with clearinghouse 'Accepted' report as proof of date.
-45	CARC	Contractual Adjustment	Standard write-off per provider contract.
-50	CARC	Medical Necessity	Appeal with clinical notes and signed Letter of Medical Necessity (LMN).
-59	CARC	Multiple Procedure Rule	Check NCCI edits. Apply Modifier -51 if appropriate.
-96	CARC	Non-covered Service	Verify plan benefits. If non-covered bill patient (check for signed ABN).
-97	CARC	Bundled Service	Check NCCI edits. If service is distinct add Modifier -59 and resubmit.
-107	CARC	Attachment Missing	Submit Op-notes or Invoice via portal/fax and resubmit.
-109	CARC	Wrong Payer	Identify correct carrier through eligibility check and resubmit.
-167	CARC	Diagnosis Not Covered	Check LCD/NCD guidelines. Link covered ICD-10 and resubmit.
-197	CARC	Pre-Auth Absent	Check if Auth exists. If yes add to Box 23. If no request Retro-Auth.
-70450	CARC	CT Head/Brain w/o Contrast	Verify Auth matches 'Without' contrast. Link to DX R51.9.
-72141	CARC	MRI Lumbar Spine w/o Contrast	Requires 6 weeks conservative therapy notes for appeal.
-74176	CARC	CT Abd/Pelvis w/o Contrast	Ensure DX supports medical necessity (e.g. K57.3).
-76700	CARC	US Abdomen Complete	Verify documentation supports 'Complete'. If not downcode to 76705.
-77067	CARC	Screening Mammogram	Verify 365-day frequency rule. Use DX Z12.31.
-1	CARC	Deductible	Move to patient responsibility.
-2	CARC	Coinsurance	Move to patient responsibility.
-N257	RARC	Missing Provider Info	Verify Billing/Rendering NPI and Address in Box 33 and 24J.
-M51	RARC	Invalid Procedure Code	Correct CPT/HCPCS code and resubmit as Corrected Claim.
-MA 13	RARC	File Update Required	Provider must update NPI address or banking on the payer portal.
-Code	Category	Description	Resolution
-70450	CARC	CT Head/Brain w/o Contrast	Verify DX R51.9 (Headache). Check for Auth if required by payer.
-70460	CARC	CT Head/Brain w/ Contrast	Verify Auth specifies 'With' contrast. Link to tumor DX.
-70470	CARC	CT Head/Brain w/o & w/ Contrast	Verify Auth for 'With and Without'. Check for allergic reactions notes.
-70486	CARC	CT Maxillofacial w/o Contrast	Verify DX for sinus or facial trauma.
-72125	CARC	CT Cervical Spine w/o Contrast	Verify trauma DX or degenerative disc disease logic.
-72128	CARC	CT Thoracic Spine w/o Contrast	Ensure DX supports thoracic spine pain or injury.
-72131	CARC	CT Lumbar Spine w/o Contrast	Check for previous X-ray results in notes for medical necessity.
-74150	CARC	CT Abdomen w/o Contrast	Link to DX for abdominal pain (R10 series).
-74176	CARC	CT Abd & Pelvis w/o Contrast	Common for kidney stones. Verify Auth covers both Abd and Pelvis.
-74177	CARC	CT Abd & Pelvis w/ Contrast	Ensure GFR/Creatinine levels are in notes for IV contrast safety.
-74178	CARC	CT Abd & Pelvis w/o & w/ Contrast	Verify medical necessity for multiphase study.
-70551	CARC	MRI Brain w/o Contrast	Verify Auth matches CPT. Check for DX G35 (MS) or G44 (Migraine).
-70552	CARC	MRI Brain w/ Contrast	Verify Auth for 'With' contrast. Check for DX related to neoplasm.
-70553	CARC	MRI Brain w/o & w/ Contrast	Common for MS monitoring. Verify Auth for 'With and Without'.
-72141	CARC	MRI Cervical Spine w/o Contrast	Requires 6 weeks conservative therapy notes (PT/Meds) for appeal.
-72146	CARC	MRI Thoracic Spine w/o Contrast	Ensure DX supports thoracic radiculopathy or spinal cord compression.
-72148	CARC	MRI Lumbar Spine w/o Contrast	Most denied CPT. Check for 6 weeks of conservative treatment history.
-72156	CARC	MRI Cervical Spine w/o & w/ Contrast	Verify Auth for complex spinal disorders or post-op.
-73221	CARC	MRI Upper Extremity Joint w/o Contrast	Includes Shoulder/Elbow/Wrist. Check for DX M25 series.
-73721	CARC	MRI Lower Extremity Joint w/o Contrast	Includes Hip/Knee/Ankle. Link to DX for meniscus or ligament tear.
-74181	CARC	MRI Abdomen w/o Contrast	Verify Auth. Common for liver or pancreas evaluation.
-25	CARC	Separate E/M on same day	CARC 16/M14: Apply to office visit when a procedure is also performed.
-26	CARC	Professional Component	CARC 16/M66: Apply when only the physician's interpretation is being billed.
-59	CARC	Distinct Procedural Service	CARC 97/M15: Apply to unbundle a component. Check NCCI edits first.
-TC	Modifier	Technical Component	CARC 16/M66: Apply when billing for equipment/facility costs only.
-Code	Category	Description	Resolution
-MAC-JM	RARC	Florida (First Coast)	TFL: 365 Days. LCD Search: Look for 'L33768' for Lumbar Spine MRI.
-MAC-JH	RARC	Texas (Novitas)	TFL: 365 Days. LCD Search: Look for 'L35092' for CT of Abdomen/Pelvis.
-NCD-220.4	RARC	Mammography NCD	Mandatory coverage for screening every 12 months for age 40+.
-LCD-L33768	Radiology	FL Lumbar Spine MRI	Must have 6 weeks of conservative therapy (PT/Meds) documented.
-LCD-L35092	Radiology	TX CT Abd/Pelvis	Requires GFR/Creatinine levels within 30-90 days for IV contrast.
-74177	CARC	CT Abd/Pelvis w/ Contrast	TX/FL Rule: Verify DX supports acute symptoms (R10 series).
-72148	CARC	MRI Lumbar Spine w/o	FL Rule: Denial CO-50 is common if 'Red Flags' (Trauma/Cancer) aren't in notes.
-M38	RARC	ABN Signed (GA)	Modifier -GA must be present for Medicare FL/TX to allow patient billing.
-M39	RARC	No ABN Signed (GZ)	Modifier -GZ must be used. Claim will deny as Provider Liability (Write-off).
-N386	RARC	NCD Determination	Decision based on National Policy. Visit CMS.gov and search NCD index.
-N115	RARC	LCD Determination	Decision based on Local Policy. Check First Coast (FL) or Novitas (TX) portal.
-R51.9	Clinical	Headache Unspecified	FL/TX DENIAL RISK: Too generic for MRI (70551). Use G44 series or specify 'with aura'.
-M54.50	RARC	Low Back Pain Unspecified	FL/TX DENIAL RISK: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.16).
-R10.9	Clinical	Abdominal Pain Unspecified	FL/TX DENIAL RISK: For CT (74177) specify quadrant (e.g. R10.31 for RLQ).
-M25.561	RARC	Pain in Right Knee	FL/TX RULE: Often denied if 6 weeks of conservative therapy (PT) is not in notes.
-G35	Clinical	Multiple Sclerosis	FL/TX RULE: Supports MRI Brain (70553). Ensure 'With and Without' contrast is authorized.
-R06.02	Clinical	Shortness of Breath	FL/TX RULE: Supports Chest CT (71250). Check for tobacco use DX (Z72.0).
-Z12.11	Clinical	Colon Cancer Screening	FL/TX RULE: Only allowed every 10 years for average risk. Check history.
-R91.8	Clinical	Nodule on Lung	FL/TX RULE: Supports CT Chest. Ensure previous X-ray date is in Box 19.
-M51.26	RARC	Lumbar Disc Displacement	FL/TX RULE: High success for MRI Lumbar (72148). Link to radiculopathy notes.
-R31.9	Clinical	Hematuria Unspecified	FL/TX RULE: Supports CT Urogram. Must specify if 'Gross' or 'Microscopic'.
-M1	RARC	X-ray not taken within 12 months	CARC 16/50: Verify if a previous X-ray exists. If not ; perform X-ray or appeal with clinical justification.
-M2	RARC	Inpatient Bundle	CARC 97: Service included in the Inpatient PPS. Write off per contract.
-M3	RARC	Duplicate Equipment	CARC 18: Verify if patient already has same/similar equipment. If yes ;  write off.
-M11	RARC	DME Zip Code Jurisdiction	CARC 109: Rebill to the correct DME carrier servicing the patient's zip code.
-M12	RARC	Diagnostic Purchased Services	CARC 16: Ensure claim indicates if purchased services are included. Fix Box 20 and resubmit.
-M13	RARC	Visit Limit - One per Specialty	CARC 119: Only one initial visit per specialty allowed. Change to follow-up code or write off.
-M14	RARC	Injection Bundle	CARC 97: Injection included in E/M. If distinct  add Modifier -25 to the office visit.
-M15	RARC	Component Bundling	CARC 97: Services are components of the same procedure. Check NCCI edits; use Modifier -59 if distinct.
-M19	RARC	Missing Oxygen Certification	CARC 16: Obtain and attach a signed Certificate of Medical Necessity (CMN).
-M20	RARC	Missing/Invalid HCPCS	CARC 185: Crosswalk HCPCS to current year. Verify code in CPT manual.
-M23	RARC	Missing Invoice	CARC 252: Attach the original invoice for the drug or supply and resubmit.
-M25	RARC	Substantiate Level of Service	CARC 50: Downcode to lower E/M or appeal with full medical records (120-day limit).
-M29	RARC	Missing Operative Note	CARC 252: Upload the Op-note via the payer portal and resubmit.
-M30	RARC	Missing Pathology Report	CARC 252: Obtain Path report from the lab and upload to portal.
-M31	RARC	Missing Radiology Report	CARC 252: Obtain Radiologist interpretation and upload to portal.
-M37	RARC	Age Restriction (Under 35)	CARC 96: Service not covered for this age. Bill patient or check for specific screening rules.
-M42	RARC	Form Needs MD Signature	CARC 16: Return form to Attending MD for physical signature. Resubmit.
-M51	RARC	Invalid Procedure Code	CARC 16/185: Correct the CPT/HCPCS to match the date of service.
-M60	RARC	Missing Certificate of Medical Necessity	CARC 16: Ensure Box 23 has the CMN date. Attach form and resubmit.
-M66	RARC	Radiology Prof/Tech Split	CARC 16: Rebill with Modifier -26 (Professional) and -TC (Technical) as separate lines.
-M76	RARC	Missing Diagnosis	CARC 16: Verify Box 21. Add highest level of specificity (ICD-10).
-M81	RARC	Highest Specificity Required	CARC 16: Avoid "Unspecified" codes. Use 5th/6th character ICD-10 codes.
-MA01	RARC	Appeal Rights Alert	Informational: Follow appeal instructions. Write to payer within 120 days.
-MA04	RARC	Secondary COB Missing Primary	CARC 22: Attach the Primary Payer's EOB and resubmit to Secondary.
-MA13	RARC	Patient Responsibility Alert	Informational: Do not bill patient for amounts not marked with PR group code.
-MA48	RARC	Missing Responsible Party Address	CARC 16: Update patient/guarantor address in the system and rebill.
-MA120	RARC	Missing CLIA Number	CARC 16: Add the lab's CLIA number to Box 23 and resubmit.
-N4	RARC	Missing Prior Payer EOB	CARC 22: Obtain EOB from primary and attach to the secondary claim.
-N22	RARC	Code Changed by Payer	Informational: Payer cross-walked your code to a more accurate one. Update your records.
-N30	RARC	Patient Ineligible	CARC 31: Re-verify insurance. Check for coverage termination or plan changes.
-N104	RARC	Wrong Jurisdiction	CARC 109: Claim sent to wrong MAC/Carrier. Rebill to the correct regional office.
-N574	RARC	Ordering MD Ineligible	CARC 183: The NPI in Box 17b is not eligible to refer. Verify NPI and PECOS status.
-N921	RARC	Appeal Time Limit Expired	CARC 29: Final Denial. Reconsideration period is closed. Check for administrative override.
-N921	RARC	Appeal Time Limit Expired	CARC 29: Final Denial. Reconsideration period is closed. Check for administrative override.
-BCBS-FL	Payer	Florida Blue (Commercial)	TFL: 365 Days. Portal: Availity. Non-Callable for simple status. Call only for clinical appeals.
-BCBS-TX	Payer	BlueCross Texas (Commercial)	TFL: 95 Days. Portal: Availity. High denial rate for Modifier -25. Use specific TFL logic.
-HUM-COMM	Payer	Humana Commercial	TFL: 180 Days. Portal: Availity. Callable for 'Check tracers' and 'Interest payments'.
-AET-COMM	Payer	Aetna Commercial	TFL: 120 Days. Portal: Availity. Non-Callable for 'Correction of DX'. Must resubmit as Corrected Claim.
-SUN-FL	Payer	Sunshine Health (FL Medicaid)	TFL: 180 Days. Portal: WellCare/Sunshine. Callable for 'Coordination of Benefits' issues.
-SUP-TX	Payer	Superior Health (TX Medicaid)	TFL: 95 Days. Portal: Superior Portal. Strictly Non-Callable for 'Timely Filing' denials.
-MCD-FL	RARC	Florida Medicaid (FMMIS)	TFL: 12 months. Portal: FLMMIS. Callable for 'Recipient Eligibility' updates.
-MCD-TX	RARC	Texas Medicaid (TMHP)	TFL: 95 Days. Portal: TMHP. Non-Callable for 'Missing Info'. Use 'Appeal' function in portal.
-MOL-TX	RARC	Molina Texas (Medicaid)	TFL: 95 Days. Portal: Molina Portal. Callable for 'Authorization Mismatch' (CO 197).
-25	CARC	Separate E/M same day	CARC 16/M14: Use when separate E/M is performed same day as procedure.
-26	CARC	Professional Component	CARC 16/M66: Interpretation only. FL/TX Rule: Ensure report is attached.
-59	CARC	Distinct Procedure	CARC 97: Unbundle component. Use X{EPSU} for Medicare FL/TX if applicable.
-GA	Modifier	ABN on File	CARC M38: Medicare FL/TX. Use when signed ABN is on file for non-covered service.
-GZ	Modifier	No ABN on File	CARC M39: Medicare FL/TX. Provider liable. Write-off.
-BCBS-FL	Payer	Florida Blue (Commercial)	TFL: 365 Days. Portal: Availity. Non-Callable for status/DX fix.
-BCBS-TX	Payer	Blue Cross TX (Commercial)	TFL: 95 Days. Portal: Availity. Strictly Non-Callable for status.
-UHC-COMM	Payer	UHC Commercial	TFL: 90 Days. Portal: UHC Provider Portal. Non-Callable for initial disputes.
-AET-COMM	Payer	Aetna Commercial	TFL: 120 Days. Portal: Availity. Callable for complex clinical appeals.
-HUM-COMM	Payer	Humana Commercial	TFL: 180 Days. Portal: Availity. Callable for COB/Interest issues.
-SUN-FL	Payer	Sunshine Health (FL Medicaid)	TFL: 180 Days. Portal: Sunshine. Callable for Eligibility updates.
-SUP-TX	Payer	Superior Health (TX Medicaid)	TFL: 95 Days. Portal: Superior. Non-Callable for TFL denials.
-TMHP	Payer	Texas Medicaid (FFS)	TFL: 95 Days. Portal: TMHP. Strictly Non-Callable. Use portal 'Appeal'.
-FMMIS	Payer	Florida Medicaid (FFS)	TFL: 12 Months. Portal: FLMMIS. Callable for claim status tracers.
-M1	RARC	X-ray time limit (12mo)	CARC 16: Verify if previous X-ray exists. If not perform or appeal.
-M29	RARC	Missing Op-Note	CARC 16/252: Upload report to portal. FL/TX Rule: No faxing allowed.
-N115	RARC	LCD Policy Alert	Resolution: Check First Coast (FL) or Novitas (TX) for local coverage.
-R51.9	Clinical	Headache Unspecified	FL/TX DENIAL: Too generic for MRI. Use G44 series or specify 'with aura'.
-M54.50	RARC	Low Back Pain	FL/TX DENIAL: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.1).
-74177	CARC	CT Abd/Pelvis w/ Contrast	TX/FL Rule: Requires GFR/Creatinine levels within 90 days in notes.
-72148	CARC	MRI Lumbar Spine w/o	FL Rule: Denial CO-50 common. Must prove 6 weeks of PT in medical records.
-62321	CARC	ESI (Cervical/Thoracic) w/ Imaging	CARC 50: FL/TX Rule - Max 3-4 injections per year. Check previous DOS.
-62323	CARC	ESI (Lumbar/Sacral) w/ Imaging	CARC 50: Ensure 4-6 weeks of conservative therapy (PT/Meds) is documented.
-64483	CARC	Transforaminal ESI (Lumbar)	CARC 151: Often denied as experimental if used for axial pain without radiculopathy.
-64493	CARC	Facet Joint Injection (Lumbar)	CARC 50: FL/TX Rule - Requires 80% relief from previous diagnostic block.
-64635	CARC	RFA (Radiofrequency Ablation)	CARC 50: Documentation must show 6 months of persistent pain after conservative tx.
-20552	CARC	Trigger Point Injection (1-2 muscles)	CARC 97: Often bundled into E/M. Use Modifier -25 on office visit.
-20553	CARC	Trigger Point Injection (3+ muscles)	CARC 119: Frequency limit. Usually max 3 sessions per 12 months.
-G0260	Pain Mgmt	Sacroiliac (SI) Joint Injection	CARC 16: Missing Imaging notes. FL/TX requires Fluoroscopy or CT guidance.
-170	CARC	Service not prescribed by physician	Verify ordering provider NPI. Attach signed physician order and resubmit.
-204	CARC	Service not covered under patientâ€™s benefit plan	Check plan benefits. If excluded bill patient or appeal with plan exception request.
-246	CARC	Non-payable reporting-only code	Remove reporting-only CPT/HCPCS code. Submit corrected claim.
-252	CARC	Attachment required but not received	Upload operative note pathology report or invoice via payer portal and resubmit.
-253	CARC	Coverage terminated due to non-payment of premium	Verify patientâ€™s premium status. If lapsed bill patient directly.
-256	CARC	Service not payable without prior certification	Request retro-authorization if possible. Otherwise bill patient.
-258	CARC	Service not furnished directly to patient	Verify CPT/HCPCS usage. Correct coding to reflect direct patient service.
-259	CARC	Service denied for provider type	Check provider specialty enrollment. Update PECOS or reassign claim to eligible provider.
-272	CARC	Coverage terminated due to death of patient	Verify DOS vs date of death. If after termination bill estate.
-274	CARC	Service denied due to patient refusal	Document patient refusal. Bill patient if appropriate.
-N115	RARC	Decision based on LCD	Review LCD policy. Update diagnosis coding per LCD guidelines and resubmit.
-N290	RARC	Missing documentation for medical necessity	Attach clinical notes imaging results or LMN. Resubmit with supporting documentation.
-N362	RARC	Units exceed maximum allowed	Verify frequency limits. Adjust units or appeal with medical necessity justification.
-N386	RARC	Provider not certified/eligible	Verify provider enrollment with payer. Update NPI/PECOS and resubmit.
-MA130	RARC	Missing patient ABN signature	Obtain signed ABN from patient. Attach and resubmit claim.
-MA131	RARC	Missing or invalid taxonomy code	Correct taxonomy in Box 33 or provider portal. Resubmit claim.
-MA15	RARC	Missing or invalid ZIP code	Correct patient/provider ZIP code. Resubmit claim.
-18	CARC	Duplicate Claim/Service	CARC 18: Verify original ICN on Availity. If paid: Write-off. If denied: Resubmit as Corrected Claim (Freq 7).
-76	CARC	Repeat Procedure (Same MD)	Use when the same doctor performs the same CPT twice on the same day to avoid CARC 18.
-77	CARC	Repeat Procedure (Diff MD)	Use when a different doctor performs the same CPT on the same day.
+Code,Category,Description,Resolution
+1,CARC,Deductible Amount,PR Group: Transfer balance to Patient Statement.
+2,CARC,Coinsurance Amount,PR Group: Transfer balance to Patient Statement.
+3,CARC,Co-payment Amount,PR Group: Transfer balance to Patient Statement.
+4,CARC,Inconsistent modifier used,Verify CPT vs Modifier (e.g. 25, 59). Correct and resubmit.
+5,CARC,Inconsistent place of service,Verify POS code matches the CPT/Facility. Update and resubmit.
+6,CARC,Inconsistent with patient age,Check patient DOB vs CPT age restrictions. Correct and resubmit.
+7,CARC,Inconsistent with patient gender,Verify patient gender vs CPT restrictions. Correct and resubmit.
+8,CARC,Inconsistent provider taxonomy,Update Provider Taxonomy code in Box 33b. Resubmit.
+9,CARC,Diagnosis inconsistent with age,Check ICD-10 age edits. Update DX and resubmit.
+10,CARC,Diagnosis inconsistent with gender,Check ICD-10 gender edits. Update DX and resubmit.
+11,CARC,Diagnosis inconsistent with procedure,Check LCD/NCD for allowed ICD-10 codes. Update and resubmit.
+12,CARC,Diagnosis inconsistent with provider type,Verify provider specialty allows this DX.
+13,CARC,Date of death precedes date of service,Verify DOS and patient status. Correct DOS and resubmit.
+14,CARC,Date of birth follows date of service,Verify patient DOB and DOS. Correct data entry and resubmit.
+16,CARC,Lacks information or billing error,Master Denial: Check accompanying RARC (N/M Code) for missing info.
+18,CARC,Exact duplicate claim/service,Verify original ICN on Availity. If paid: Write-off. If denied: Resubmit as Corrected Claim (Freq 7).
+19,CARC,Work-related injury/illness,Identify and bill the Workers Compensation Carrier.
+20,CARC,Covered by liability carrier,Identify and bill the Liability/Auto Carrier.
+21,CARC,Liability of no-fault carrier,Identify and bill the No-Fault Carrier.
+22,CARC,Covered by another payer (COB),Verify Primary Payer. Obtain Primary EOB and bill Secondary.
+23,CARC,Prior payer adjudication impact,Check primary EOB for patient responsibility.
+24,CARC,Covered under capitation agreement,Identify MCO/IPA holding risk via portal. Bill capitated entity.
+26,CARC,Expenses incurred prior to coverage,Verify DOS vs Effective Date. If DOS is prior, bill patient.
+27,CARC,Expenses incurred after coverage terminated,Verify DOS vs Term Date. Search for new policy or bill patient.
+29,CARC,Time limit for filing has expired,Appeal with clearinghouse 'Accepted' report as proof of timely submission.
+31,CARC,Patient cannot be identified as insured,Verify Member ID and DOB. Correct and resubmit.
+32,CARC,Patient is not an eligible dependent,Verify dependent status with primary insured.
+33,CARC,Insured has no dependent coverage,Bill patient or secondary insurance.
+34,CARC,Insured has no coverage for newborns,Verify if newborn was added to policy within 30 days.
+35,CARC,Lifetime benefit maximum reached,Bill patient or secondary insurance.
+39,CARC,Services denied at authorization request,Write-off or appeal with medical necessity if emergency.
+40,CARC,Does not meet emergent/urgent care,Verify POS and DX. Appeal with ER notes if applicable.
+44,CARC,Prompt-pay discount,Standard contractual adjustment. Write-off.
+45,CARC,Exceeds fee schedule/maximum allowable,Standard write-off per provider contract. No action needed.
+49,CARC,Non-covered routine/preventive exam,Verify plan benefits. Bill patient if routine is excluded.
+50,CARC,Not deemed medical necessity,FL/TX Rule: Check LCD/NCD. Appeal with 6 weeks conservative therapy notes.
+51,CARC,Pre-existing condition,Verify plan rules on pre-existing condition exclusions.
+53,CARC,Services by immediate relative,Statutory exclusion. Write-off.
+54,CARC,Multiple physicians/assistants not covered,Verify if Assistant Surgeon modifier (80, 81, AS) is justified.
+55,CARC,Experimental/investigational procedure,Appeal with FDA approval or clinical literature.
+56,CARC,Not proven to be effective,Check payer policy. Appeal with medical records.
+58,CARC,Inappropriate place of service,Verify POS (e.g., 11 vs 22). Correct and resubmit.
+59,CARC,Multiple or concurrent procedure rules,Check NCCI edits. Apply Modifier 51 or 59 if distinct.
+60,CARC,Outpatient services within inpatient timeframe,Global billing rule. Check 3-day window rule for Medicare.
+61,CARC,Failure to obtain second surgical opinion,Write-off or appeal if emergency surgery.
+66,CARC,Blood Deductible,Move to patient responsibility.
+69,CARC,Day outlier amount,Institutional billing adjustment.
+70,CARC,Cost outlier adjustment,Institutional billing adjustment.
+74,CARC,Indirect Medical Education Adjustment,Institutional billing adjustment.
+75,CARC,Direct Medical Education Adjustment,Institutional billing adjustment.
+76,CARC,Disproportionate Share Adjustment,Institutional billing adjustment.
+78,CARC,Non-Covered days/Room charge adjustment,Bill patient for non-covered days.
+85,CARC,Patient Interest Adjustment,Move to patient responsibility.
+89,CARC,Professional fees removed from charges,Verify if global or technical billed incorrectly.
+90,CARC,Ingredient cost adjustment,Pharmacy billing adjustment.
+91,CARC,Dispensing fee adjustment,Pharmacy billing adjustment.
+94,CARC,Processed in Excess of charges,Review payment posting.
+95,CARC,Plan procedures not followed,Appeal with proof of compliance or write-off.
+96,CARC,Non-covered charge(s),Patient Liability. Ensure ABN (GA modifier) is on file. If no ABN (GZ): Write-off.
+97,CARC,Included in another service/procedure,Bundled service. Check if Modifier 59 or X-series applies. If not: Write-off.
+100,CARC,Payment made to patient/insured,Bill patient directly for the paid amount.
+101,CARC,Predetermination anticipated payment,Informational status only.
+102,CARC,Major Medical Adjustment,Verify secondary coverage.
+103,CARC,Provider promotional discount,Contractual adjustment. Write-off.
+104,CARC,Managed care withholding,Track withhold per IPA contract.
+105,CARC,Tax withholding,Tax adjustment.
+106,CARC,Patient payment option not in effect,Verify patient election status.
+107,CARC,Qualifying claim/service not identified,Link related claim or authorization and resubmit.
+108,CARC,Rent/purchase guidelines not met,Verify DME rules (capped rental vs purchase).
+109,CARC,Not covered by this payer/contractor,Claim sent to wrong MAC/Payer. Rebill correct carrier.
+110,CARC,Billing date predates service date,Correct billing date and resubmit.
+111,CARC,Not covered unless provider accepts assignment,Update claim to accept assignment (Box 27) and resubmit.
+112,CARC,Service not furnished directly to patient,Verify billing provider vs rendering provider.
+114,CARC,Not approved by FDA,Appeal with clinical trial exception if applicable.
+115,CARC,Procedure postponed/canceled,Write-off or bill for pre-op services only.
+116,CARC,Advance notice did not comply,Invalid ABN. Provider liability. Write-off.
+117,CARC,Transportation only covered to closest facility,Ambulance logic. Appeal with facility capability notes.
+118,CARC,ESRD network support adjustment,Dialysis facility adjustment.
+119,CARC,Benefit maximum reached,Move balance to patient responsibility.
+121,CARC,Indemnification adjustment,Move to member responsibility.
+122,CARC,Psychiatric reduction,Mental health benefit adjustment.
+128,CARC,Newborn services in mother allowance,Combine newborn charges onto mother's institutional claim.
+129,CARC,Prior processing information incorrect,Verify primary EOB data entered correctly. Resubmit.
+130,CARC,Claim submission fee,Administrative adjustment.
+131,CARC,Claim specific negotiated discount,Write-off per LOA.
+132,CARC,Prearranged demonstration project,Demonstration processing logic.
+133,CARC,Pending further review,Informational: Claim is in manual medical review.
+134,CARC,Technical fees removed from charges,Billed Global but facility owns equipment. Bill Professional (-26) only.
+135,CARC,Interim bills cannot be processed,Submit Final bill (Type of Bill 114 or 111).
+136,CARC,Failure to follow prior payer rules,Primary denied due to provider error. Cannot bill secondary. Write-off.
+137,CARC,Regulatory Surcharges/Taxes,Administrative adjustment.
+139,CARC,Contracted funding agreement,Provider adjustment.
+140,CARC,ID number and name do not match,Verify Member ID and Name. Correct spelling and resubmit.
+142,CARC,Monthly Medicaid patient liability,Move share-of-cost to patient responsibility.
+143,CARC,Portion of payment deferred,Track for future payout.
+144,CARC,Incentive adjustment,Bonus payment. No action needed.
+146,CARC,Diagnosis invalid for dates of service,Update to active ICD-10 code for that specific DOS.
+147,CARC,Provider contracted rate expired,Contact Provider Rep to update fee schedule.
+148,CARC,Info from another provider missing,Obtain referring MD notes and appeal.
+149,CARC,Lifetime benefit maximum reached,Move to patient responsibility.
+150,CARC,Does not support level of service,Downcode E/M level or appeal with complete office notes.
+151,CARC,Does not support frequency of services,Appeal with medical necessity for high-frequency treatment.
+152,CARC,Does not support length of service,Appeal with anesthesia/therapy time logs.
+153,CARC,Does not support dosage,Verify NDC and Units. Appeal with pharmacy logs.
+154,CARC,Does not support days supply,Verify prescription limits. Adjust units and resubmit.
+155,CARC,Patient refused service,Write-off. Cannot bill for incomplete service.
+157,CARC,Result of act of war,Exclusion. Move to patient responsibility.
+158,CARC,Provided outside of United States,Check if patient has out-of-country rider.
+159,CARC,Result of terrorism,Exclusion. Move to patient responsibility.
+160,CARC,Activity is a benefit exclusion,Exclusion. Move to patient responsibility.
+161,CARC,Provider performance bonus,Bonus payment. No action needed.
+163,CARC,Attachment not received,Upload indicated attachment (Op-Note) via portal and resubmit.
+164,CARC,Attachment not received timely,Appeal with proof of timely transmission.
+166,CARC,Submitted after responsibility ended,Check eligibility for new payer. Rebill correct payer.
+167,CARC,Diagnosis not covered,Check LCD/NCD for acceptable ICD-10 codes. Correct and resubmit.
+169,CARC,Alternate benefit provided,Payment adjusted to lower-cost equivalent. Write-off difference.
+170,CARC,Denied for this type of provider,Verify Taxonomy/Specialty. Appeal if credentialed correctly.
+171,CARC,Denied in this type of facility,Verify POS code restrictions (e.g., Office vs ASC).
+172,CARC,Adjusted for provider specialty,Mid-level provider reduction (e.g., PA/NP paid at 85%).
+173,CARC,Not prescribed by a physician,Attach signed order/script and resubmit.
+174,CARC,Not prescribed prior to delivery,DME rule. Ensure script date is before delivery date.
+175,CARC,Prescription is incomplete,Obtain updated script with all required elements.
+176,CARC,Prescription is not current,Obtain renewed prescription.
+177,CARC,Eligibility requirements not met,Move to patient responsibility.
+178,CARC,Spend down requirements not met,Patient must meet Medicaid spend-down. Bill patient.
+179,CARC,Waiting requirements not met,Wait period for specific benefit. Bill patient.
+180,CARC,Residency requirements not met,Verify patient address/county.
+181,CARC,Procedure code invalid on DOS,Crosswalk to current year CPT/HCPCS and resubmit.
+182,CARC,Modifier invalid on DOS,Verify modifier validity for the specific year.
+183,CARC,Referring provider not eligible,Verify referring NPI in PECOS. Update Box 17b.
+184,CARC,Ordering provider not eligible,Verify ordering NPI in PECOS. Update and resubmit.
+185,CARC,Rendering provider not eligible,Verify credentialing status. Update NPI and resubmit.
+186,CARC,Level of care change adjustment,Institutional adjustment.
+187,CARC,Consumer Spending Account payments,HSA/FSA payment applied.
+188,CARC,Covered only when used to FDA recommendations,Appeal with clinical justification for off-label use.
+189,CARC,Unlisted code billed when specific code exists,Rebill with the exact CPT instead of 'Not Otherwise Classified'.
+190,CARC,Included in SNF stay,Consolidated billing rule. Bill the SNF directly.
+192,CARC,Non standard adjustment code,COB routing logic.
+193,CARC,Original payment decision maintained,Appeal denied. Check next level of appeal options.
+194,CARC,Anesthesia performed by operating physician,Bundled. Use Modifier 47 if applicable.
+195,CARC,Refund issued to erroneous priority payer,Recoupment action processed.
+197,CARC,Precertification absent,Call Payer to check for retro-auth. If not available: Appeal/Write-off.
+198,CARC,Precertification exceeded,Verify Auth units. Appeal with medical necessity for extra units.
+199,CARC,Revenue code and Procedure code mismatch,Cross-reference Rev Code and CPT. Correct and resubmit.
+200,CARC,Expenses incurred during lapse in coverage,Move to patient responsibility.
+201,CARC,Workers Comp set-aside agreement,Bill patient WC Medicare set-aside account.
+202,CARC,Non-covered personal comfort,Statutory exclusion. Bill patient.
+203,CARC,Discontinued or reduced service,Verify Modifier 52 or 53 is applied.
+204,CARC,Not covered under current benefit plan,Check plan benefits. Bill patient if valid exclusion.
+205,CARC,Pharmacy discount card processing fee,Pharmacy adjustment.
+206,CARC,NPI missing,Add Billing/Rendering NPI to claim and resubmit.
+207,CARC,NPI invalid format,Correct NPI (must be 10 digits) and resubmit.
+208,CARC,NPI not matched,Verify NPI is linked to the Tax ID with this payer.
+209,CARC,Per regulatory agreement cannot collect,Provider Liability. Write-off.
+210,CARC,Pre-auth not received timely,Appeal with proof of timely authorization request.
+211,CARC,NDC not eligible for rebate,Pharmacy/Drug adjustment.
+212,CARC,Administrative surcharges not covered,Write-off administrative fees.
+213,CARC,Non-compliance with self referral prohibition,Stark Law edit. Verify relationship and appeal.
+215,CARC,Subrogation of a third party settlement,Check status of legal settlement/lien.
+216,CARC,Based on review organization findings,Review audit letter and appeal with targeted records.
+219,CARC,Based on extent of injury,Workers Comp injury adjustment.
+222,CARC,Exceeds contracted maximum hours/units,Check provider contract limits. Write-off excess.
+223,CARC,Mandated federal/state law adjustment,Legislative logic.
+224,CARC,Patient identification compromised,Patient must verify identity with payer before processing.
+225,CARC,Penalty Payment by Payer,Payer paid interest/penalty.
+226,CARC,Requested info from provider not provided,Submit the previously requested records and appeal.
+227,CARC,Requested info from patient not provided,Patient must respond to payer (e.g., COB questionnaire).
+228,CARC,Denied for failure to supply info to previous payer,Fix issue with Primary Payer to generate correct EOB.
+229,CARC,Partial charge amount not considered by Medicare,COB logic for 12X type of bill.
+231,CARC,Mutually exclusive procedures,Check NCCI edits. Unbundle with Modifier 59 if appropriate.
+232,CARC,Institutional Transfer Amount,DRG adjustment for hospital transfer.
+233,CARC,Hospital-acquired condition,Cannot bill for preventable errors. Write-off.
+234,CARC,Procedure not paid separately,Bundled service. Write-off or unbundle if distinct.
+235,CARC,Sales Tax,Tax adjustment.
+236,CARC,Incompatible with NCCI edits,Bundling edit. Review CCI table. Fix modifiers or write-off.
+237,CARC,Legislated/Regulatory Penalty,Mandated penalty.
+238,CARC,Spans eligible and ineligible periods,Patient liable for the ineligible days.
+239,CARC,Spans periods rebill separately,Split the claim by month/eligibility dates and resubmit.
+240,CARC,Inconsistent with birth weight,Neonatal/NICU logic. Verify weight in grams.
+241,CARC,Low Income Subsidy Co-payment,Pharmacy logic.
+242,CARC,Not provided by network PCP,HMO edit. Obtain retro-referral from PCP or bill patient.
+243,CARC,Not authorized by network PCP,HMO edit. Need PCP authorization on file.
+245,CARC,Provider performance program withhold,Quality metric withhold.
+246,CARC,Non-payable reporting-only code,Remove quality reporting code from payable lines.
+247,CARC,Deductible for Professional service,Move to patient responsibility.
+248,CARC,Coinsurance for Professional service,Move to patient responsibility.
+249,CARC,Identified as a readmission,Hospital global readmission penalty. Write-off.
+250,CARC,Incorrect attachment received,Upload the correct specific document requested.
+251,CARC,Attachment incomplete or deficient,Ensure uploaded document contains patient name/DOS/MD signature.
+252,CARC,Attachment required to adjudicate,Upload Medical Records via portal and resubmit.
+253,CARC,Sequestration reduction,Federal payment cut. Write-off.
+254,CARC,Not dental plan submit to medical,Rebill claim to the patient's medical insurance.
+256,CARC,Not payable per managed care contract,Contract exclusion. Write-off.
+257,CARC,Undetermined during premium grace period,Hold claim. Awaiting patient premium payment.
+258,CARC,Not covered when incarcerated,Bill the federal/state prison authority.
+259,CARC,Additional payment for utilization,Bonus payment.
+260,CARC,Processed under Medicaid ACA,Medicaid fee schedule adjustment.
+261,CARC,Inconsistent with patient history,Verify DX history. Appeal with clinical notes.
+262,CARC,Adjustment for delivery cost,Pharmacy logic.
+263,CARC,Adjustment for shipping cost,Pharmacy logic.
+264,CARC,Adjustment for postage cost,Pharmacy logic.
+265,CARC,Adjustment for administrative cost,Pharmacy logic.
+266,CARC,Adjustment for compound preparation cost,Pharmacy logic.
+267,CARC,Claim spans multiple months,Split dates of service onto separate claims per month.
+268,CARC,Claim spans two calendar years,Split the claim at Dec 31 / Jan 1 and resubmit.
+269,CARC,Anesthesia not covered for this procedure,Verify if procedure allows anesthesia. Appeal with LMN.
+270,CARC,Not medical plan submit to dental,Rebill claim to the patient's dental insurance.
+271,CARC,Prior contractual reductions,COB logic.
+272,CARC,Program guidelines not met,Review policy manual and appeal.
+273,CARC,Program guidelines exceeded,Frequency limit hit. Appeal with medical necessity.
+274,CARC,Not payable per Care Coordination,ACO/Medical Home routing issue.
+275,CARC,Prior payer patient responsibility not covered,Secondary does not cover the copay/deductible. Bill patient.
+276,CARC,Services denied by prior payer not covered,Secondary will not pay if Primary denied. Fix Primary claim first.
+277,CARC,Undetermined during SHOP grace period,Hold claim. Awaiting employer premium payment.
+278,CARC,Performance program requirements not met,Quality metric penalty.
+279,CARC,Not provided by Preferred network,Narrow network exclusion. Bill patient.
+280,CARC,Not medical plan submit to Pharmacy,Rebill to PBM (e.g. Caremark/Express Scripts).
+281,CARC,Deductible waived per contract,Contractual adjustment. Write-off.
+282,CARC,Revenue code inconsistent with type of bill,Correct TOB (e.g. 111 vs 131) and resubmit.
+283,CARC,Attending provider not eligible for direction,Verify attending NPI.
+284,CARC,Pre-auth valid but does not apply,Auth is for a different CPT. Obtain retro-auth for billed code.
+285,CARC,Appeal procedures not followed,Resubmit appeal using the correct payer form.
+286,CARC,Appeal time limits not met,Final Denial. Past 120/180 days. Write-off.
+287,CARC,Referral exceeded,Number of visits on referral used up. Get new referral.
+288,CARC,Referral absent,Obtain referral from PCP and resubmit.
+289,CARC,Not available on dental or medical,Benefit exclusion on both plans. Bill patient.
+290,CARC,Forwarded to medical plan,Informational: Claim was routed to medical automatically.
+291,CARC,Forwarded to dental plan,Informational: Claim was routed to dental automatically.
+292,CARC,Forwarded to pharmacy plan,Informational: Claim was routed to PBM automatically.
+293,CARC,Payment made to employer,Workers Comp logic.
+294,CARC,Payment made to attorney,Liability/Lien logic.
+295,CARC,Pharmacy DIR,Pharmacy/PBM adjustment.
+296,CARC,Auth does not apply to provider,Auth was issued to a different facility/NPI. Correct auth.
+297,CARC,Not medical plan submit to vision,Rebill to Vision payer (e.g. VSP/EyeMed).
+298,CARC,Forwarded to vision plan,Informational: Claim was routed to Vision automatically.
+299,CARC,Billing provider not eligible to receive payment,Check EFT/Banking and credentialing setup with payer.
+300,CARC,Forwarded to Behavioral Health,Informational: Claim routed to Mental Health carve-out.
+301,CARC,Not medical plan submit to Behavioral Health,Rebill to Behavioral Health payer (e.g. Magellan).
+302,CARC,Pre-treatment time limit expired,Auth expired. Need new auth for new dates of service.
+303,CARC,QMB patient responsibility not covered,Medicaid rule: Cannot bill QMB patients. Write-off.
+304,CARC,Not medical plan submit to hearing,Rebill to Hearing plan carve-out.
+305,CARC,Forwarded to hearing plan,Informational: Claim routed to Hearing automatically.
+306,CARC,Type of bill inconsistent with patient status,Check discharge status code (e.g. 01 vs 30) against TOB.
+307,CARC,Medicare Drug Price Negotiation Refund,Pharmacy adjustment.
+308,CARC,Adjusted due to contracted funding agreement,Payer/Provider financial arrangement logic.
+P1,CARC,State-mandated Requirement for P&C,Check state Property & Casualty rules.
+P2,CARC,Not a work related injury,Rebill to patient's primary commercial/Medicare health plan.
+P3,CARC,WC case settled (Medicare set aside),Bill the patient's specific Medicare Set-Aside account.
+P4,CARC,WC claim adjudicated as non-compensable,WC denied liability. Rebill patient's standard health insurance.
+P5,CARC,Payer reasonable and customary fees,P&C adjustment.
+P6,CARC,Based on entitlement to benefits,P&C liability limit.
+P7,CARC,Fee schedule does not contain code,Resubmit with state-approved WC billing codes.
+P8,CARC,Claim is under investigation,Hold claim. P&C/Auto is investigating the accident details.
+P9,CARC,No correlating CPT/HCPCS code,Correct coding to standard AMA guidelines.
+P10,CARC,Payment reduced to zero due to litigation,Hold claim pending legal settlement.
+P11,CARC,Pending due to litigation,Hold claim pending legal settlement.
+P12,CARC,WC jurisdictional fee schedule adjustment,Workers Comp fee schedule write-off.
+P13,CARC,WC jurisdictional regulations adjustment,Workers Comp specific denial logic.
+P14,CARC,Included in another service on same day,P&C Bundling. Check NCCI edits.
+P15,CARC,WC Medical Treatment Guideline Adjustment,Exceeds state WC treatment guidelines.
+P16,CARC,Provider not authorized for WC,Provider not certified for Workers Comp in this state.
+P17,CARC,Referral not authorized by attending,WC rule: Needs authorization from primary treating physician.
+P18,CARC,Allowance made for comparable service,WC paid alternate code.
+P19,CARC,Relative value of zero,WC fee schedule pays $0 for this code. Write-off.
+P20,CARC,Not paid under outpatient facility fee schedule,WC facility billing logic.
+P21,CARC,Denied based on MPC or PIP regulations,Auto insurance denial.
+P22,CARC,Adjusted based on MPC or PIP regulations,Auto insurance adjustment.
+P23,CARC,MPC or PIP fee schedule adjustment,Auto insurance fee schedule write-off.
+P24,CARC,Payment adjusted based on PPO,P&C Network adjustment.
+P25,CARC,Payment adjusted based on MPN,P&C Medical Provider Network adjustment.
+P26,CARC,Payment adjusted based on VPN,P&C Voluntary Provider network adjustment.
+P27,CARC,Denied based on Liability Coverage,Liability carrier denial.
+P28,CARC,Adjusted based on Liability Coverage,Liability carrier adjustment.
+P29,CARC,Liability fee schedule adjustment,Liability fee schedule write-off.
+P30,CARC,Exacerbation doc not complete,Provide medical records proving exacerbation of injury.
+P31,CARC,Exacerbation treatment exceeds time,Time limit for treating flared injury expired.
+P32,CARC,Payment adjusted due to Apportionment,WC rule mapping injury percentages.
