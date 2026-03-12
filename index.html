@@ -7,55 +7,30 @@
     <style>
         :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; --danger: #e74c3c; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
-        
-        /* Sidebar */
         .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
         .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
         .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
-        
-        /* Main Workspace */
         .main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
         .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .view-container { padding: 40px; }
-        
-        /* Resolver Engine Styling */
-        .resolver-box { background: #2c3e50; color: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .resolver-box { background: #2c3e50; color: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
         .resolver-input-group { display: flex; gap: 15px; margin-top: 15px; }
-        .res-input { flex: 1; padding: 12px; border-radius: 4px; border: none; font-weight: bold; font-size: 1rem; }
-        .res-btn { padding: 12px 25px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1rem; transition: 0.3s; }
-        .res-btn:hover { background: #2980b9; }
-        
-        /* Dashboard & Clocks */
+        .res-input { flex: 1; padding: 12px; border-radius: 4px; border: none; font-weight: bold; }
+        .res-btn { padding: 12px 25px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); }
-        .clock-container { display: flex; gap: 10px; }
-        .clock-box { background: #2c3e50; color: var(--accent); padding: 8px 15px; border-radius: 5px; font-family: 'Courier New', monospace; font-size: 1.1rem; border: 1px solid var(--accent); font-weight: bold; }
-        
-        /* Table & Data Views */
+        .clock-box { background: #2c3e50; color: var(--accent); padding: 8px 15px; border-radius: 5px; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--accent); font-weight: bold; }
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; box-sizing: border-box; }
-        .search-box:focus { border-color: var(--accent); }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; z-index: 10; text-transform: uppercase; }
-        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
-        
-        /* Specificity Badges */
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; }
+        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; display: inline-block; }
         .carc { background: #fadbd8; color: #c0392b; }
         .rarc { background: #d6eaf8; color: #2e86c1; }
-        .radiology { background: #d1f2eb; color: #1e8449; }
-        .technical { background: #fcf3cf; color: #9a7d0a; }
-        .modifier { background: #ebdef0; color: #884ea0; }
-        
-        .logic-alert { background: #fef9e7; border-left: 5px solid var(--success); padding: 20px; color: #2c3e50; margin-top: 20px; display: none; border-radius: 0 4px 4px 0; }
-        .update-badge { background: #f39c12; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-        
-        /* Action Route Badges */
-        .route-call { background: #e67e22; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
-        .route-portal { background: #2980b9; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
-        .route-patient { background: #8e44ad; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
-        .route-writeoff { background: #7f8c8d; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
-
+        .logic-alert { background: #fef9e7; border-left: 5px solid var(--success); padding: 20px; color: #2c3e50; margin-top: 20px; display: none; }
+        .route-call { background: #e67e22; color: white; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px; display: inline-block; font-size: 12px;}
+        .route-portal { background: #2980b9; color: white; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px; display: inline-block; font-size: 12px;}
     </style>
 </head>
 <body>
@@ -64,184 +39,121 @@
         <div class="sidebar-header"><h2>RCM COMMANDER</h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
         <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Smart Resolver</div>
-        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Matrix</div>
-        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology Codes</div>
+        <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Matrix (CARC/RARC)</div>
+        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology CPTs</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Rules</div>
     </div>
 
     <div class="main">
         <div class="top-bar">
             <b id="view-title">DASHBOARD</b>
-            <div class="clock-container">
+            <div style="display:flex; gap:10px;">
                 <div class="clock-box">IST: <span id="ist-clock">00:00</span></div>
                 <div class="clock-box">EST: <span id="est-clock">00:00</span></div>
             </div>
         </div>
-        <div id="view-port" class="view-container"></div>
+        <div id="view-port" class="view-container">Loading data...</div>
     </div>
 
     <script>
         let masterData = [];
 
-        // 1. DUAL CLOCKS
         function startClocks() {
             function update() {
                 const now = new Date();
-                document.getElementById('ist-clock').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                document.getElementById('est-clock').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                document.getElementById('ist-clock').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit' });
+                document.getElementById('est-clock').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false, hour: '2-digit', minute: '2-digit' });
             }
-            update();
-            setInterval(update, 1000);
+            update(); setInterval(update, 1000);
         }
 
-        // 2. LOAD DATA
         async function loadData() {
             try {
-                // Ensure your file on GitHub is named exactly rcm_master_all.csv
                 const res = await fetch('rcm_master_all.csv');
-                if (!res.ok) throw new Error("CSV Missing");
+                if (!res.ok) throw new Error();
                 const text = await res.text();
                 masterData = text.split('\n').slice(1).map(l => {
                     const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                     if (p.length < 4) return null;
-                    return { code: p[0].trim(), cat: p[1].trim(), desc: p[2].trim(), res: p[3].trim() };
+                    let code = p[0].replace(/"/g, '').trim();
+                    // Auto-clean "CO " or "PR " from codes
+                    if(code.includes(' ')) code = code.split(' ')[1];
+                    return { code: code, cat: p[1].replace(/"/g, '').trim(), desc: p[2].replace(/"/g, '').trim(), res: p[3].replace(/"/g, '').trim() };
                 }).filter(d => d !== null);
                 showView('home');
             } catch (e) {
-                document.getElementById('view-port').innerHTML = `<h2 style="color:red;">Database Error. Please ensure rcm_master_all.csv is uploaded to your GitHub repository.</h2>`;
+                document.getElementById('view-port').innerHTML = `<h2 style="color:red;">Error: rcm_master_all.csv not found or empty.</h2>`;
             }
         }
 
-        // 3. ACTION ROUTING ENGINE (Callable vs Non-Callable)
-        function getActionRoute(carc) {
-            const callable = ['22', '24', '26', '27', '31', '32', '33', '39', '109', '197', '226', '227', '110', '111'];
-            const patient = ['1', '2', '3', '66', '96'];
-            const writeoff = ['45', '253', '97', 'B15'];
-            
-            if (callable.includes(carc)) return '<div class="badge route-call">☎️ CALL PAYER REQUIRED</div>';
-            if (patient.includes(carc)) return '<div class="badge route-patient">👤 BILL PATIENT (PR)</div>';
-            if (writeoff.includes(carc)) return '<div class="badge route-writeoff">📉 WRITE-OFF / CONTRACTUAL</div>';
-            
-            return '<div class="badge route-portal">💻 NON-CALLABLE (Fix in Portal or Send Appeal)</div>';
-        }
-
-        // 4. SMART RESOLVER LOGIC
         function resolveDenial() {
             const carc = document.getElementById('carcInput').value.trim();
             const rarc = document.getElementById('rarcInput').value.trim();
             const resultBox = document.getElementById('logicResult');
             
-            let carcData = masterData.find(d => d.code === carc && (d.cat === 'CARC' || d.cat === 'Patient' || d.cat === 'Technical'));
-            let rarcData = masterData.find(d => d.code === rarc && (d.cat === 'RARC' || d.cat === 'Remark'));
+            let carcData = masterData.find(d => d.code === carc);
+            let rarcData = masterData.find(d => d.code === rarc);
 
             if (carcData || rarcData) {
-                let routeBadge = carcData ? getActionRoute(carc) : '<div class="badge route-portal">💻 NON-CALLABLE (Fix in Portal)</div>';
-                
+                const isCallable = ['22', '24', '26', '27', '31', '32', '33', '109', '197'].includes(carc);
+                let badge = isCallable ? '<div class="route-call">☎️ CALL PAYER</div>' : '<div class="route-portal">💻 PORTAL/APPEAL</div>';
                 resultBox.style.display = "block";
-                resultBox.innerHTML = `
-                    ${routeBadge}
-                    <h3 style="margin-top:10px; color:var(--success);">Analysis Complete</h3>
-                    <p><b>CARC ${carc}:</b> ${carcData ? carcData.desc : 'No CARC match found.'}</p>
-                    <p><b>RARC ${rarc}:</b> ${rarcData ? rarcData.desc : 'No RARC match found.'}</p>
-                    <hr style="border:1px solid #ddd; margin: 15px 0;">
-                    <p style="font-size: 1.1rem;"><b>ACTION PLAN:</b> ${rarcData ? rarcData.res : (carcData ? carcData.res : 'Review manual policies.')}</p>
-                `;
+                resultBox.innerHTML = `${badge}<h3>Resolution</h3><p><b>CARC:</b> ${carcData ? carcData.desc : 'N/A'}</p><p><b>RARC:</b> ${rarcData ? rarcData.desc : 'N/A'}</p><hr><p><b>Action:</b> ${rarcData ? rarcData.res : (carcData ? carcData.res : '')}</p>`;
             } else {
                 resultBox.style.display = "block";
-                resultBox.innerHTML = "<p style='color:var(--danger); font-weight:bold;'>No match found. Please verify the code entries.</p>";
+                resultBox.innerHTML = "Code not found.";
             }
         }
 
-        // 5. VIEW CONTROLLER
         function showView(view) {
             const port = document.getElementById('view-port');
-            document.getElementById('view-title').innerText = view.toUpperCase().replace('-', ' ');
+            document.getElementById('view-title').innerText = view.toUpperCase();
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
 
             if (view === 'home') {
                 port.innerHTML = `
                     <div class="card">
-                        <div class="update-badge">System Update: Advanced Radiology & Denial Logic Live</div>
-                        <h1 style="margin-top: 10px;">RCM Commander Dashboard</h1>
-                        <p style="font-size: 1.1rem; color: #7f8c8d;">Welcome back, Ashok. Your shift metrics and payer-specific routing are now live.</p>
-                        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-
+                        <h1>RCM Commander Dashboard</h1>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-                            <div style="border: 1px solid #3498db; border-radius: 8px; padding: 20px; background: #ebf5fb; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                                <h3 style="color: #2980b9; margin-top:0; border-bottom: 2px solid #3498db; padding-bottom: 5px;">📘 BCBS Florida (Florida Blue)</h3>
-                                <ul style="margin-bottom:0; padding-left: 20px; font-size: 0.95rem; color: #2c3e50; line-height: 1.6;">
-                                    <li><b>TFL:</b> 365 Days | <b>Portal:</b> Availity</li>
-                                    <li><span style="color:#c0392b; font-weight:bold;">💻 NON-CALLABLE:</span> DX corrections, duplicate (18), status checks.</li>
-                                    <li><span style="color:#27ae60; font-weight:bold;">☎️ CALL ONLY:</span> Retro-auth, clinical medical necessity, COB (22).</li>
-                                </ul>
+                            <div style="border: 1px solid #3498db; padding: 15px; background: #ebf5fb; border-radius:8px;">
+                                <h3 style="color:#2980b9;">📘 BCBS Florida Rules</h3>
+                                <p>• <b>TFL:</b> 365 Days<br>• <b>Portal:</b> Availity<br>• <b>Call:</b> Only for COB (22) or Clinical Appeals.</p>
                             </div>
-
-                            <div style="border: 1px solid #27ae60; border-radius: 8px; padding: 20px; background: #eafaf1; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                                <h3 style="color: #27ae60; margin-top:0; border-bottom: 2px solid #27ae60; padding-bottom: 5px;">🏥 Florida Medicaid</h3>
-                                <ul style="margin-bottom:0; padding-left: 20px; font-size: 0.95rem; color: #2c3e50; line-height: 1.6;">
-                                    <li><b>TFL (Sunshine):</b> 180 Days | <b>TFL (FFS):</b> 12 Months</li>
-                                    <li><span style="color:#27ae60; font-weight:bold;">☎️ CALLABLE:</span> Recipient Eligibility (27) & newborn enrollment updates.</li>
-                                    <li><b>QMB Rule:</b> Cannot bill patient for PR. Write-off requested amounts.</li>
-                                </ul>
+                            <div style="border: 1px solid #27ae60; padding: 15px; background: #eafaf1; border-radius:8px;">
+                                <h3 style="color:#27ae60;">🏥 Florida Medicaid Rules</h3>
+                                <p>• <b>TFL:</b> 12 Months (FFS)<br>• <b>QMB:</b> Do not bill patient.<br>• <b>Portal:</b> FLMMIS / Availity.</p>
                             </div>
-                        </div>
-
-                        <h3 style="margin-top: 30px;">Quick Links:</h3>
-                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:10px;">
-                            <a href="https://www.fcso.com" target="_blank" style="text-decoration:none; padding:15px; background:#f4f6f7; color:#2c3e50; border-radius:5px; text-align:center; font-weight:bold; border:1px solid #bdc3c7;">🌐 First Coast (MAC JM - Florida)</a>
-                            <a href="https://www.novitas-solutions.com" target="_blank" style="text-decoration:none; padding:15px; background:#f4f6f7; color:#2c3e50; border-radius:5px; text-align:center; font-weight:bold; border:1px solid #bdc3c7;">🌐 Novitas (MAC JH - Texas)</a>
                         </div>
                     </div>`;
             } else if (view === 'resolver') {
                 port.innerHTML = `
                     <div class="resolver-box">
-                        <h2 style="margin-top:0;">⚡ Smart Logic Resolver</h2>
-                        <p>Link CARC and RARC for routing and action plans.</p>
+                        <h2>⚡ Smart Resolver</h2>
                         <div class="resolver-input-group">
                             <input type="text" id="carcInput" class="res-input" placeholder="CARC (e.g. 16)">
-                            <input type="text" id="rarcInput" class="res-input" placeholder="RARC (e.g. M29)">
+                            <input type="text" id="rarcInput" class="res-input" placeholder="RARC (e.g. N922)">
                             <button class="res-btn" onclick="resolveDenial()">RESOLVE</button>
                         </div>
                         <div id="logicResult" class="logic-alert"></div>
                     </div>`;
             } else {
-                let data = [];
+                let filtered = [];
                 if (view === 'search') {
-                    data = masterData.filter(d => ['CARC', 'RARC', 'Patient', 'Technical', 'Remark'].includes(d.cat));
+                    // Filter for Denial Codes (Code length < 5 and not starting with A/Q)
+                    filtered = masterData.filter(d => d.code.length < 5 && !['A','Q'].includes(d.code[0]));
                 } else if (view === 'radiology') {
-                    data = masterData.filter(d => 
-                        d.cat.includes('Radiology') || 
-                        d.cat.includes('CT') || 
-                        d.cat.includes('MRI') || 
-                        d.cat.includes('Ultrasound') || 
-                        d.cat.includes('Nuclear') || 
-                        d.cat.includes('HCPCS') ||
-                        d.cat.includes('Advanced Imaging')
-                    );
-                } else if (view === 'payer') {
-                    data = masterData.filter(d => d.cat.toLowerCase().includes('payer') || d.cat.includes('LCD') || d.cat.includes('NCD'));
+                    // Filter for CPTs (length 5) and HCPCS (starts with A/Q)
+                    filtered = masterData.filter(d => d.code.length === 5 || ['A','Q'].includes(d.code[0]));
+                } else {
+                    filtered = masterData.filter(d => d.cat.includes('Payer') || d.cat.includes('LCD'));
                 }
-                renderTable(port, data);
+                renderTable(port, filtered);
             }
         }
 
         function renderTable(port, data) {
-            port.innerHTML = `
-                <input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search Codes or Logic...">
-                <div class="table-wrap"><table id="t">
-                    <thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution Logic</th></tr></thead>
-                    <tbody>${data.map(d => {
-                        let cat = d.cat.toLowerCase();
-                        let b = 'carc';
-                        if(cat.includes('rarc') || cat.includes('remark')) b = 'rarc';
-                        else if(cat.includes('radio') || cat.includes('ct') || cat.includes('mri') || cat.includes('imaging')) b = 'radiology';
-                        else if(cat.includes('modi')) b = 'modifier';
-                        else if(cat.includes('payer') || cat.includes('lcd') || cat.includes('ncd')) b = 'technical';
-                        
-                        return `<tr><td><b>${d.code}</b></td><td><span class="badge ${b}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
-                    }).join('')}</tbody>
-                </table></div>`;
+            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search..."><div class="table-wrap"><table id="t"><thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead><tbody>${data.map(d => `<tr><td><b>${d.code}</b></td><td><span class="badge carc">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`).join('')}</tbody></table></div>`;
         }
 
         function f() {
@@ -250,10 +162,7 @@
             for(let i=0; i<r.length; i++) r[i].style.display = r[i].innerText.toUpperCase().includes(v) ? "" : "none";
         }
 
-        window.onload = function() {
-            startClocks();
-            loadData();
-        };
+        window.onload = () => { startClocks(); loadData(); };
     </script>
 </body>
 </html>
