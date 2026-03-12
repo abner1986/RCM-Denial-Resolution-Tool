@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Commander | Ultimate Resolver 2026</title>
+    <title>RCM  |  Resolver 2026</title>
     <style>
         :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; --danger: #e74c3c; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
@@ -40,23 +40,32 @@
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
         
         /* Specificity Badges */
-        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; display: inline-block; }
         .carc { background: #fadbd8; color: #c0392b; }
         .rarc { background: #d6eaf8; color: #2e86c1; }
+        .radiology { background: #d1f2eb; color: #1e8449; }
         .technical { background: #fcf3cf; color: #9a7d0a; }
         .modifier { background: #ebdef0; color: #884ea0; }
         
         .logic-alert { background: #fef9e7; border-left: 5px solid var(--success); padding: 20px; color: #2c3e50; margin-top: 20px; display: none; border-radius: 0 4px 4px 0; }
         .update-badge { background: #f39c12; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        
+        /* Action Route Badges */
+        .route-call { background: #e67e22; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
+        .route-portal { background: #2980b9; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
+        .route-patient { background: #8e44ad; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
+        .route-writeoff { background: #7f8c8d; color: white; font-size: 14px; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px;}
+
     </style>
 </head>
 <body>
 
     <div class="sidebar">
-        <div class="sidebar-header"><h2>RCM COMMANDER</h2></div>
+        <div class="sidebar-header"><h2>RCM </h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
         <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Smart Resolver</div>
         <div class="nav-item" id="nav-search" onclick="showView('search')">🔍 Denial Matrix</div>
+        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology Codes</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Rules</div>
     </div>
 
@@ -74,7 +83,7 @@
     <script>
         let masterData = [];
 
-        // 1. DUAL CLOCKS (Starts Immediately)
+        // 1. DUAL CLOCKS
         function startClocks() {
             function update() {
                 const now = new Date();
@@ -102,7 +111,20 @@
             }
         }
 
-        // 3. SMART RESOLVER LOGIC (Logical Linking)
+        // 3. ACTION ROUTING ENGINE (Callable vs Non-Callable)
+        function getActionRoute(carc) {
+            const callable = ['22', '24', '26', '27', '31', '32', '33', '39', '109', '197', '226', '227', '110', '111'];
+            const patient = ['1', '2', '3', '66', '96'];
+            const writeoff = ['45', '253', '97', 'B15'];
+            
+            if (callable.includes(carc)) return '<div class="badge route-call">☎️ CALL PAYER REQUIRED (Eligibility / COB / Auth)</div>';
+            if (patient.includes(carc)) return '<div class="badge route-patient">👤 BILL PATIENT (Patient Responsibility)</div>';
+            if (writeoff.includes(carc)) return '<div class="badge route-writeoff">📉 WRITE-OFF / CONTRACTUAL</div>';
+            
+            return '<div class="badge route-portal">💻 NON-CALLABLE (Fix in Portal or Send Appeal)</div>';
+        }
+
+        // 4. SMART RESOLVER LOGIC
         function resolveDenial() {
             const carc = document.getElementById('carcInput').value.trim();
             const rarc = document.getElementById('rarcInput').value.trim();
@@ -112,9 +134,12 @@
             let rarcData = masterData.find(d => d.code === rarc && d.cat === 'RARC');
 
             if (carcData || rarcData) {
+                let routeBadge = carcData ? getActionRoute(carc) : '<div class="badge route-portal">💻 NON-CALLABLE (Fix in Portal)</div>';
+                
                 resultBox.style.display = "block";
                 resultBox.innerHTML = `
-                    <h3 style="margin-top:0; color:var(--success);">Analysis Complete</h3>
+                    ${routeBadge}
+                    <h3 style="margin-top:10px; color:var(--success);">Analysis Complete</h3>
                     <p><b>CARC ${carc}:</b> ${carcData ? carcData.desc : 'No CARC match found in database.'}</p>
                     <p><b>RARC ${rarc}:</b> ${rarcData ? rarcData.desc : 'No RARC match found in database.'}</p>
                     <hr style="border:1px solid #ddd; margin: 15px 0;">
@@ -125,71 +150,3 @@
                 resultBox.innerHTML = "<p style='color:var(--danger); font-weight:bold;'>No match found. Verify the codes or check the manual Denial Matrix.</p>";
             }
         }
-
-        // 4. VIEW CONTROLLER
-        function showView(view) {
-            const port = document.getElementById('view-port');
-            document.getElementById('view-title').innerText = view.toUpperCase();
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.getElementById('nav-' + view).classList.add('active');
-
-            if (view === 'home') {
-                port.innerHTML = `
-                    <div class="card">
-                        <div class="update-badge">System Update: 2026 MREP 4.6 & ASC X12 Standards Live</div>
-                        <h1>RCM Workflow Engine</h1>
-                        <div style="text-align:center; margin: 20px 0;">
-                            <img src="rcm-workflow.png" alt="RCM Workflow Diagram" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </div>
-                        <hr>
-                        <h3>Jurisdiction Links (MAC JM & JH):</h3>
-                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:15px;">
-                            <a href="https://www.fcso.com" target="_blank" style="text-decoration:none; padding:15px; background:#ebf5fb; color:#2e86c1; border-radius:5px; text-align:center; font-weight:bold; border:1px solid #3498db;">Florida (First Coast)</a>
-                            <a href="https://www.novitas-solutions.com" target="_blank" style="text-decoration:none; padding:15px; background:#ebf5fb; color:#2e86c1; border-radius:5px; text-align:center; font-weight:bold; border:1px solid #3498db;">Texas (Novitas)</a>
-                        </div>
-                    </div>`;
-            } else if (view === 'resolver') {
-                port.innerHTML = `
-                    <div class="resolver-box">
-                        <h2 style="margin-top:0;">⚡ Smart Logic Resolver</h2>
-                        <p>Link your Claim Adjustment Reason Code (CARC) with the Remittance Advice Remark Code (RARC) for an instant action plan.</p>
-                        <div class="resolver-input-group">
-                            <input type="text" id="carcInput" class="res-input" placeholder="CARC (e.g. 16)">
-                            <input type="text" id="rarcInput" class="res-input" placeholder="RARC (e.g. M29)">
-                            <button class="res-btn" onclick="resolveDenial()">GENERATE RESOLUTION</button>
-                        </div>
-                        <div id="logicResult" class="logic-alert"></div>
-                    </div>`;
-            } else {
-                let data = [];
-                if (view === 'search') data = masterData.filter(d => ['CARC', 'RARC', 'Technical', 'Admin', 'Modifier', 'Clinical'].includes(d.cat));
-                else if (view === 'payer') data = masterData.filter(d => d.cat.toLowerCase().includes('payer'));
-                renderTable(port, data);
-            }
-        }
-
-        function renderTable(port, data) {
-            port.innerHTML = `
-                <input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search Codes, Descriptions, or Resolutions...">
-                <div class="table-wrap"><table id="t">
-                    <thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Resolution Logic</th></tr></thead>
-                    <tbody>${data.map(d => {
-                        let b = d.cat.toLowerCase().replace(' ', '-');
-                        return `<tr><td><b>${d.code}</b></td><td><span class="badge ${b}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
-                    }).join('')}</tbody>
-                </table></div>`;
-        }
-
-        function f() {
-            let v = document.getElementById('s').value.toUpperCase();
-            let r = document.querySelector("#t tbody").rows;
-            for(let i=0; i<r.length; i++) r[i].style.display = r[i].innerText.toUpperCase().includes(v) ? "" : "none";
-        }
-
-        window.onload = function() {
-            startClocks();
-            loadData();
-        };
-    </script>
-</body>
-</html>
