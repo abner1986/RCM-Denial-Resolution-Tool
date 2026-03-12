@@ -1460,5 +1460,48 @@ Q9965,HCPCS Contrast,Low osmolar contrast material,Verify dosage units for CT sc
 Q9966,HCPCS Contrast,Contrast material 300 mg iodine,Check radiology report. Ensure primary CT code specifies 'With Contrast'.
 Q9967,HCPCS Contrast,Contrast material 370 mg iodine,CARC 16: Verify units billed. Ensure NDC code matches exact concentration.
 Q9981,HCPCS Contrast,Radiology contrast supply,Confirm usage documentation. Verify if payer requires specific Q or A code instead.
+99213,E/M,Office Visit Established Level 3,CARC 97: Denied as bundled. If performed with a minor procedure on the same day, append Modifier 25 to this code.
+99214,E/M,Office Visit Established Level 4,CARC 150: Payer downcoded to 99213. Appeal with medical records proving Moderate Medical Decision Making (MDM) or Time.
+99203,E/M,Office Visit New Patient Level 3,CARC B16: Denied as New Patient. Patient was seen by the group within the last 3 years. Correct to established code 99213.
+99204,E/M,Office Visit New Patient Level 4,CARC B16: Verify patient history. If seen by a different specialty in the same Tax ID, appeal with notes. Otherwise, downcode to 99214.
+99395,Preventative,Routine Checkup (18-39 yrs),CARC 96: Patient Liability. If billed with a sick visit (e.g. 99213), ensure Modifier 25 is on the sick visit and DXs are split.
+99396,Preventative,Routine Checkup (40-64 yrs),CARC 119: Frequency limit. Most payers only allow one preventative visit per 365 days. Bill patient if early.
+G0438,Preventative,Medicare Annual Wellness (Initial),CARC 119: Allowed only once per lifetime. If already performed, change to G0439 (Subsequent) and resubmit.
+G0439,Preventative,Medicare Annual Wellness (Sub),CARC 119: Allowed once per 12 months. Verify last date of service.
+99441,Telehealth,Phone E/M (5-10 mins),CARC 5: Invalid Place of Service. Ensure POS is 02 or 10, and Modifier 95 or GQ is appended depending on payer.
+36415,Laboratory,Routine Blood Draw,CARC 97: Often bundled into E/M or Lab panels. Write-off per payer contract.
+81001,Laboratory,Urinalysis with Microscopy,CARC 16: Missing CLIA number. Ensure Box 23 contains your valid CLIA certification number.
+80053,Laboratory,Comprehensive Metabolic Panel,CARC 50: Medical Necessity. Routine screening DX (Z00.00) often denies. Link to a specific symptom or chronic condition.
+83925,Laboratory,Opiate/Drug Screen,CARC 50: Check LCD L34053. Must document patient is on a managed opioid regimen or shows signs of abuse.
+87880,Laboratory,Rapid Strep Test,CARC 16: Requires Modifier QW (CLIA Waived test) for most payers to process successfully.
+97110,Therapy,Therapeutic Exercises (15 min),CARC 16: Missing Modifier. Must append GP (PT), GO (OT), or GN (ST). Add KX modifier if over the Medicare therapy cap.
+97140,Therapy,Manual Therapy (15 min),CARC 97: Bundled with 97110. Only payable if performed on a separate, distinct body part. Append Modifier 59 or XU.
+97530,Therapy,Therapeutic Activities (15 min),CARC 119: Frequency limit. Check units billed (e.g., 4 units = 1 hour). Appeal with notes if medically necessary.
+20610,Surgery/Injection,Joint Injection Major (Shoulder/Knee),CARC 50: Requires documentation of failed conservative therapy or osteoarthritis DX. Append RT, LT, or 50.
+20611,Surgery/Injection,Joint Injection Major with Ultrasound,CARC 97: Do not bill 76942 (US Guidance) with this code, it is already bundled in 20611.
+17000,Surgery/Destruction,Destruction Benign Lesion (First),CARC 97: If billed with an E/M, append Mod 25 to E/M. Cannot bill 17003 without 17000 as the primary line.
+17003,Surgery/Destruction,Destruction Benign Lesion (2-14),CARC 16: Add-on code. Must be billed with primary code 17000. Check units (up to 13 units max).
+11102,Surgery/Biopsy,Tangential Biopsy of Skin,CARC 97: Bundled if billed with lesion removal (11400) on the exact same site. Use Mod 59 if biopsy was a separate site.
+11400,Surgery/Excision,Excision Benign Lesion (up to 0.5cm),CARC 16: Missing pathology report. CARC 50: Cosmetic removal is patient liability.
+93000,Cardiology,EKG Complete,CARC 97: Bundled with ER visits or physicals depending on payer. Use Mod 59 if distinct and separate.
+93306,Cardiology,Echocardiogram complete,CARC 50: Check DX constraints. Often requires a cardiac symptom (chest pain, murmur) rather than routine screening.
+92012,Vision,Eye Exam Established Patient,CARC 109: Medical vs Routine. If routine, bill Vision Payer (VSP/EyeMed). If medical (glaucoma/diabetes), bill Health Payer.
+92014,Vision,Eye Exam Comprehensive,CARC 24: Capitation. Often carved out to a specific vision IPA. Check eligibility routing.
+NCD-220.4,Admin/NCD,Mammography Screening,National limit: Allowed once every 12 months for women 40+. Must be linked to screening DX (e.g. Z12.31).
+NCD-220.6,Admin/NCD,PET Scans for Oncology,National limit: Coverage restricted to specific cancers. Must use PI (initial) or PS (subsequent) modifier.
+NCD-150.3,Admin/NCD,Bone Mineral Density Studies,National limit: Allowed once every 24 months. Must link to estrogen deficiency or prolonged steroid use DX.
+NCD-190.11,Admin/NCD,Home Prostate Cancer Screening,National policy: Covers PSA test annually for men 50+. Denies if billed more frequently.
+NCD-110.21,Admin/NCD,Erythropoiesis Stimulating Agents (ESA),National policy: Check Hematocrit/Hemoglobin lab values. Must use EA/EB/EC modifiers.
+LCD-L33768,Admin/LCD,FL Lumbar Spine MRI (First Coast),MAC JM Rule: Denial CARC 50 is standard. Appeal must prove 6 weeks of conservative therapy (PT/Meds) in notes.
+LCD-L35092,Admin/LCD,TX CT Abdomen/Pelvis (Novitas),MAC JH Rule: Contrast scans require GFR/Creatinine levels drawn within 30-90 days in the medical records.
+LCD-L34411,Admin/LCD,FL/TX Epidural Steroid Injections,MAC JM/JH Rule: Limits ESI to 3-4 sessions per 12 months. Fluoroscopy/CT guidance is bundled and not paid separately.
+LCD-L33685,Admin/LCD,FL/TX Non-Invasive Vascular Studies,MAC JM/JH Rule: Routine screening for Peripheral Artery Disease (PAD) is not covered without claudication/symptoms.
+LCD-L33622,Admin/LCD,FL/TX Diagnostic Facet Injections,MAC JM/JH Rule: Requires documentation showing at least 80% pain relief from previous diagnostic blocks to approve RFA.
+LCD-L34892,Admin/LCD,FL/TX Holter Monitors,MAC JM/JH Rule: Auth required. Cannot be billed with an EKG on the same day without Modifier 59/XU and distinct DX.
+LCD-L35055,Admin/LCD,TX Urine Drug Testing (Novitas),MAC JH Rule: Presumptive testing is covered but definitive testing requires strict medical necessity documentation.
+LCD-L34053,Admin/LCD,FL Urine Drug Testing (First Coast),MAC JM Rule: High denial rate for CARC 50. Must show patient is on a managed opioid regimen or shows signs of abuse.
+LCD-L34353,Admin/LCD,FL/TX Polysomnography (Sleep Studies),MAC JM/JH Rule: Requires documented Epworth Sleepiness Scale and face-to-face evaluation before the study.
+LCD-L35008,Admin/LCD,TX/FL Vitamin D Assay Testing,MAC JM/JH Rule: Routine screening not covered. Patient must have DX for osteoporosis, rickets, or malabsorption.
+LCD-L33640,Admin/LCD,FL/TX Bariatric Surgery,MAC JM/JH Rule: BMI must be >35 with comorbidities. Requires psych evaluation and 6-month supervised diet history.
 
 
