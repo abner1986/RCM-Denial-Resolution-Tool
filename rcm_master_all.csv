@@ -1503,5 +1503,178 @@ LCD-L34053,Admin/LCD,FL Urine Drug Testing (First Coast),MAC JM Rule: High denia
 LCD-L34353,Admin/LCD,FL/TX Polysomnography (Sleep Studies),MAC JM/JH Rule: Requires documented Epworth Sleepiness Scale and face-to-face evaluation before the study.
 LCD-L35008,Admin/LCD,TX/FL Vitamin D Assay Testing,MAC JM/JH Rule: Routine screening not covered. Patient must have DX for osteoporosis, rickets, or malabsorption.
 LCD-L33640,Admin/LCD,FL/TX Bariatric Surgery,MAC JM/JH Rule: BMI must be >35 with comorbidities. Requires psych evaluation and 6-month supervised diet history.
+CO 1,Patient,Deductible,Transfer balance to patient responsibility and issue statement.
+CO 2,Patient,Coinsurance,Transfer balance to patient responsibility and issue statement.
+CO 3,Patient,Co-payment,Transfer balance to patient responsibility and issue statement.
+CO 4,Technical,Modifier Inconsistent,Verify CPT vs Modifier (e.g. -25 -59). Correct and resubmit.
+CO 16,Technical,Lacks Information,Check RARC (N257/M51). Fix missing NPI Tax ID or Modifiers.
+CO 18,Technical,Duplicate Claim,Check status of first claim. If paid write off. If pending do not resubmit.
+CO 19,Eligibility,Workers Comp Liability,Identify and bill the Workers Comp carrier.
+CO 22,Eligibility,COB Error,Verify Primary Payer. Obtain Primary EOB. Bill Secondary with EOB attached.
+CO 24,Eligibility,Capitation Agreement,Identify MCO/IPA holding risk via portal. Bill the capitated entity.
+CO 26,Eligibility,Coverage Not Started,Verify DOS vs Effective Date. If DOS is prior bill patient.
+CO 27,Eligibility,Coverage Terminated,Verify DOS vs Term Date. Search for new active policy or bill patient.
+CO 29,Technical,Timely Filing,Appeal with clearinghouse 'Accepted' report as proof of date.
+CO 45,Contract,Contractual Adjustment,Standard write-off per provider contract.
+CO 50,Clinical,Medical Necessity,Appeal with clinical notes and signed Letter of Medical Necessity (LMN).
+CO 59,Coding,Multiple Procedure Rule,Check NCCI edits. Apply Modifier -51 if appropriate.
+CO 96,Contract,Non-covered Service,Verify plan benefits. If non-covered bill patient (check for signed ABN).
+CO 97,Coding,Bundled Service,Check NCCI edits. If service is distinct add Modifier -59 and resubmit.
+CO 107,Technical,Attachment Missing,Submit Op-notes or Invoice via portal/fax and resubmit.
+CO 109,Eligibility,Wrong Payer,Identify correct carrier through eligibility check and resubmit.
+CO 167,Coding,Diagnosis Not Covered,Check LCD/NCD guidelines. Link covered ICD-10 and resubmit.
+CO 197,Auth,Pre-Auth Absent,Check if Auth exists. If yes add to Box 23. If no request Retro-Auth.
+70450,Radiology,CT Head/Brain w/o Contrast,Verify Auth matches 'Without' contrast. Link to DX R51.9.
+72141,Radiology,MRI Lumbar Spine w/o Contrast,Requires 6 weeks conservative therapy notes for appeal.
+74176,Radiology,CT Abd/Pelvis w/o Contrast,Ensure DX supports medical necessity (e.g. K57.3).
+76700,Radiology,US Abdomen Complete,Verify documentation supports 'Complete'. If not downcode to 76705.
+77067,Radiology,Screening Mammogram,Verify 365-day frequency rule. Use DX Z12.31.
+PR 1,Patient,Deductible,Move to patient responsibility.
+PR 2,Patient,Coinsurance,Move to patient responsibility.
+N257,Remark,Missing Provider Info,Verify Billing/Rendering NPI and Address in Box 33 and 24J.
+M51,Remark,Invalid Procedure Code,Correct CPT/HCPCS code and resubmit as Corrected Claim.
+MA 13,Remark,File Update Required,Provider must update NPI address or banking on the payer portal.
+Code,Category,Description,Resolution
+70450,Radiology,CT Head/Brain w/o Contrast,Verify DX R51.9 (Headache). Check for Auth if required by payer.
+70460,Radiology,CT Head/Brain w/ Contrast,Verify Auth specifies 'With' contrast. Link to tumor DX.
+70470,Radiology,CT Head/Brain w/o & w/ Contrast,Verify Auth for 'With and Without'. Check for allergic reactions notes.
+70486,Radiology,CT Maxillofacial w/o Contrast,Verify DX for sinus or facial trauma.
+72125,Radiology,CT Cervical Spine w/o Contrast,Verify trauma DX or degenerative disc disease logic.
+72128,Radiology,CT Thoracic Spine w/o Contrast,Ensure DX supports thoracic spine pain or injury.
+72131,Radiology,CT Lumbar Spine w/o Contrast,Check for previous X-ray results in notes for medical necessity.
+74150,Radiology,CT Abdomen w/o Contrast,Link to DX for abdominal pain (R10 series).
+74176,Radiology,CT Abd & Pelvis w/o Contrast,Common for kidney stones. Verify Auth covers both Abd and Pelvis.
+74177,Radiology,CT Abd & Pelvis w/ Contrast,Ensure GFR/Creatinine levels are in notes for IV contrast safety.
+74178,Radiology,CT Abd & Pelvis w/o & w/ Contrast,Verify medical necessity for multiphase study.
+70551,Radiology,MRI Brain w/o Contrast,Verify Auth matches CPT. Check for DX G35 (MS) or G44 (Migraine).
+70552,Radiology,MRI Brain w/ Contrast,Verify Auth for 'With' contrast. Check for DX related to neoplasm.
+70553,Radiology,MRI Brain w/o & w/ Contrast,Common for MS monitoring. Verify Auth for 'With and Without'.
+72141,Radiology,MRI Cervical Spine w/o Contrast,Requires 6 weeks conservative therapy notes (PT/Meds) for appeal.
+72146,Radiology,MRI Thoracic Spine w/o Contrast,Ensure DX supports thoracic radiculopathy or spinal cord compression.
+72148,Radiology,MRI Lumbar Spine w/o Contrast,Most denied CPT. Check for 6 weeks of conservative treatment history.
+72156,Radiology,MRI Cervical Spine w/o & w/ Contrast,Verify Auth for complex spinal disorders or post-op.
+73221,Radiology,MRI Upper Extremity Joint w/o Contrast,Includes Shoulder/Elbow/Wrist. Check for DX M25 series.
+73721,Radiology,MRI Lower Extremity Joint w/o Contrast,Includes Hip/Knee/Ankle. Link to DX for meniscus or ligament tear.
+74181,Radiology,MRI Abdomen w/o Contrast,Verify Auth. Common for liver or pancreas evaluation.
+25,Modifier,Separate E/M on same day,CARC 16/M14: Apply to office visit when a procedure is also performed.
+26,Modifier,Professional Component,CARC 16/M66: Apply when only the physician's interpretation is being billed.
+59,Modifier,Distinct Procedural Service,CARC 97/M15: Apply to unbundle a component. Check NCCI edits first.
+TC,Modifier,Technical Component,CARC 16/M66: Apply when billing for equipment/facility costs only.
+Code,Category,Description,Resolution
+MAC-JM,Payer,Florida (First Coast),TFL: 365 Days. LCD Search: Look for 'L33768' for Lumbar Spine MRI.
+MAC-JH,Payer,Texas (Novitas),TFL: 365 Days. LCD Search: Look for 'L35092' for CT of Abdomen/Pelvis.
+NCD-220.4,Radiology,Mammography NCD,Mandatory coverage for screening every 12 months for age 40+.
+LCD-L33768,Radiology,FL Lumbar Spine MRI,Must have 6 weeks of conservative therapy (PT/Meds) documented.
+LCD-L35092,Radiology,TX CT Abd/Pelvis,Requires GFR/Creatinine levels within 30-90 days for IV contrast.
+74177,Radiology,CT Abd/Pelvis w/ Contrast,TX/FL Rule: Verify DX supports acute symptoms (R10 series).
+72148,Radiology,MRI Lumbar Spine w/o,FL Rule: Denial CO-50 is common if 'Red Flags' (Trauma/Cancer) aren't in notes.
+M38,Technical,ABN Signed (GA),Modifier -GA must be present for Medicare FL/TX to allow patient billing.
+M39,Technical,No ABN Signed (GZ),Modifier -GZ must be used. Claim will deny as Provider Liability (Write-off).
+N386,Admin,NCD Determination,Decision based on National Policy. Visit CMS.gov and search NCD index.
+N115,Admin,LCD Determination,Decision based on Local Policy. Check First Coast (FL) or Novitas (TX) portal.
+R51.9,Clinical,Headache Unspecified,FL/TX DENIAL RISK: Too generic for MRI (70551). Use G44 series or specify 'with aura'.
+M54.50,Clinical,Low Back Pain Unspecified,FL/TX DENIAL RISK: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.16).
+R10.9,Clinical,Abdominal Pain Unspecified,FL/TX DENIAL RISK: For CT (74177) specify quadrant (e.g. R10.31 for RLQ).
+M25.561,Clinical,Pain in Right Knee,FL/TX RULE: Often denied if 6 weeks of conservative therapy (PT) is not in notes.
+G35,Clinical,Multiple Sclerosis,FL/TX RULE: Supports MRI Brain (70553). Ensure 'With and Without' contrast is authorized.
+R06.02,Clinical,Shortness of Breath,FL/TX RULE: Supports Chest CT (71250). Check for tobacco use DX (Z72.0).
+Z12.11,Clinical,Colon Cancer Screening,FL/TX RULE: Only allowed every 10 years for average risk. Check history.
+R91.8,Clinical,Nodule on Lung,FL/TX RULE: Supports CT Chest. Ensure previous X-ray date is in Box 19.
+M51.26,Clinical,Lumbar Disc Displacement,FL/TX RULE: High success for MRI Lumbar (72148). Link to radiculopathy notes.
+R31.9,Clinical,Hematuria Unspecified,FL/TX RULE: Supports CT Urogram. Must specify if 'Gross' or 'Microscopic'.
+M1,Technical,X-ray not taken within 12 months,CARC 16/50: Verify if a previous X-ray exists. If not ; perform X-ray or appeal with clinical justification.
+M2,Technical,Inpatient Bundle,CARC 97: Service included in the Inpatient PPS. Write off per contract.
+M3,Technical,Duplicate Equipment,CARC 18: Verify if patient already has same/similar equipment. If yes ;  write off.
+M11,Technical,DME Zip Code Jurisdiction,CARC 109: Rebill to the correct DME carrier servicing the patient's zip code.
+M12,Technical,Diagnostic Purchased Services,CARC 16: Ensure claim indicates if purchased services are included. Fix Box 20 and resubmit.
+M13,Technical,Visit Limit - One per Specialty,CARC 119: Only one initial visit per specialty allowed. Change to follow-up code or write off.
+M14,Technical,Injection Bundle,CARC 97: Injection included in E/M. If distinct  add Modifier -25 to the office visit.
+M15,Technical,Component Bundling,CARC 97: Services are components of the same procedure. Check NCCI edits; use Modifier -59 if distinct.
+M19,Technical,Missing Oxygen Certification,CARC 16: Obtain and attach a signed Certificate of Medical Necessity (CMN).
+M20,Technical,Missing/Invalid HCPCS,CARC 185: Crosswalk HCPCS to current year. Verify code in CPT manual.
+M23,Technical,Missing Invoice,CARC 252: Attach the original invoice for the drug or supply and resubmit.
+M25,Clinical,Substantiate Level of Service,CARC 50: Downcode to lower E/M or appeal with full medical records (120-day limit).
+M29,Technical,Missing Operative Note,CARC 252: Upload the Op-note via the payer portal and resubmit.
+M30,Technical,Missing Pathology Report,CARC 252: Obtain Path report from the lab and upload to portal.
+M31,Technical,Missing Radiology Report,CARC 252: Obtain Radiologist interpretation and upload to portal.
+M37,Eligibility,Age Restriction (Under 35),CARC 96: Service not covered for this age. Bill patient or check for specific screening rules.
+M42,Admin,Form Needs MD Signature,CARC 16: Return form to Attending MD for physical signature. Resubmit.
+M51,Technical,Invalid Procedure Code,CARC 16/185: Correct the CPT/HCPCS to match the date of service.
+M60,Technical,Missing Certificate of Medical Necessity,CARC 16: Ensure Box 23 has the CMN date. Attach form and resubmit.
+M66,Technical,Radiology Prof/Tech Split,CARC 16: Rebill with Modifier -26 (Professional) and -TC (Technical) as separate lines.
+M76,Technical,Missing Diagnosis,CARC 16: Verify Box 21. Add highest level of specificity (ICD-10).
+M81,Technical,Highest Specificity Required,"CARC 16: Avoid ""Unspecified"" codes. Use 5th/6th character ICD-10 codes."
+MA01,Admin,Appeal Rights Alert,Informational: Follow appeal instructions. Write to payer within 120 days.
+MA04,Eligibility,Secondary COB Missing Primary,CARC 22: Attach the Primary Payer's EOB and resubmit to Secondary.
+MA13,Admin,Patient Responsibility Alert,Informational: Do not bill patient for amounts not marked with PR group code.
+MA48,Admin,Missing Responsible Party Address,CARC 16: Update patient/guarantor address in the system and rebill.
+MA120,Technical,Missing CLIA Number,CARC 16: Add the lab's CLIA number to Box 23 and resubmit.
+N4,Eligibility,Missing Prior Payer EOB,CARC 22: Obtain EOB from primary and attach to the secondary claim.
+N22,Technical,Code Changed by Payer,Informational: Payer cross-walked your code to a more accurate one. Update your records.
+N30,Eligibility,Patient Ineligible,CARC 31: Re-verify insurance. Check for coverage termination or plan changes.
+N104,Admin,Wrong Jurisdiction,CARC 109: Claim sent to wrong MAC/Carrier. Rebill to the correct regional office.
+N574,Admin,Ordering MD Ineligible,CARC 183: The NPI in Box 17b is not eligible to refer. Verify NPI and PECOS status.
+N921,Admin,Appeal Time Limit Expired,CARC 29: Final Denial. Reconsideration period is closed. Check for administrative override.
+N921,Admin,Appeal Time Limit Expired,CARC 29: Final Denial. Reconsideration period is closed. Check for administrative override.
+BCBS-FL,Payer,Florida Blue (Commercial),TFL: 365 Days. Portal: Availity. Non-Callable for simple status. Call only for clinical appeals.
+BCBS-TX,Payer,BlueCross Texas (Commercial),TFL: 95 Days. Portal: Availity. High denial rate for Modifier -25. Use specific TFL logic.
+HUM-COMM,Payer,Humana Commercial,TFL: 180 Days. Portal: Availity. Callable for 'Check tracers' and 'Interest payments'.
+AET-COMM,Payer,Aetna Commercial,TFL: 120 Days. Portal: Availity. Non-Callable for 'Correction of DX'. Must resubmit as Corrected Claim.
+SUN-FL,Payer,Sunshine Health (FL Medicaid),TFL: 180 Days. Portal: WellCare/Sunshine. Callable for 'Coordination of Benefits' issues.
+SUP-TX,Payer,Superior Health (TX Medicaid),TFL: 95 Days. Portal: Superior Portal. Strictly Non-Callable for 'Timely Filing' denials.
+MCD-FL,Payer,Florida Medicaid (FMMIS),TFL: 12 months. Portal: FLMMIS. Callable for 'Recipient Eligibility' updates.
+MCD-TX,Payer,Texas Medicaid (TMHP),TFL: 95 Days. Portal: TMHP. Non-Callable for 'Missing Info'. Use 'Appeal' function in portal.
+MOL-TX,Payer,Molina Texas (Medicaid),TFL: 95 Days. Portal: Molina Portal. Callable for 'Authorization Mismatch' (CO 197).
+25,Modifier,Separate E/M same day,CARC 16/M14: Use when separate E/M is performed same day as procedure.
+26,Modifier,Professional Component,CARC 16/M66: Interpretation only. FL/TX Rule: Ensure report is attached.
+59,Modifier,Distinct Procedure,CARC 97: Unbundle component. Use X{EPSU} for Medicare FL/TX if applicable.
+GA,Modifier,ABN on File,CARC M38: Medicare FL/TX. Use when signed ABN is on file for non-covered service.
+GZ,Modifier,No ABN on File,CARC M39: Medicare FL/TX. Provider liable. Write-off.
+BCBS-FL,Payer,Florida Blue (Commercial),TFL: 365 Days. Portal: Availity. Non-Callable for status/DX fix.
+BCBS-TX,Payer,Blue Cross TX (Commercial),TFL: 95 Days. Portal: Availity. Strictly Non-Callable for status.
+UHC-COMM,Payer,UHC Commercial,TFL: 90 Days. Portal: UHC Provider Portal. Non-Callable for initial disputes.
+AET-COMM,Payer,Aetna Commercial,TFL: 120 Days. Portal: Availity. Callable for complex clinical appeals.
+HUM-COMM,Payer,Humana Commercial,TFL: 180 Days. Portal: Availity. Callable for COB/Interest issues.
+SUN-FL,Payer,Sunshine Health (FL Medicaid),TFL: 180 Days. Portal: Sunshine. Callable for Eligibility updates.
+SUP-TX,Payer,Superior Health (TX Medicaid),TFL: 95 Days. Portal: Superior. Non-Callable for TFL denials.
+TMHP,Payer,Texas Medicaid (FFS),TFL: 95 Days. Portal: TMHP. Strictly Non-Callable. Use portal 'Appeal'.
+FMMIS,Payer,Florida Medicaid (FFS),TFL: 12 Months. Portal: FLMMIS. Callable for claim status tracers.
+M1,Technical,X-ray time limit (12mo),CARC 16: Verify if previous X-ray exists. If not perform or appeal.
+M29,Technical,Missing Op-Note,CARC 16/252: Upload report to portal. FL/TX Rule: No faxing allowed.
+N115,Admin,LCD Policy Alert,Resolution: Check First Coast (FL) or Novitas (TX) for local coverage.
+R51.9,Clinical,Headache Unspecified,FL/TX DENIAL: Too generic for MRI. Use G44 series or specify 'with aura'.
+M54.50,Clinical,Low Back Pain,FL/TX DENIAL: Use M54.51 (Vertebrogenic) or specify radiculopathy (M54.1).
+74177,Radiology,CT Abd/Pelvis w/ Contrast,TX/FL Rule: Requires GFR/Creatinine levels within 90 days in notes.
+72148,Radiology,MRI Lumbar Spine w/o,FL Rule: Denial CO-50 common. Must prove 6 weeks of PT in medical records.
+62321,Pain Mgmt,ESI (Cervical/Thoracic) w/ Imaging,CARC 50: FL/TX Rule - Max 3-4 injections per year. Check previous DOS.
+62323,Pain Mgmt,ESI (Lumbar/Sacral) w/ Imaging,CARC 50: Ensure 4-6 weeks of conservative therapy (PT/Meds) is documented.
+64483,Pain Mgmt,Transforaminal ESI (Lumbar),CARC 151: Often denied as experimental if used for axial pain without radiculopathy.
+64493,Pain Mgmt,Facet Joint Injection (Lumbar),CARC 50: FL/TX Rule - Requires 80% relief from previous diagnostic block.
+64635,Pain Mgmt,RFA (Radiofrequency Ablation),CARC 50: Documentation must show 6 months of persistent pain after conservative tx.
+20552,Pain Mgmt,Trigger Point Injection (1-2 muscles),CARC 97: Often bundled into E/M. Use Modifier -25 on office visit.
+20553,Pain Mgmt,Trigger Point Injection (3+ muscles),CARC 119: Frequency limit. Usually max 3 sessions per 12 months.
+G0260,Pain Mgmt,Sacroiliac (SI) Joint Injection,CARC 16: Missing Imaging notes. FL/TX requires Fluoroscopy or CT guidance.
+CO 170,Technical,Service not prescribed by physician,Verify ordering provider NPI. Attach signed physician order and resubmit.
+CO 204,Clinical,Service not covered under patient’s benefit plan,Check plan benefits. If excluded bill patient or appeal with plan exception request.
+CO 246,Contract,Non-payable reporting-only code,Remove reporting-only CPT/HCPCS code. Submit corrected claim.
+CO 252,Technical,Attachment required but not received,Upload operative note pathology report or invoice via payer portal and resubmit.
+CO 253,Eligibility,Coverage terminated due to non-payment of premium,Verify patient’s premium status. If lapsed bill patient directly.
+CO 256,Technical,Service not payable without prior certification,Request retro-authorization if possible. Otherwise bill patient.
+CO 258,Coding,Service not furnished directly to patient,Verify CPT/HCPCS usage. Correct coding to reflect direct patient service.
+CO 259,Contract,Service denied for provider type,Check provider specialty enrollment. Update PECOS or reassign claim to eligible provider.
+CO 272,Eligibility,Coverage terminated due to death of patient,Verify DOS vs date of death. If after termination bill estate.
+CO 274,Technical,Service denied due to patient refusal,Document patient refusal. Bill patient if appropriate.
+N115,Remark,Decision based on LCD,Review LCD policy. Update diagnosis coding per LCD guidelines and resubmit.
+N290,Remark,Missing documentation for medical necessity,Attach clinical notes imaging results or LMN. Resubmit with supporting documentation.
+N362,Remark,Units exceed maximum allowed,Verify frequency limits. Adjust units or appeal with medical necessity justification.
+N386,Remark,Provider not certified/eligible,Verify provider enrollment with payer. Update NPI/PECOS and resubmit.
+MA130,Remark,Missing patient ABN signature,Obtain signed ABN from patient. Attach and resubmit claim.
+MA131,Remark,Missing or invalid taxonomy code,Correct taxonomy in Box 33 or provider portal. Resubmit claim.
+MA15,Remark,Missing or invalid ZIP code,Correct patient/provider ZIP code. Resubmit claim.
+18,Technical,Duplicate Claim/Service,CARC 18: Verify original ICN on Availity. If paid: Write-off. If denied: Resubmit as Corrected Claim (Freq 7).
+76,Modifier,Repeat Procedure (Same MD),Use when the same doctor performs the same CPT twice on the same day to avoid CARC 18.
+77,Modifier,Repeat Procedure (Diff MD),Use when a different doctor performs the same CPT on the same day.
+
+
 
 
