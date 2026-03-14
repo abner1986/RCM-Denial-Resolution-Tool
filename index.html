@@ -3,165 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Commander | 2026 Master Edition</title>
+    <title>RCM Commander | Audit-Ready Edition</title>
     <style>
-        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --danger: #e74c3c; --warning: #e67e22; }
+        :root { --primary: #1c2833; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --warning: #e67e22; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); display: flex; height: 100vh; overflow: hidden; }
-        
-        /* Sidebar */
-        .sidebar { width: 240px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
-        .sidebar-header { padding: 25px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); letter-spacing: 1px; }
-        .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.2s; border-left: 4px solid transparent; font-size: 0.85rem; color: #bdc3c7; }
-        .nav-item:hover, .nav-item.active { background: #34495e; border-left-color: var(--accent); color: white; }
-
-        /* Layout */
+        .sidebar { width: 220px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; }
+        .nav-item { padding: 15px 20px; cursor: pointer; font-size: 0.85rem; border-left: 4px solid transparent; color: #bdc3c7; }
+        .nav-item.active { background: #34495e; border-left-color: var(--accent); color: white; }
         .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
-        .top-bar { background: white; padding: 15px 30px; display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; align-items: center; z-index: 10; }
-        .content { padding: 25px; overflow-y: auto; flex: 1; scroll-behavior: smooth; }
+        .top-bar { background: white; padding: 12px 30px; display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; align-items: center; }
+        .content { padding: 25px; overflow-y: auto; flex: 1; }
 
-        /* Velocity Inputs */
-        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
-        input { padding: 12px; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box; font-weight: 600; outline: none; }
-        input:focus { border-color: var(--accent); box-shadow: 0 0 5px rgba(52, 152, 219, 0.3); }
+        /* Rapid Header Inputs */
+        .header-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 15px; background: #2c3e50; padding: 15px; border-radius: 8px; }
+        .call-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; background: #34495e; padding: 15px; border-radius: 8px; }
+        input, select { padding: 10px; border: none; border-radius: 4px; font-weight: bold; width: 100%; box-sizing: border-box; outline: none; font-size: 0.85rem; }
+        
+        /* Logic Engine Section */
+        .engine-title { color: var(--primary); font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid var(--accent); display: inline-block; }
+        .ansi-box { border: 3px solid var(--accent) !important; font-size: 1rem; }
 
-        /* Action Buttons */
-        .quick-actions { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 15px; }
-        .action-btn { background: white; border: 1px solid var(--accent); color: var(--accent); padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.75rem; transition: 0.2s; text-align: left; }
-        .action-btn:hover { background: var(--accent); color: white; }
+        /* Scenario Cards */
+        .rarc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; margin-top: 10px; }
+        .option-card { background: white; border: 1px solid #ddd; padding: 15px; border-radius: 6px; cursor: pointer; transition: 0.2s; border-left: 5px solid #bdc3c7; }
+        .option-card:hover { border-color: var(--success); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 
-        /* Output Card */
-        .note-output { background: #2c3e50; color: white; padding: 20px; border-radius: 8px; margin-top: 25px; border-left: 10px solid var(--success); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .note-box { font-family: 'Courier New', monospace; background: #34495e; padding: 15px; border-radius: 4px; display: block; margin: 10px 0; border: 1px dashed #7f8c8d; font-size: 0.95rem; line-height: 1.5; color: #ecf0f1; }
-        .copy-all { background: var(--success); color: white; border: none; padding: 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem; transition: 0.2s; }
-        .copy-all:active { transform: scale(0.98); }
+        /* Output View */
+        .note-output { background: #fff; padding: 25px; border-radius: 8px; margin-top: 20px; border: 1px solid #ddd; border-top: 8px solid var(--success); display: none; }
+        .note-text { font-family: 'Courier New', monospace; font-size: 0.95rem; line-height: 1.4; color: #2c3e50; white-space: pre-wrap; background: #f9f9f9; padding: 15px; border: 1px dashed #7f8c8d; display: block; }
+        .copy-btn { background: var(--success); color: white; border: none; padding: 15px 40px; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; font-size: 1.1rem; }
 
-        /* Dynamic Table Styling */
-        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; margin-top: 10px; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.8rem; position: sticky; top: 0; text-transform: uppercase; color: #5d6d7e; }
-        td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: middle; }
-        .badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 10px; display: inline-block; }
-        .call { background: var(--warning); color: white; }
-        .portal { background: var(--accent); color: white; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--success); color: white; padding: 15px 30px; border-radius: 4px; display: none; font-weight: bold; z-index: 1000; }
     </style>
 </head>
 <body>
+
     <div class="sidebar">
-        <div class="sidebar-header"><b>RCM COMMANDER</b></div>
-        <div class="nav-item active" id="nav-auto" onclick="showView('auto')">⚡ Rapid Resolver</div>
-        <div class="nav-item" id="nav-contacts" onclick="showView('contacts')">📞 650+ Payer Contacts</div>
-        <div class="nav-item" id="nav-matrix" onclick="showView('matrix')">🔍 Code Matrix</div>
+        <div style="padding: 25px; font-weight: bold; color: var(--accent); border-bottom: 1px solid #34495e;">COMMANDER 2026</div>
+        <div class="nav-item active">📝 Audit Note Engine</div>
     </div>
+
     <div class="main">
-        <div class="top-bar">
-            <b id="v-title">RAPID RESOLVER</b>
-            <div style="font-family: monospace; font-weight: bold; color: var(--primary);" id="clock">00:00:00</div>
+        <div class="top-bar"><b>AR AUDIT RESOLVER</b><div id="clock" style="font-family:monospace; font-weight:bold;">00:00:00</div></div>
+        <div class="content">
+            
+            <div class="header-grid">
+                <input type="text" id="dos" placeholder="DOS (09/18/2016)">
+                <input type="text" id="payer" placeholder="Payer (BCBS)">
+                <input type="text" id="clm" placeholder="Claim #">
+                <input type="text" id="ansi" class="ansi-box" placeholder="ANSI CODE (e.g. 16, 22)" onkeyup="triggerLogic(this.value)">
+            </div>
+            <div class="call-grid">
+                <input type="text" id="rep" placeholder="Rep Name">
+                <input type="text" id="ref" placeholder="Call Ref #">
+                <input type="text" id="chk" placeholder="Check/EFT # (Optional)">
+                <input type="text" id="pdate" placeholder="Paid Date (Optional)">
+            </div>
+
+            <div id="logic-display" style="display:none;">
+                <div class="engine-title">SELECT SCENARIO LOGIC</div>
+                <div class="rarc-grid" id="options-grid"></div>
+            </div>
+
+            <div id="manual-display" style="display:none; background:#ebf5fb; padding:20px; border-radius:8px; border: 1px solid var(--accent);">
+                <div class="engine-title">MANUAL INTELLIGENCE OVERRIDE</div>
+                <div style="display:grid; grid-template-columns: 1fr 1fr auto; gap:10px;">
+                    <select id="man-rev">
+                        <option value="however payer states no claim on file.">No Claim on File</option>
+                        <option value="denied as medical records requested.">Medical Records Missing</option>
+                        <option value="denied as authorization absent.">Authorization Missing</option>
+                        <option value="denied as other payer is primary.">COB / Secondary Issue</option>
+                    </select>
+                    <select id="man-act">
+                        <option value="Verified mailing address and resubmitting claim via portal.">Resubmit via Portal</option>
+                        <option value="Escalated to client to provide documentation for appeal.">Escalate to Client</option>
+                        <option value="Called patient to update COB records and rebill.">Call Patient & Rebill</option>
+                    </select>
+                    <button onclick="finalizeManual()" style="background:var(--accent); color:white; border:none; padding:10px 20px; border-radius:4px; cursor:pointer; font-weight:bold;">BUILD NOTE</button>
+                </div>
+            </div>
+
+            <div id="note-card" class="note-output">
+                <b style="color:var(--primary);">FINAL AR AUDIT NOTE:</b>
+                <span class="note-text" id="finalNote"></span>
+                <button class="copy-btn" onclick="copyResult()">COPY NOTE & NEXT CLAIM</button>
+            </div>
+
         </div>
-        <div id="view-port" class="content">Initializing...</div>
     </div>
+
+    <div id="toast" class="toast">AUDIT NOTE COPIED!</div>
 
     <script>
-        let masterData = []; let contactData = [];
+        const ansiMap = {
+            "16": [
+                { l: "N290: Records Missing (Escalate)", r: "denied as medical records requested.", a: "Records not available in billing system. Escalated to client to provide documentation for appeal." },
+                { l: "N922: NDC Issue", r: "denied for invalid or missing NDC Code.", a: "Obtained 11-digit NDC from invoice. Resubmitting corrected claim via clearinghouse." }
+            ],
+            "22": [
+                { l: "N4: No Primary EOB (Call)", r: "denied as other payer is primary (CO 22).", a: "Primary details missing. Called patient/payer to update insurance info and requested Primary EOB." },
+                { l: "Portal: Attach EOB", r: "denied as other payer is primary (CO 22).", a: "Attached Primary EOB and resubmitted via portal for secondary processing." }
+            ],
+            "29": [
+                { l: "Timely Filing Appeal", r: "denied as time limit for filing has expired.", a: "Obtained clearinghouse acceptance report proving timely submission. Filing formal appeal with proof." }
+            ]
+        };
 
-        async function init() {
-            try {
-                const [r1, r2] = await Promise.all([fetch('rcm_master_all.csv'), fetch('insurance_contacts.csv')]);
-                const [t1, t2] = await Promise.all([r1.text(), r2.text()]);
-                
-                masterData = t1.split('\n').slice(1).map(l => {
-                    const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    return p.length < 4 ? null : { c: p[0].trim().toUpperCase().split(' ').pop(), d: p[2].trim(), r: p[3].trim() };
-                }).filter(x => x);
+        function triggerLogic(val) {
+            const code = val.trim();
+            const logBox = document.getElementById('logic-display');
+            const manBox = document.getElementById('manual-display');
+            if(!code) { logBox.style.display = 'none'; manBox.style.display = 'none'; return; }
 
-                contactData = t2.split('\n').slice(1).map(l => {
-                    const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    return p.length < 4 ? null : { p: p[0].trim(), c: p[1].trim(), n: p[2].trim(), m: p[3].trim() };
-                }).filter(x => x);
-
-                showView('auto');
-            } catch (e) { document.getElementById('view-port').innerHTML = "<h3 style='color:red;'>CRITICAL ERROR: CSV Files Missing on GitHub.</h3>"; }
+            if(ansiMap[code]) {
+                logBox.style.display = 'block'; manBox.style.display = 'none';
+                document.getElementById('options-grid').innerHTML = ansiMap[code].map((o, i) => `
+                    <div class="option-card" onclick="buildFull('${o.r}', '${o.a}')">
+                        <b>${o.l}</b>
+                        <small>Review: ${o.r}<br>Action: ${o.a}</small>
+                    </div>`).join('');
+            } else {
+                logBox.style.display = 'none'; manBox.style.display = 'block';
+            }
         }
 
-        const rapidScenarios = [
-            { l: "Claim Not on File", r: "however payer states no claim on file.", a: "Verified Payer ID and mailing address. Resubmitting claim via portal." },
-            { l: "Medical Records Missing", r: "denied as medical records requested.", a: "Records not available in system. Escalated to client to provide documentation for appeal." },
-            { l: "Auth Missing/Denied", r: "denied as authorization absent or missing.", a: "Verified no Auth on file. Escalated to client Auth dept for retro-request." },
-            { l: "COB / No EOB", r: "denied as other payer is primary (CO 22).", a: "Primary EOB not found. Contacted patient to update COB records. Rebill initiated." },
-            { l: "Timely Filing (Appeal)", r: "denied as time limit for filing has expired.", a: "Generated clearinghouse proof of timely submission. Filing appeal with report." },
-            { l: "Duplicate / Paid", r: "denied as duplicate (CO 18).", a: "Verified original ICN processed correctly. Write-off duplicate." },
-            { l: "Non-Covered (Liability)", r: "denied as non-covered charges.", a: "Policy limitation identified. Escalated to client to verify ABN or patient liability." }
-        ];
+        function finalizeManual() {
+            const r = document.getElementById('man-rev').value;
+            const a = document.getElementById('man-act').value;
+            buildFull(r, a);
+        }
 
-        function build(label = null) {
-            const dos = document.getElementById('dos').value || "[DOS]";
-            const pay = document.getElementById('pay').value || "[PAYER]";
-            const clm = document.getElementById('clm').value || "[CLAIM#]";
-            const code = document.getElementById('carc').value.toUpperCase().split(' ').pop();
+        function buildFull(review, action) {
+            const d = document.getElementById('dos').value || "09/18/2016";
+            const p = document.getElementById('payer').value || "BCBS";
+            const c = document.getElementById('clm').value || "0256789601285";
+            const rep = document.getElementById('rep').value || "IVR/Portal";
+            const ref = document.getElementById('ref').value || "N/A";
+            const chk = document.getElementById('chk').value;
+            const pd = document.getElementById('pdate').value;
+
+            const callInfo = `Called ${p} on ${new Date().toLocaleDateString()}, spoke with ${rep}, Ref# ${ref}.`;
+            let paymentInfo = chk ? `\nPayment Info: Check/EFT# ${chk} issued on ${pd}.` : "";
+
+            const note = `${callInfo}${paymentInfo}\n\nReview: DOS ${d}: As per review claim submitted to ${p} processed and ${review}\n\nAction: ${action} Claim# ${c}`;
             
-            let rev = ""; let act = ""; let call = false;
-            if(label) {
-                const s = rapidScenarios.find(x => x.l === label);
-                rev = s.r; act = s.a; call = label.includes('Call');
-            } else {
-                const m = masterData.find(x => x.c === code);
-                rev = m ? `denied as ${m.d}.` : "processed and denied.";
-                act = m ? m.r : "Review and resubmit.";
-                call = ['22','27','31','109','197'].includes(code);
-            }
-
-            const note = `DOS ${dos}: As per review claim submitted to ${pay} processed and ${rev} Action: ${act} Claim# ${clm}`;
-            document.getElementById('out').style.display = 'block';
-            document.getElementById('nt').innerText = note;
-            document.getElementById('bdg').innerHTML = call ? '<span class="badge call">☎️ CALL PAYER</span>' : '<span class="badge portal">💻 PORTAL FIX</span>';
+            document.getElementById('note-card').style.display = 'block';
+            document.getElementById('finalNote').innerText = note;
+            window.scrollTo(0, document.body.scrollHeight);
         }
 
-        function showView(v) {
-            const port = document.getElementById('view-port');
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.getElementById('nav-' + v).classList.add('active');
-            document.getElementById('v-title').innerText = v.toUpperCase().replace('AUTO', 'RAPID RESOLVER').replace('CONTACTS', '2026 CONTACT DIRECTORY');
-
-            if(v === 'auto') {
-                port.innerHTML = `
-                    <div class="input-grid">
-                        <input type="text" id="dos" placeholder="DOS (MM/DD/YYYY)">
-                        <input type="text" id="pay" placeholder="Payer Name">
-                        <input type="text" id="clm" placeholder="Claim #">
-                        <input type="text" id="carc" placeholder="Code (e.g. 16)" onkeyup="if(event.key==='Enter') build()">
-                    </div>
-                    <b>THINKING ENGINE (Client Escalation Priority):</b>
-                    <div class="quick-actions">${rapidScenarios.map(s => `<button class="action-btn" onclick="build('${s.l}')">${s.l}</button>`).join('')}</div>
-                    <div id="out" class="note-output" style="display:none;">
-                        <div id="bdg"></div>
-                        <span class="note-box" id="nt"></span>
-                        <button class="copy-all" onclick="copyNote()">COPY NOTE & NEXT CLAIM</button>
-                    </div>`;
-            } else if(v === 'contacts') {
-                port.innerHTML = `<input type="text" class="search-box" onkeyup="f(this.value, 'ctx')" placeholder="Search 650+ Payers, States, or BCBS Prefixes (e.g. TX, UAT)...">
-                    <div class="table-wrap"><table><thead><tr><th>Payer/Prefix</th><th>Type</th><th>Phone Number</th><th>IVR Logic</th></tr></thead>
-                    <tbody id="ctx">${contactData.map(d => `<tr><td><b>${d.p}</b></td><td><span class="badge ${d.p.includes('BCBS')?'call':'portal'}">${d.c}</span></td><td><b style="color:var(--accent); font-size:1.05rem;">${d.n}</b></td><td><small>${d.m}</small></td></tr>`).join('')}</tbody></table></div>`;
-            } else {
-                port.innerHTML = `<input type="text" class="search-box" onkeyup="f(this.value, 'mtx')" placeholder="Search Codes or Phrases...">
-                    <div class="table-wrap"><table><thead><tr><th>Code</th><th>Description</th><th>Action</th></tr></thead>
-                    <tbody id="mtx">${masterData.map(d => `<tr><td><b>${d.c}</b></td><td>${d.d}</td><td>${d.r}</td></tr>`).join('')}</tbody></table></div>`;
-            }
+        function copyResult() {
+            navigator.clipboard.writeText(document.getElementById('finalNote').innerText);
+            document.getElementById('toast').style.display = 'block';
+            setTimeout(() => { document.getElementById('toast').style.display = 'none'; }, 2000);
         }
 
-        function f(v, id) {
-            const val = v.toUpperCase();
-            document.querySelectorAll(`#${id} tr`).forEach(r => r.style.display = r.innerText.toUpperCase().includes(val) ? "" : "none");
-        }
-
-        function copyNote() {
-            navigator.clipboard.writeText(document.getElementById('nt').innerText);
-            const btn = document.querySelector('.copy-all');
-            btn.innerText = "COPIED! READY FOR NEXT.";
-            btn.style.background = "#34495e";
-            setTimeout(() => { btn.innerText = "COPY NOTE & NEXT CLAIM"; btn.style.background = "var(--success)"; }, 800);
-        }
-
-        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString('en-GB', {hour12:false}); }, 1000);
-        init();
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString('en-GB'); }, 1000);
     </script>
 </body>
 </html>
