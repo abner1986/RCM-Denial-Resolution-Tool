@@ -3,174 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Commander | Thinking Engine 2026</title>
+    <title>RCM Commander | 2026 Master Edition</title>
     <style>
-        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; --danger: #e74c3c; --warning: #e67e22; }
-        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
-        .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
-        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
-        .nav-item { padding: 12px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; font-size: 0.85rem; }
-        .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
-        .main { flex: 1; display: flex; flex-direction: column; overflow: auto; }
-        .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .view-container { padding: 30px; }
+        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --danger: #e74c3c; --warning: #e67e22; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); display: flex; height: 100vh; overflow: hidden; }
         
-        /* Resolver Logic Box */
-        .resolver-box { background: #2c3e50; color: white; padding: 25px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #34495e; }
-        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 15px; }
-        .res-input { width: 100%; padding: 12px; border-radius: 4px; border: 1px solid #ddd; font-weight: bold; box-sizing: border-box; }
-        .res-btn { padding: 15px; background: var(--success); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; box-shadow: 0 4px 0 #1e8449; transition: 0.2s; }
-        .res-btn:active { transform: translateY(3px); box-shadow: none; }
+        /* Sidebar */
+        .sidebar { width: 240px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 10px rgba(0,0,0,0.2); }
+        .sidebar-header { padding: 25px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); letter-spacing: 1px; }
+        .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.2s; border-left: 4px solid transparent; font-size: 0.85rem; color: #bdc3c7; }
+        .nav-item:hover, .nav-item.active { background: #34495e; border-left-color: var(--accent); color: white; }
 
-        .thinking-alert { background: #ebf5fb; border-left: 10px solid var(--accent); padding: 20px; color: #2c3e50; margin-top: 20px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .note-text { font-family: 'Courier New', monospace; font-size: 1rem; line-height: 1.6; color: #1c2833; background: #fff; padding: 15px; border: 1px dashed #3498db; display: block; margin: 15px 0; border-radius: 4px; }
-        .badge { padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; color: white; }
+        /* Layout */
+        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .top-bar { background: white; padding: 15px 30px; display: flex; justify-content: space-between; border-bottom: 1px solid #ddd; align-items: center; z-index: 10; }
+        .content { padding: 25px; overflow-y: auto; flex: 1; scroll-behavior: smooth; }
+
+        /* Velocity Inputs */
+        .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
+        input { padding: 12px; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box; font-weight: 600; outline: none; }
+        input:focus { border-color: var(--accent); box-shadow: 0 0 5px rgba(52, 152, 219, 0.3); }
+
+        /* Action Buttons */
+        .quick-actions { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 15px; }
+        .action-btn { background: white; border: 1px solid var(--accent); color: var(--accent); padding: 10px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.75rem; transition: 0.2s; text-align: left; }
+        .action-btn:hover { background: var(--accent); color: white; }
+
+        /* Output Card */
+        .note-output { background: #2c3e50; color: white; padding: 20px; border-radius: 8px; margin-top: 25px; border-left: 10px solid var(--success); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .note-box { font-family: 'Courier New', monospace; background: #34495e; padding: 15px; border-radius: 4px; display: block; margin: 10px 0; border: 1px dashed #7f8c8d; font-size: 0.95rem; line-height: 1.5; color: #ecf0f1; }
+        .copy-all { background: var(--success); color: white; border: none; padding: 15px; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem; transition: 0.2s; }
+        .copy-all:active { transform: scale(0.98); }
+
+        /* Dynamic Table Styling */
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; margin-top: 10px; }
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.8rem; position: sticky; top: 0; text-transform: uppercase; color: #5d6d7e; }
+        td { padding: 12px 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: middle; }
+        .badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 10px; display: inline-block; }
+        .call { background: var(--warning); color: white; }
+        .portal { background: var(--accent); color: white; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 20px; font-size: 1rem; }
     </style>
 </head>
 <body>
-
     <div class="sidebar">
-        <div class="sidebar-header"><h2>RCM COMMANDER</h2></div>
-        <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-        <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Thinking Resolver</div>
-        <div class="nav-item" id="nav-matrix" onclick="showView('matrix')">🔍 Denial Matrix</div>
-        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology & MA</div>
-        <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Rules</div>
+        <div class="sidebar-header"><b>RCM COMMANDER</b></div>
+        <div class="nav-item active" id="nav-auto" onclick="showView('auto')">⚡ Rapid Resolver</div>
+        <div class="nav-item" id="nav-contacts" onclick="showView('contacts')">📞 650+ Payer Contacts</div>
+        <div class="nav-item" id="nav-matrix" onclick="showView('matrix')">🔍 Code Matrix</div>
     </div>
-
     <div class="main">
         <div class="top-bar">
-            <b id="view-title">DASHBOARD</b>
-            <div style="display:flex; gap:10px;">
-                <div class="clock-box" id="ist" style="background:#2c3e50; color:var(--accent); padding:8px 15px; border-radius:5px; font-family:monospace;">IST: 00:00</div>
-                <div class="clock-box" id="est" style="background:#2c3e50; color:var(--accent); padding:8px 15px; border-radius:5px; font-family:monospace;">EST: 00:00</div>
-            </div>
+            <b id="v-title">RAPID RESOLVER</b>
+            <div style="font-family: monospace; font-weight: bold; color: var(--primary);" id="clock">00:00:00</div>
         </div>
-        <div id="view-port" class="view-container">Loading...</div>
+        <div id="view-port" class="content">Initializing...</div>
     </div>
 
     <script>
-        let masterData = [];
+        let masterData = []; let contactData = [];
 
-        async function loadData() {
+        async function init() {
             try {
-                const res = await fetch('rcm_master_all.csv');
-                const text = await res.text();
-                masterData = text.split('\n').slice(1).map(l => {
+                const [r1, r2] = await Promise.all([fetch('rcm_master_all.csv'), fetch('insurance_contacts.csv')]);
+                const [t1, t2] = await Promise.all([r1.text(), r2.text()]);
+                
+                masterData = t1.split('\n').slice(1).map(l => {
                     const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    if (p.length < 4) return null;
-                    let c = p[0].replace(/"/g, '').trim().toUpperCase();
-                    if(c.includes(' ')) c = c.split(' ').pop();
-                    return { code: c, cat: p[1].replace(/"/g, '').trim(), desc: p[2].replace(/"/g, '').trim(), res: p[3].replace(/"/g, '').trim() };
-                }).filter(d => d !== null);
-                showView('home');
-            } catch (e) { console.log("CSV Error"); }
+                    return p.length < 4 ? null : { c: p[0].trim().toUpperCase().split(' ').pop(), d: p[2].trim(), r: p[3].trim() };
+                }).filter(x => x);
+
+                contactData = t2.split('\n').slice(1).map(l => {
+                    const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    return p.length < 4 ? null : { p: p[0].trim(), c: p[1].trim(), n: p[2].trim(), m: p[3].trim() };
+                }).filter(x => x);
+
+                showView('auto');
+            } catch (e) { document.getElementById('view-port').innerHTML = "<h3 style='color:red;'>CRITICAL ERROR: CSV Files Missing on GitHub.</h3>"; }
         }
 
-        function think() {
-            const dos = document.getElementById('dos').value || "09/18/2016";
-            const payer = document.getElementById('payer').value || "BCBS";
-            const clm = document.getElementById('clm').value || "0256789601285";
-            let carc = document.getElementById('carc').value.trim().toUpperCase();
-            if(carc.includes(' ')) carc = carc.split(' ').pop();
-            const rarc = document.getElementById('rarc').value.trim().toUpperCase();
+        const rapidScenarios = [
+            { l: "Claim Not on File", r: "however payer states no claim on file.", a: "Verified Payer ID and mailing address. Resubmitting claim via portal." },
+            { l: "Medical Records Missing", r: "denied as medical records requested.", a: "Records not available in system. Escalated to client to provide documentation for appeal." },
+            { l: "Auth Missing/Denied", r: "denied as authorization absent or missing.", a: "Verified no Auth on file. Escalated to client Auth dept for retro-request." },
+            { l: "COB / No EOB", r: "denied as other payer is primary (CO 22).", a: "Primary EOB not found. Contacted patient to update COB records. Rebill initiated." },
+            { l: "Timely Filing (Appeal)", r: "denied as time limit for filing has expired.", a: "Generated clearinghouse proof of timely submission. Filing appeal with report." },
+            { l: "Duplicate / Paid", r: "denied as duplicate (CO 18).", a: "Verified original ICN processed correctly. Write-off duplicate." },
+            { l: "Non-Covered (Liability)", r: "denied as non-covered charges.", a: "Policy limitation identified. Escalated to client to verify ABN or patient liability." }
+        ];
+
+        function build(label = null) {
+            const dos = document.getElementById('dos').value || "[DOS]";
+            const pay = document.getElementById('pay').value || "[PAYER]";
+            const clm = document.getElementById('clm').value || "[CLAIM#]";
+            const code = document.getElementById('carc').value.toUpperCase().split(' ').pop();
             
-            const cM = masterData.find(d => d.code === carc);
-            const rM = masterData.find(d => d.code === rarc);
-
-            let action = rM ? rM.res : (cM ? cM.res : "Review and appeal.");
-            let review = rM ? rM.desc : (cM ? cM.desc : "non-covered charges");
-            let badge = '<span class="badge" style="background:var(--accent);">💻 PORTAL FIX</span>';
-            
-            // --- SELF-THINKING HEURISTICS ---
-            // 1. COB Logic
-            if(carc === '22') {
-                const hasEOB = confirm("Do you have the Primary EOB in your hand?");
-                if(hasEOB) {
-                    action = "Attached Primary EOB showing payment/denial and resubmitted via portal for secondary processing.";
-                    review = "denied as Coordination of Benefits (CARC 22) - Primary EOB confirmed on file.";
-                } else {
-                    badge = '<span class="badge" style="background:var(--warning);">☎️ CALL PAYER</span>';
-                    action = "Contacted patient/payer to identify the active Primary Insurance. Updated COB records in system.";
-                    review = "denied as COB (CARC 22) - Primary details missing from current claim.";
-                }
-            }
-            // 2. Timely Filing Logic
-            else if(carc === '29') {
-                action = "Generated Clearinghouse 'Accepted' report proving submission within payer's TFL limit. Filed appeal with proof.";
-            }
-            // 3. Authorization Logic
-            else if(carc === '197' || carc === '15') {
-                badge = '<span class="badge" style="background:var(--warning);">☎️ CALL PAYER</span>';
-                action = "Contacted Auth Department to verify if retro-auth is available or if NPI mismatch occurred. Escalated to Clinical Dept.";
-            }
-            // 4. Duplicate Logic
-            else if(carc === '18') {
-                action = "Cross-referenced Claim History for ICN [ORIGINAL#]. Verified original claim was processed correctly. Write-off duplicate.";
-            }
-
-            const note = `DOS ${dos}: As per review claim submitted to ${payer} processed and ${review} and the action part ${action} Claim# ${clm}`;
-            
-            const res = document.getElementById('thinkResult');
-            res.style.display = "block";
-            res.innerHTML = `
-                ${badge}
-                <div class="thinking-alert">
-                    <b>🧠 THINKING LOGIC APPLIED:</b><br>${action}
-                    <span class="note-text" id="finalNote">${note}</span>
-                    <button class="res-btn" style="width:auto; padding:8px 20px;" onclick="copy('finalNote')">COPY COMPLETE NOTE</button>
-                </div>`;
-        }
-
-        function showView(view) {
-            const port = document.getElementById('view-port');
-            document.getElementById('view-title').innerText = view.toUpperCase();
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.getElementById('nav-' + view).classList.add('active');
-
-            if (view === 'home') {
-                port.innerHTML = `<div class="card"><h1>RCM Thinking Engine</h1><p>The system now uses heuristic logic to determine whether a code requires a call or a portal fix based on common RCM outcomes.</p></div>`;
-            } else if (view === 'resolver') {
-                port.innerHTML = `
-                    <div class="resolver-box">
-                        <div class="input-grid">
-                            <input type="text" id="dos" class="res-input" placeholder="DOS (09/18/2016)">
-                            <input type="text" id="payer" class="res-input" placeholder="Payer (BCBS)">
-                            <input type="text" id="clm" class="res-input" placeholder="Claim #">
-                        </div>
-                        <div class="input-grid">
-                            <input type="text" id="carc" class="res-input" placeholder="CARC (e.g. CO 22)">
-                            <input type="text" id="rarc" class="res-input" placeholder="RARC (e.g. N4)">
-                            <button class="res-btn" onclick="think()">EXECUTE THINKING ENGINE</button>
-                        </div>
-                    </div>
-                    <div id="thinkResult" style="display:none;"></div>`;
+            let rev = ""; let act = ""; let call = false;
+            if(label) {
+                const s = rapidScenarios.find(x => x.l === label);
+                rev = s.r; act = s.a; call = label.includes('Call');
             } else {
-                renderTable(port, masterData);
+                const m = masterData.find(x => x.c === code);
+                rev = m ? `denied as ${m.d}.` : "processed and denied.";
+                act = m ? m.r : "Review and resubmit.";
+                call = ['22','27','31','109','197'].includes(code);
+            }
+
+            const note = `DOS ${dos}: As per review claim submitted to ${pay} processed and ${rev} Action: ${act} Claim# ${clm}`;
+            document.getElementById('out').style.display = 'block';
+            document.getElementById('nt').innerText = note;
+            document.getElementById('bdg').innerHTML = call ? '<span class="badge call">☎️ CALL PAYER</span>' : '<span class="badge portal">💻 PORTAL FIX</span>';
+        }
+
+        function showView(v) {
+            const port = document.getElementById('view-port');
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.getElementById('nav-' + v).classList.add('active');
+            document.getElementById('v-title').innerText = v.toUpperCase().replace('AUTO', 'RAPID RESOLVER').replace('CONTACTS', '2026 CONTACT DIRECTORY');
+
+            if(v === 'auto') {
+                port.innerHTML = `
+                    <div class="input-grid">
+                        <input type="text" id="dos" placeholder="DOS (MM/DD/YYYY)">
+                        <input type="text" id="pay" placeholder="Payer Name">
+                        <input type="text" id="clm" placeholder="Claim #">
+                        <input type="text" id="carc" placeholder="Code (e.g. 16)" onkeyup="if(event.key==='Enter') build()">
+                    </div>
+                    <b>THINKING ENGINE (Client Escalation Priority):</b>
+                    <div class="quick-actions">${rapidScenarios.map(s => `<button class="action-btn" onclick="build('${s.l}')">${s.l}</button>`).join('')}</div>
+                    <div id="out" class="note-output" style="display:none;">
+                        <div id="bdg"></div>
+                        <span class="note-box" id="nt"></span>
+                        <button class="copy-all" onclick="copyNote()">COPY NOTE & NEXT CLAIM</button>
+                    </div>`;
+            } else if(v === 'contacts') {
+                port.innerHTML = `<input type="text" class="search-box" onkeyup="f(this.value, 'ctx')" placeholder="Search 650+ Payers, States, or BCBS Prefixes (e.g. TX, UAT)...">
+                    <div class="table-wrap"><table><thead><tr><th>Payer/Prefix</th><th>Type</th><th>Phone Number</th><th>IVR Logic</th></tr></thead>
+                    <tbody id="ctx">${contactData.map(d => `<tr><td><b>${d.p}</b></td><td><span class="badge ${d.p.includes('BCBS')?'call':'portal'}">${d.c}</span></td><td><b style="color:var(--accent); font-size:1.05rem;">${d.n}</b></td><td><small>${d.m}</small></td></tr>`).join('')}</tbody></table></div>`;
+            } else {
+                port.innerHTML = `<input type="text" class="search-box" onkeyup="f(this.value, 'mtx')" placeholder="Search Codes or Phrases...">
+                    <div class="table-wrap"><table><thead><tr><th>Code</th><th>Description</th><th>Action</th></tr></thead>
+                    <tbody id="mtx">${masterData.map(d => `<tr><td><b>${d.c}</b></td><td>${d.d}</td><td>${d.r}</td></tr>`).join('')}</tbody></table></div>`;
             }
         }
 
-        function renderTable(p, d) {
-            p.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search..."><div class="table-wrap"><table><thead><tr><th>Code</th><th>Type</th><th>Desc</th><th>Action</th></tr></thead><tbody>${d.map(x => `<tr><td><b>${x.code}</b></td><td>${x.cat}</td><td>${x.desc}</td><td>${x.res}</td></tr>`).join('')}</tbody></table></div>`;
+        function f(v, id) {
+            const val = v.toUpperCase();
+            document.querySelectorAll(`#${id} tr`).forEach(r => r.style.display = r.innerText.toUpperCase().includes(val) ? "" : "none");
         }
 
-        function f() {
-            let v = document.getElementById('s').value.toUpperCase();
-            let rows = document.querySelectorAll("tbody tr");
-            rows.forEach(r => r.style.display = r.innerText.toUpperCase().includes(v) ? "" : "none");
+        function copyNote() {
+            navigator.clipboard.writeText(document.getElementById('nt').innerText);
+            const btn = document.querySelector('.copy-all');
+            btn.innerText = "COPIED! READY FOR NEXT.";
+            btn.style.background = "#34495e";
+            setTimeout(() => { btn.innerText = "COPY NOTE & NEXT CLAIM"; btn.style.background = "var(--success)"; }, 800);
         }
 
-        function copy(id) {
-            navigator.clipboard.writeText(document.getElementById(id).innerText);
-            alert("Note Copied!");
-        }
-
-        setInterval(() => {
-            document.getElementById('ist').innerText = "IST: " + new Date().toLocaleTimeString('en-US', {timeZone: 'Asia/Kolkata', hour12: false});
-            document.getElementById('est').innerText = "EST: " + new Date().toLocaleTimeString('en-US', {timeZone: 'America/New_York', hour12: false});
-        }, 1000);
-
-        window.onload = loadData;
+        setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString('en-GB', {hour12:false}); }, 1000);
+        init();
     </script>
 </body>
 </html>
