@@ -9,29 +9,30 @@
         body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
         .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
         .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
-        .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
+        .nav-item { padding: 12px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; font-size: 0.9rem; }
         .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
         .main { flex: 1; display: flex; flex-direction: column; overflow: auto; }
         .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
         .view-container { padding: 40px; }
-        .resolver-box { background: #2c3e50; color: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
-        .resolver-input-group { display: flex; gap: 15px; margin-top: 15px; }
-        .res-input { flex: 1; padding: 12px; border-radius: 4px; border: none; font-weight: bold; font-size: 1rem; }
-        .res-btn { padding: 12px 25px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); margin-bottom: 20px; }
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); margin-bottom: 20px; }
         .clock-box { background: #2c3e50; color: var(--accent); padding: 8px 15px; border-radius: 5px; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--accent); font-weight: bold; }
         .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; box-sizing: border-box; font-size: 1rem; }
-        .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; z-index: 10; text-transform: uppercase; }
-        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
-        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; display: inline-block; }
-        .carc { background: #fadbd8; color: #c0392b; }
-        .rarc { background: #d6eaf8; color: #2e86c1; }
-        .scenario-card { background: #fdfefe; border: 1px solid #e5e8e8; padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 5px solid var(--accent); }
-        .scenario-title { color: var(--primary); font-weight: bold; margin-bottom: 10px; display: block; font-size: 1.1rem; }
-        .logic-alert { background: #fef9e7; border-left: 5px solid var(--success); padding: 20px; color: #2c3e50; margin-top: 20px; display: none; border-radius: 4px; }
-        .route-call { background: #e67e22; color: white; padding: 6px 12px; border-radius: 4px; display: inline-block; font-size: 12px; font-weight: bold;}
+        
+        /* Note Template Styling */
+        .note-card { background: #fdfefe; border: 1px solid #e5e8e8; padding: 15px; border-radius: 8px; margin-bottom: 15px; position: relative; border-left: 5px solid #bdc3c7; }
+        .note-card.callable { border-left-color: #e67e22; }
+        .note-card.non-callable { border-left-color: #2980b9; }
+        .note-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .note-type { font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
+        .type-call { background: #fef5e7; color: #e67e22; }
+        .type-portal { background: #ebf5fb; color: #2980b9; }
+        .note-text { font-family: 'Courier New', monospace; background: #f4f6f7; padding: 10px; border-radius: 4px; display: block; font-size: 0.9rem; color: #2c3e50; border: 1px dashed #bdc3c7; }
+        .copy-btn { background: var(--accent); color: white; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 11px; font-weight: bold; }
+        .copy-btn:hover { background: #2980b9; }
+
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th { background: #eaeded; padding: 12px; text-align: left; font-size: 0.8rem; position: sticky; top: 0; }
+        td { padding: 12px; border-bottom: 1px solid #eee; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -39,9 +40,8 @@
     <div class="sidebar">
         <div class="sidebar-header"><h2>RCM COMMANDER</h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-        <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Smart Resolver</div>
+        <div class="nav-item" id="nav-notes" onclick="showView('notes')">📝 AR Note Templates</div>
         <div class="nav-item" id="nav-matrix" onclick="showView('matrix')">🔍 Denial Matrix</div>
-        <div class="nav-item" id="nav-scenarios" onclick="showView('scenarios')">📖 AR Scenarios</div>
         <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology & MA</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Rules</div>
     </div>
@@ -54,12 +54,13 @@
                 <div class="clock-box">EST: <span id="est-clock">00:00</span></div>
             </div>
         </div>
-        <div id="view-port" class="view-container">Initializing System...</div>
+        <div id="view-port" class="view-container">Loading RCM Intelligence...</div>
     </div>
 
     <script>
         let masterData = [];
 
+        // 1. DUAL CLOCKS
         function startClocks() {
             function update() {
                 const now = new Date();
@@ -69,6 +70,7 @@
             update(); setInterval(update, 1000);
         }
 
+        // 2. LOAD CSV
         async function loadData() {
             try {
                 const res = await fetch('rcm_master_all.csv');
@@ -78,76 +80,99 @@
                     if (p.length < 4) return null;
                     let cleanCode = p[0].replace(/"/g, '').trim();
                     if(cleanCode.includes(' ')) cleanCode = cleanCode.split(' ').pop();
-                    return { 
-                        code: cleanCode, 
-                        cat: p[1].replace(/"/g, '').trim(), 
-                        desc: p[2].replace(/"/g, '').trim(), 
-                        res: p[3].replace(/"/g, '').trim() 
-                    };
+                    return { code: cleanCode, cat: p[1].replace(/"/g, '').trim(), desc: p[2].replace(/"/g, '').trim(), res: p[3].replace(/"/g, '').trim() };
                 }).filter(d => d !== null);
                 showView('home');
             } catch (e) {
-                document.getElementById('view-port').innerHTML = `<h2>Error Loading rcm_master_all.csv</h2>`;
+                document.getElementById('view-port').innerHTML = `<h2>Error Loading Database</h2>`;
             }
         }
 
-        function resolveDenial() {
-            const carc = document.getElementById('carcInput').value.trim().toUpperCase();
-            const rarc = document.getElementById('rarcInput').value.trim().toUpperCase();
-            const resultBox = document.getElementById('logicResult');
-            let carcMatch = masterData.find(d => d.code === carc);
-            let rarcMatch = masterData.find(d => d.code === rarc);
+        // 3. AR NOTE TEMPLATES DATA
+        const arScenarios = [
+            { t: "No Claim on File", c: true, n: "DOS [DATE]: As per review claim submitted to [PAYER], however payer rep [NAME] states no claim on file. Action: Verified mailing address/payer ID, claim will be resubmitted. Claim# N/A" },
+            { t: "Claim In Process", c: false, n: "DOS [DATE]: As per portal check, claim is currently in process. Payer expects completion within [X] days. Action: Claim pended for processing timeframe. Claim# [NUM]" },
+            { t: "Claim Approved to Pay", c: false, n: "DOS [DATE]: Claim processed and approved for payment on [DATE]. Expected check/EFT release within 7-10 business days. Action: Track for payment posting. Claim# [NUM]" },
+            { t: "Claim Paid (Posted)", c: false, n: "DOS [DATE]: Claim processed and paid via [EFT/CHK#] on [DATE] for $[AMT]. Action: Payment posted to account. Claim# [NUM]" },
+            { t: "Paid & Applied to Offset", c: true, n: "DOS [DATE]: Claim processed and paid, however $[AMT] was applied towards a previous overpayment offset. Action: Call payer to identify the source of the offset. Claim# [NUM]" },
+            { t: "Applied to Deductible", c: false, n: "DOS [DATE]: Claim processed and full amount $[AMT] applied towards patient deductible (CARC 1). Action: Statement issued to patient. Claim# [NUM]" },
+            { t: "Patient Cannot be Identified", c: true, n: "DOS [DATE]: Claim denied (CARC 31). Payer states patient cannot be identified. Action: Call patient to verify DOB/SSN and insurance ID. Claim# [NUM]" },
+            { t: "Coverage Terminated", c: false, n: "DOS [DATE]: Claim denied (CARC 27). Coverage terminated on [TERM DATE]. Action: Portal check for new active policy; if none, bill patient. Claim# [NUM]" },
+            { t: "Auth Absent/Missing", c: true, n: "DOS [DATE]: Claim denied for missing Authorization (CARC 197). Action: Call Auth dept for retro-auth or appeal with medical necessity. Claim# [NUM]" },
+            { t: "COB / Other Payer Primary", c: true, n: "DOS [DATE]: Claim denied as [PAYER] is secondary (CARC 22). Action: Call patient to update primary carrier info. Rebill correct primary. Claim# [NUM]" },
+            { t: "Bundle / Inclusive", c: false, n: "DOS [DATE]: Service denied as bundled/inclusive to primary procedure (CARC 97). Action: Verified NCCI edits; no modifier applicable. Write-off per contract. Claim# [NUM]" },
+            { t: "Medical Records Requested", c: false, n: "DOS [DATE]: Claim denied/pended as payer requested medical records (RARC N290). Action: Records pulled and uploaded via payer portal. Claim# [NUM]" },
+            { t: "Duplicate Claim", c: false, n: "DOS [DATE]: Claim denied as duplicate (CARC 18). Action: Verified original ICN [NUM] was processed correctly. Write-off duplicate. Claim# [NUM]" },
+            { t: "NDC Invalid/Missing", c: false, n: "DOS [DATE]: Claim denied for NDC error (CARC 16). Action: Obtained 11-digit NDC and units from invoice. Resubmitting corrected claim. Claim# [NUM]" },
+            { t: "Prior Proc Info Incorrect", c: true, n: "DOS [DATE]: Claim denied as prior processing info is incorrect. Action: Call payer to verify primary EOB details on file. Claim# [NUM]" }
+            // More can be added here following this pattern...
+        ];
 
-            if (carcMatch || rarcMatch) {
-                const callable = ['22', '24', '26', '27', '31', '32', '33', '109', '197'];
-                let badge = callable.includes(carc) ? '<div class="route-call">☎️ CALL PAYER REQUIRED</div>' : '<div style="background:#2980b9; color:white; padding:6px 12px; border-radius:4px; display:inline-block; font-size:12px; font-weight:bold;">💻 PORTAL FIX / APPEAL</div>';
-                resultBox.style.display = "block";
-                resultBox.innerHTML = `${badge}<h3 style="margin-top:10px;">${carcMatch ? carcMatch.desc : 'Logic Found'}</h3><p><b>RARC Status:</b> ${rarcMatch ? rarcMatch.desc : 'No specific remark.'}</p><hr><p><b>Action:</b> ${rarcMatch ? rarcMatch.res : (carcMatch ? carcMatch.res : 'Check manual')}</p>`;
-            }
+        function copyNote(id) {
+            const text = document.getElementById('note-' + id).innerText;
+            navigator.clipboard.writeText(text);
+            alert("Note Copied!");
         }
 
+        // 4. VIEW LOGIC
         function showView(view) {
             const port = document.getElementById('view-port');
-            document.getElementById('view-title').innerText = view.toUpperCase().replace('MATRIX', 'DENIAL MATRIX');
+            document.getElementById('view-title').innerText = view.toUpperCase().replace('NOTES', 'AR NOTE TEMPLATES');
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
 
             if (view === 'home') {
                 port.innerHTML = `
                     <div class="card">
-                        <h1>RCM Command Center</h1>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <h1>Welcome, Ashok</h1>
+                        <p>Systems updated for your shift. AR Note Templates now live.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
                             <div style="border: 1px solid #3498db; padding: 20px; background: #ebf5fb; border-radius:8px;">
-                                <h3 style="color:#2980b9; margin-top:0;">📘 BCBS Florida (Florida Blue)</h3>
-                                <p>• <b>TFL:</b> 365 Days | <b>Portal:</b> Availity<br>• <b>Call:</b> Only for COB (22) or Clinical disputes.</p>
+                                <h3 style="color:#2980b9; margin-top:0;">📋 AR Workflow</h3>
+                                <p>1. Check Portal Status<br>2. If Callable, use Note Template<br>3. Commit Fix in System.</p>
                             </div>
                             <div style="border: 1px solid #27ae60; padding: 20px; background: #eafaf1; border-radius:8px;">
-                                <h3 style="color:#27ae60;">🏥 FL Medicaid Rules</h3>
-                                <p>• <b>TFL:</b> 12 Months (FFS) | 180 Days (MCO)<br>• <b>QMB:</b> Do not bill patient responsibility.</p>
+                                <h3 style="color:#27ae60;">☀️ Florida Shift Rules</h3>
+                                <p>• BCBS: No status calls.<br>• Medicaid: Check Newborn Elig.<br>• MUE: Check units vs LCD.</p>
                             </div>
                         </div>
                     </div>`;
-            } else if (view === 'scenarios') {
+            } else if (view === 'notes') {
                 port.innerHTML = `
-                    <div class="card">
-                        <h2>📖 Account Receivable Scenarios</h2>
-                        <div class="scenario-card"><span class="scenario-title">1. Claim Not on File</span><p>Check clearinghouse reports. If accepted, verify Member ID. Call payer to see if archived.</p></div>
-                        <div class="scenario-card"><span class="scenario-title">2. COB Denial (CARC 22)</span><p>Confirm primary carrier. Call patient to update payer records. Rebill correct primary.</p></div>
-                        <div class="scenario-card"><span class="scenario-title">3. Authorization Mismatch</span><p>Verify CPT on Auth letter. If matched, appeal with copy of Auth. If not, request retro-auth.</p></div>
+                    <input type="text" class="search-box" id="noteSearch" onkeyup="filterNotes()" placeholder="Search Scenarios (e.g. Paid, Terminated, Auth)...">
+                    <div id="notes-container">
+                        ${arScenarios.map((s, i) => `
+                            <div class="note-card ${s.c ? 'callable' : 'non-callable'}">
+                                <div class="note-header">
+                                    <span style="font-weight:bold; color:var(--primary);">${s.t}</span>
+                                    <div>
+                                        <span class="note-type ${s.c ? 'type-call' : 'type-portal'}">${s.c ? '☎️ Callable' : '💻 Portal Fix'}</span>
+                                        <button class="copy-btn" onclick="copyNote(${i})">COPY NOTE</button>
+                                    </div>
+                                </div>
+                                <span class="note-text" id="note-${i}">${s.n}</span>
+                            </div>
+                        `).join('')}
                     </div>`;
-            } else if (view === 'resolver') {
-                port.innerHTML = `<div class="resolver-box"><h2>⚡ Smart Logic Resolver</h2><div class="resolver-input-group"><input type="text" id="carcInput" class="res-input" placeholder="CARC"><input type="text" id="rarcInput" class="res-input" placeholder="RARC"><button class="res-btn" onclick="resolveDenial()">RESOLVE</button></div><div id="logicResult" class="logic-alert"></div></div>`;
             } else {
                 let filtered = [];
                 if (view === 'matrix') filtered = masterData.filter(d => d.code.length < 5 && !['A','Q'].includes(d.code[0]) && !d.code.startsWith('MA'));
                 else if (view === 'radiology') filtered = masterData.filter(d => d.code.length === 5 || ['A','Q'].includes(d.code[0]) || d.code.startsWith('MA'));
-                else if (view === 'payer') filtered = masterData.filter(d => d.cat.toLowerCase().includes('payer') || d.cat.includes('LCD') || d.cat.includes('NCD'));
+                else if (view === 'payer') filtered = masterData.filter(d => d.cat.toLowerCase().includes('payer') || d.code.startsWith('LCD') || d.code.startsWith('NCD'));
                 renderTable(port, filtered);
             }
         }
 
+        function filterNotes() {
+            let v = document.getElementById('noteSearch').value.toUpperCase();
+            let cards = document.getElementsByClassName('note-card');
+            for(let i=0; i<cards.length; i++) {
+                cards[i].style.display = cards[i].innerText.toUpperCase().includes(v) ? "" : "none";
+            }
+        }
+
         function renderTable(port, data) {
-            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search..."><div class="table-wrap"><table><thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution</th></tr></thead><tbody>${data.map(d => `<tr><td><b>${d.code}</b></td><td><span class="badge carc">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`).join('')}</tbody></table></div>`;
+            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search Matrix..."><div class="table-wrap"><table><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Logic</th></tr></thead><tbody>${data.map(d => `<tr><td><b>${d.code}</b></td><td><span class="badge carc">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`).join('')}</tbody></table></div>`;
         }
 
         function f() {
