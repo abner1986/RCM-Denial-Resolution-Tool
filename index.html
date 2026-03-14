@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM Commander Pro | Smart Note Engine</title>
+    <title>RCM Commander | Universal Denial Resolver</title>
     <style>
         :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; --danger: #e74c3c; --warning: #e67e22; }
         body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
@@ -17,26 +17,27 @@
         .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); margin-bottom: 20px; }
         .clock-box { background: #2c3e50; color: var(--accent); padding: 8px 15px; border-radius: 5px; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--accent); font-weight: bold; }
         
-        /* Smart Resolver Styling */
+        /* Universal Resolver Styling */
         .resolver-box { background: #2c3e50; color: white; padding: 25px; border-radius: 8px; margin-bottom: 20px; }
-        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px; }
-        .res-input, .res-select { width: 100%; padding: 12px; border-radius: 4px; border: 1px solid #ddd; font-weight: bold; box-sizing: border-box; font-size: 0.9rem; }
-        .res-btn { padding: 15px 30px; background: var(--success); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 15px; }
+        .res-input { width: 100%; padding: 12px; border-radius: 4px; border: 1px solid #ddd; font-weight: bold; box-sizing: border-box; font-size: 0.9rem; }
+        .res-btn { padding: 15px; background: var(--success); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
         
-        .note-preview { background: #fdfefe; border-left: 5px solid var(--warning); padding: 20px; color: #2c3e50; margin-top: 20px; border-radius: 4px; }
-        .note-text { font-family: 'Courier New', monospace; font-size: 1rem; line-height: 1.5; color: #34495e; display: block; margin-bottom: 15px; word-break: break-all; }
-        .copy-btn { background: var(--accent); color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .note-preview { background: #fdfefe; border-left: 5px solid var(--warning); padding: 20px; color: #2c3e50; margin-top: 20px; border-radius: 4px; border: 1px solid #ddd; border-left-width: 8px; }
+        .action-header { font-weight: bold; color: var(--primary); margin-bottom: 10px; display: block; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .note-text { font-family: 'Courier New', monospace; font-size: 0.95rem; line-height: 1.5; color: #34495e; display: block; background: #f8f9f9; padding: 15px; border: 1px solid #ebedef; margin-bottom: 15px; }
+        .copy-btn { background: var(--accent); color: white; border: none; padding: 10px 25px; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
-        /* Tables */
-        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; }
+        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; box-sizing: border-box; }
         .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; }
+        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; }
         td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; }
-        .carc { background: #fadbd8; color: #c0392b; }
-        .rarc { background: #d6eaf8; color: #2e86c1; }
-        .radio { background: #d1f2eb; color: #1e8449; }
+        .carc-badge { background: #fadbd8; color: #c0392b; }
+        .rarc-badge { background: #d6eaf8; color: #2e86c1; }
+        .callable-badge { background: var(--warning); color: white; padding: 4px 10px; border-radius: 4px; font-size: 11px; }
+        .portal-badge { background: var(--accent); color: white; padding: 4px 10px; border-radius: 4px; font-size: 11px; }
     </style>
 </head>
 <body>
@@ -44,7 +45,7 @@
     <div class="sidebar">
         <div class="sidebar-header"><h2>RCM COMMANDER</h2></div>
         <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-        <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Smart Resolver</div>
+        <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Smart Logic Resolver</div>
         <div class="nav-item" id="nav-matrix" onclick="showView('matrix')">🔍 Denial Matrix</div>
         <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology & MA</div>
         <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Rules</div>
@@ -58,13 +59,12 @@
                 <div class="clock-box">EST: <span id="est-clock">00:00</span></div>
             </div>
         </div>
-        <div id="view-port" class="view-container">Initializing...</div>
+        <div id="view-port" class="view-container">Loading...</div>
     </div>
 
     <script>
         let masterData = [];
 
-        // 1. CLOCKS
         function startClocks() {
             function update() {
                 const now = new Date();
@@ -74,7 +74,6 @@
             update(); setInterval(update, 1000);
         }
 
-        // 2. DATA LOAD
         async function loadData() {
             try {
                 const res = await fetch('rcm_master_all.csv');
@@ -83,111 +82,107 @@
                     const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
                     if (p.length < 4) return null;
                     let c = p[0].replace(/"/g, '').trim().toUpperCase();
-                    // HANDLE CO / PR / OA PREFIXES
+                    // AUTO-CLEAN PREFIXES
                     if(c.startsWith('CO ') || c.startsWith('PR ') || c.startsWith('OA ') || c.startsWith('PI ')) c = c.split(' ')[1];
                     return { code: c, cat: p[1].replace(/"/g, '').trim(), desc: p[2].replace(/"/g, '').trim(), res: p[3].replace(/"/g, '').trim() };
                 }).filter(d => d !== null);
                 showView('home');
-            } catch (e) { document.getElementById('view-port').innerHTML = `<h2>CSV Error</h2>`; }
+            } catch (e) { console.error("Database error."); }
         }
-
-        // 3. 60+ SCENARIOS LOGIC
-        const arNotes = {
-            "No Claim on File": { r: "however payer rep states no claim on file.", a: "Verified Payer ID and mailing address; claim will be resubmitted." },
-            "Claim in process": { r: "and claim is currently in process.", a: "Pended for 7-10 business days for processing completion." },
-            "Claim is approved to pay": { r: "and claim is approved for payment.", a: "Expect EFT/Check within 10 business days. Action: Track for posting." },
-            "Claim paid": { r: "and claim was processed and paid.", a: "Verify check/EFT details and post to account." },
-            "Claim paid & applied towards offset": { r: "and paid, however balance was applied towards a previous overpayment offset.", a: "Investigate offset source and notify provider." },
-            "Claim applied towards Deductible": { r: "and denied as applied towards Deductible (CARC 1).", a: "Transfer balance to patient responsibility and issue statement." },
-            "Claim denied as Coverage Terminated": { r: "and denied as Coverage Terminated (CARC 27).", a: "Check portal for new policy. If none, bill patient." },
-            "Claim denied as time limit expired": { r: "and denied as time limit for filing has expired (CARC 29).", a: "Appeal with proof of timely submission/clearinghouse report." },
-            "Claim denied as authorization absent": { r: "and denied as authorization absent or missing (CARC 197).", a: "Verify Auth existence or request retroactive authorization." },
-            "Claim denied as medically not necessity": { r: "and denied as medically not necessity (CARC 50).", a: "Submit clinical appeal with 6 weeks conservative therapy notes." },
-            "Claim denied as Bundle/Inclusive": { r: "and denied as Bundle/Inclusive (CARC 97).", a: "Check NCCI edits. If distinct, rebill with Modifier 59." },
-            "Claim denied as Duplicate": { r: "and denied as Duplicate (CARC 18).", a: "Check Availity for original ICN. Write off duplicate if paid." },
-            "Claim denied for invalid NDC Code": { r: "and denied for invalid or missing NDC Code.", a: "Obtain 11-digit NDC from invoice and resubmit corrected claim." }
-            // All other 50+ scenarios follow this internal logic...
-        };
 
         function generateNote() {
             const dos = document.getElementById('dos').value || "09/18/2016";
             const payer = document.getElementById('payer').value || "BCBS";
             const claim = document.getElementById('claimId').value || "0256789601285";
-            const scenario = document.getElementById('scenarioSelect').value;
-            const carc = document.getElementById('carcIn').value.trim().toUpperCase();
+            let carc = document.getElementById('carcIn').value.trim().toUpperCase();
+            if(carc.startsWith('CO ') || carc.startsWith('PR ')) carc = carc.split(' ')[1];
+            const rarc = document.getElementById('rarcIn').value.trim().toUpperCase();
             
-            let reviewText = arNotes[scenario] ? arNotes[scenario].r : "processed and denied.";
-            let actionText = arNotes[scenario] ? arNotes[scenario].a : "Reviewing logic.";
-            
-            // IF CODE IS ENTERED, OVERRIDE WITH MASTER DATA LOGIC
-            let codeMatch = masterData.find(d => d.code === (carc.includes(' ') ? carc.split(' ')[1] : carc));
-            if (codeMatch) {
-                reviewText = `denied as ${codeMatch.desc}.`;
-                actionText = codeMatch.res;
-            }
+            let cMatch = masterData.find(d => d.code === carc);
+            let rMatch = masterData.find(d => d.code === rarc);
 
-            const isCallable = ['22', '24', '26', '27', '31', '32', '33', '109', '197'].includes(carc);
-            const badge = isCallable ? '<span style="background:var(--warning); color:white; padding:5px 10px; border-radius:4px; font-weight:bold; font-size:12px;">☎️ CALLABLE</span>' : '<span style="background:var(--accent); color:white; padding:5px 10px; border-radius:4px; font-weight:bold; font-size:12px;">💻 PORTAL FIX</span>';
+            const resultDiv = document.getElementById('noteResult');
+            resultDiv.style.display = "block";
 
-            const finalNote = `DOS ${dos}: As per review claim submited to ${payer} ${reviewText} and the action part ${actionText} Claim# ${claim}`;
+            // CALLABLE LOGIC
+            const callable = ['22', '24', '26', '27', '31', '32', '33', '39', '109', '197', '226', '227'];
+            const isCallable = callable.includes(carc);
+            const badge = isCallable ? '<span class="callable-badge">☎️ CALL PAYER REQUIRED</span>' : '<span class="portal-badge">💻 PORTAL FIX / APPEAL</span>';
             
-            document.getElementById('noteResult').style.display = "block";
-            document.getElementById('noteArea').innerText = finalNote;
-            document.getElementById('badgeArea').innerHTML = badge;
+            // NOTE GENERATION
+            const denialReason = rMatch ? rMatch.desc : (cMatch ? cMatch.desc : "non-covered charges");
+            const actionPart = rMatch ? rMatch.res : (cMatch ? cMatch.res : "Review and resubmit.");
+            
+            const finalNote = `DOS ${dos}: As per review claim submitted to ${payer} processed and denied as ${denialReason} and the action part ${actionPart} Claim# ${claim}`;
+            
+            resultDiv.innerHTML = `
+                ${badge}
+                <div style="margin-top:15px;">
+                    <span class="action-header">ADJUDICATION LOGIC:</span>
+                    <span class="note-text" id="targetNote">${finalNote}</span>
+                    <button class="copy-btn" onclick="copyText()">COPY AR NOTE</button>
+                </div>`;
         }
 
         function showView(view) {
             const port = document.getElementById('view-port');
-            document.getElementById('view-title').innerText = view.toUpperCase();
+            document.getElementById('view-title').innerText = view.toUpperCase().replace('MATRIX', 'DENIAL MATRIX');
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.getElementById('nav-' + view).classList.add('active');
 
             if (view === 'home') {
-                port.innerHTML = `<div class="card"><h1>RCM Commander Dashboard</h1><p>Smart Logic Note Engine is now active for all 60 scenarios.</p></div>`;
+                port.innerHTML = `
+                    <div class="card">
+                        <h1>RCM Command Center Dashboard</h1>
+                        <p>Universal Smart Logic active for all Florida & Texas denial scenarios.</p>
+                        <div class="grid-layout">
+                            <div style="border: 1px solid #3498db; padding: 15px; background: #ebf5fb; border-radius:8px;">
+                                <h3 style="color:#2980b9; margin:0;">📘 BCBS FL Rules</h3>
+                                <p>• TFL: 365 Days<br>• Portal: Availity<br>• Call: COB / Clinical only.</p>
+                            </div>
+                            <div style="border: 1px solid #27ae60; padding: 15px; background: #eafaf1; border-radius:8px;">
+                                <h3 style="color:#27ae60; margin:0;">🏥 FL Medicaid Rules</h3>
+                                <p>• TFL: 12 Months (FFS)<br>• QMB: Write-off PR<br>• Call: Eligibility / Newborns.</p>
+                            </div>
+                        </div>
+                    </div>`;
             } else if (view === 'resolver') {
                 port.innerHTML = `
                     <div class="resolver-box">
-                        <div class="grid-3">
-                            <input type="text" id="dos" class="res-input" placeholder="DOS (e.g. 09/18/2016)">
-                            <input type="text" id="payer" class="res-input" placeholder="Payer (e.g. BCBS)">
-                            <input type="text" id="claimId" class="res-input" placeholder="Claim # (e.g. 0256...)">
+                        <div class="grid-layout">
+                            <input type="text" id="dos" class="res-input" placeholder="DOS (MM/DD/YYYY)">
+                            <input type="text" id="payer" class="res-input" placeholder="Payer Name">
+                            <input type="text" id="claimId" class="res-input" placeholder="Claim #">
                         </div>
-                        <div class="grid-3">
-                            <select id="scenarioSelect" class="res-select">
-                                <option value="">-- Select Scenario --</option>
-                                ${Object.keys(arNotes).map(s => `<option value="${s}">${s}</option>`).join('')}
-                            </select>
-                            <input type="text" id="carcIn" class="res-input" placeholder="OR Enter Code (e.g. CO 16)">
-                            <button class="res-btn" onclick="generateNote()">GENERATE SMART NOTE</button>
+                        <div class="grid-layout">
+                            <input type="text" id="carcIn" class="res-input" placeholder="CARC (e.g. CO 16)">
+                            <input type="text" id="rarcIn" class="res-input" placeholder="RARC (e.g. N290)">
+                            <button class="res-btn" onclick="generateNote()">RESOLVE & GENERATE NOTE</button>
                         </div>
                     </div>
-                    <div id="noteResult" class="note-preview" style="display:none;">
-                        <div id="badgeArea" style="margin-bottom:15px;"></div>
-                        <span class="note-text" id="noteArea"></span>
-                        <button class="copy-btn" onclick="copyNote()">COPY AR NOTE</button>
-                    </div>`;
+                    <div id="noteResult" class="note-preview" style="display:none;"></div>`;
             } else {
-                let f = [];
-                if (view === 'matrix') f = masterData.filter(d => d.code.length < 5 && !['A','Q'].includes(d.code[0]) && !d.code.startsWith('MA'));
-                else if (view === 'radiology') f = masterData.filter(d => d.code.length === 5 || ['A','Q'].includes(d.code[0]) || d.code.startsWith('MA'));
-                else f = masterData.filter(d => d.cat.includes('Payer') || d.code.startsWith('LCD'));
-                renderTable(port, f);
+                let filtered = [];
+                if (view === 'matrix') filtered = masterData.filter(d => d.code.length < 5 && !['A','Q'].includes(d.code[0]) && !d.code.startsWith('MA'));
+                else if (view === 'radiology') filtered = masterData.filter(d => d.code.length === 5 || ['A','Q'].includes(d.code[0]) || d.code.startsWith('MA'));
+                else filtered = masterData.filter(d => d.cat.includes('Payer') || d.code.startsWith('LCD') || d.code.startsWith('NCD'));
+                renderTable(port, filtered);
             }
         }
 
         function renderTable(port, data) {
-            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="fT()" placeholder="Search..."><div class="table-wrap"><table><thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Logic</th></tr></thead><tbody>${data.map(d => `<tr><td><b>${d.code}</b></td><td><span class="badge carc">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`).join('')}</tbody></table></div>`;
+            port.innerHTML = `<input type="text" class="search-box" id="s" onkeyup="fT()" placeholder="Search..."><div class="table-wrap"><table><thead><tr><th>Code</th><th>Type</th><th>Description</th><th>Action</th></tr></thead><tbody>${data.map(d => `<tr><td><b>${d.code}</b></td><td><span class="badge ${d.code.length === 5 ? 'rarc-badge' : 'carc-badge'}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`).join('')}</tbody></table></div>`;
         }
 
         function fT() {
             let v = document.getElementById('s').value.toUpperCase();
-            let r = document.querySelector("tbody").rows;
-            for(let i=0; i<r.length; i++) r[i].style.display = r[i].innerText.toUpperCase().includes(v) ? "" : "none";
+            let r = document.querySelectorAll("tbody tr");
+            r.forEach(row => row.style.display = row.innerText.toUpperCase().includes(v) ? "" : "none");
         }
 
-        function copyNote() {
-            navigator.clipboard.writeText(document.getElementById('noteArea').innerText);
-            alert("Note Copied to Clipboard!");
+        function copyText() {
+            navigator.clipboard.writeText(document.getElementById('targetNote').innerText);
+            alert("AR Note Copied!");
         }
 
         window.onload = () => { startClocks(); loadData(); };
