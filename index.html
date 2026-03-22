@@ -1,195 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCM  |  Resolver 2026</title>
-    <style>
-        :root { --primary: #1c2833; --sidebar: #212f3d; --accent: #3498db; --success: #27ae60; --bg: #f4f7f6; --text: #2c3e50; --danger: #e74c3c; }
-        body { font-family: 'Segoe UI', sans-serif; display: flex; margin: 0; background: var(--bg); height: 100vh; overflow: hidden; }
-        .sidebar { width: 260px; background: var(--primary); color: white; display: flex; flex-direction: column; flex-shrink: 0; box-shadow: 2px 0 5px rgba(0,0,0,0.1); }
-        .sidebar-header { padding: 30px 20px; text-align: center; border-bottom: 1px solid #34495e; color: var(--accent); }
-        .nav-item { padding: 15px 25px; cursor: pointer; transition: 0.3s; color: #bdc3c7; border-left: 4px solid transparent; }
-        .nav-item:hover, .nav-item.active { background: #34495e; color: white; border-left: 4px solid var(--accent); }
-        .main { flex: 1; display: flex; flex-direction: column; overflow: auto; }
-        .top-bar { padding: 15px 40px; background: white; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
-        .view-container { padding: 40px; }
-        .resolver-box { background: #2c3e50; color: white; padding: 25px; border-radius: 8px; margin-bottom: 30px; }
-        .resolver-input-group { display: flex; gap: 15px; margin-top: 15px; }
-        .res-input { flex: 1; padding: 12px; border-radius: 4px; border: none; font-weight: bold; font-size: 1rem; }
-        .res-btn { padding: 12px 25px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 4px solid var(--accent); }
-        .clock-box { background: #2c3e50; color: var(--accent); padding: 8px 15px; border-radius: 5px; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--accent); font-weight: bold; }
-        .search-box { width: 100%; padding: 15px; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 25px; outline: none; box-sizing: border-box; font-size: 1rem; }
-        .table-wrap { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        table { width: 100%; border-collapse: collapse; }
-        th { background: #eaeded; padding: 15px; text-align: left; font-size: 0.85rem; position: sticky; top: 0; z-index: 10; text-transform: uppercase; }
-        td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.85rem; vertical-align: top; }
-        .badge { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; text-transform: uppercase; display: inline-block; }
-        .carc { background: #fadbd8; color: #c0392b; }
-        .rarc { background: #d6eaf8; color: #2e86c1; }
-        .technical { background: #d1f2eb; color: #1e8449; }
-        .logic-alert { background: #fef9e7; border-left: 5px solid var(--success); padding: 20px; color: #2c3e50; margin-top: 20px; display: none; border-radius: 4px; }
-        .route-call { background: #e67e22; color: white; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px; display: inline-block; font-size: 12px; font-weight: bold;}
-        .route-portal { background: #2980b9; color: white; padding: 6px 12px; margin-bottom: 10px; border-radius: 4px; display: inline-block; font-size: 12px; font-weight: bold;}
-    </style>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>RCM Command Center | Synergy HP 2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* Surface Colors */
+  --bg:#050E1C;--surf:#0A1628;--card:#0E1E34;--raised:#132540;--hover:#192E4A;
+  --b0:#1A2E4A;--b1:#243F63;--b2:#2E5080;
+  
+  /* Accent Colors */
+  --acc:#00B8D9;--acc2:#0070F3;--acc-dim:rgba(0,184,217,.1);--acc-glow:0 0 20px rgba(0,184,217,.15);
+  --gold:#F5A623;--gold-dim:rgba(245,166,35,.1);
+  --red:#FF3B5C;--red-dim:rgba(255,59,92,.1);
+  --grn:#00E096;--grn-dim:rgba(0,224,150,.1);
+  --orn:#FF8C00;--orn-dim:rgba(255,140,0,.1);
+  --pur:#A855F7;--pur-dim:rgba(168,85,247,.1);
+  --tel:#00BFA5;--tel-dim:rgba(0,191,165,.1);
+  
+  /* Calibrated Contrast for Prolonged Screen Time */
+  --t1:#F8FAFC;--t2:#94A3B8;--t3:#64748B;--t4:#475569;
+  
+  /* Unified Font System */
+  --fn:'Inter', system-ui, -apple-system, sans-serif;
+  --fm:'JetBrains Mono', monospace;
+  --fd:'Inter', system-ui, -apple-system, sans-serif;
+  
+  --r:8px;--rl:12px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+
+/* Tabular Numbers & Crisp Rendering for Data Density */
+body{
+  font-family:var(--fn);
+  background:var(--bg);
+  color:var(--t1);
+  font-size:13px;
+  line-height:1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "tnum" 1, "cv05" 1;
+}
+
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--b1);border-radius:2px;}
+::-webkit-scrollbar-thumb:hover{background:var(--acc2);}
+
+/* ─── MICRO-TYPOGRAPHY CORRECTIONS ─── */
+.ph-title, .dh-title, .sop-stitle, .resolver-title {
+  font-family: var(--fd);
+  letter-spacing: -0.02em; 
+  font-weight: 600; 
+}
+.sg, .stat-label, .inp-grp label, .rb-label, .ra-label, thead th {
+  letter-spacing: 0.05em; 
+  font-weight: 600;
+}
+.code, .stat-val, .rb-code, .payer-id {
+  letter-spacing: -0.01em;
+}
+.logo-sq, .inp:focus {
+  box-shadow: var(--acc-glow);
+}
+
+/* ─── TOPBAR ─── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:54px;z-index:500;
+  background:rgba(5,14,28,.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b0);
+  display:flex;align-items:center;padding:0 18px;gap:16px;
+}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;margin-right:8px;}
+.logo-sq{
+  width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,var(--acc2) 0%,var(--acc) 100%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-size:18px;font-weight:700;color:#000;
+}
+.logo-name{font-family:var(--fd);font-size:16px;color:var(--t1);}
+.logo-name em{font-style:normal;color:var(--acc);font-family:var(--fn);font-weight:400;font-size:11px;display:block;letter-spacing:.8px;margin-top:-3px;}
+.topnav{display:flex;gap:2px;}
+.tnav{
+  padding:5px 13px;border-radius:6px;font-size:12.5px;font-weight:500;
+  color:var(--t2);cursor:pointer;transition:all .18s;border:none;background:none;
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.tnav:hover{background:var(--raised);color:var(--t1);}
+.tnav.active{background:var(--acc-dim);color:var(--acc);border:1px solid rgba(0,184,217,.2);}
+.tnav-ic{font-size:13px;}
+.tbar-r{display:flex;align-items:center;gap:10px;margin-left:auto;}
+.clk{
+  background:var(--card);border:1px solid var(--b0);border-radius:6px;
+  padding:5px 11px;font-family:var(--fm);font-size:11px;color:var(--t2);
+  display:flex;align-items:center;gap:6px;
+}
+.clk b{color:var(--acc);font-size:12px;}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--grn);box-shadow:0 0 6px var(--grn);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.srch{
+  display:flex;align-items:center;gap:7px;background:var(--card);
+  border:1px solid var(--b0);border-radius:6px;padding:5px 11px;
+  transition:border .2s;
+}
+.srch:focus-within{border-color:var(--acc);}
+.srch input{background:none;border:none;outline:none;color:var(--t1);font-size:12.5px;font-family:var(--fn);width:170px;}
+.srch input::placeholder{color:var(--t4);}
+.srch-ic{color:var(--t3);}
+
+/* ─── LAYOUT ─── */
+.wrap{display:flex;height:100vh;padding-top:54px;}
+.sidebar{
+  width:210px;flex-shrink:0;background:var(--surf);
+  border-right:1px solid var(--b0);overflow-y:auto;
+  padding:12px 8px;
+}
+.sg{font-size:9.5px;text-transform:uppercase;color:var(--t4);padding:10px 10px 3px;margin-top:6px;}
+.sl{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;
+  border-radius:6px;font-size:12.5px;color:var(--t2);
+  cursor:pointer;transition:all .18s;border:none;background:none;width:100%;text-align:left;
+}
+.sl:hover{background:var(--raised);color:var(--t1);}
+.sl.active{background:var(--acc-dim);color:var(--acc);font-weight:600;}
+.sl-ic{font-size:12px;width:16px;text-align:center;flex-shrink:0;}
+.sl-cnt{
+  margin-left:auto;background:var(--b0);border-radius:3px;
+  padding:1px 5px;font-family:var(--fm);font-size:9px;color:var(--t3);
+}
+
+/* ─── CONTENT ─── */
+.main{flex:1;overflow-y:auto;padding:0;}
+.pg{display:none;padding:28px 32px;animation:fu .28s ease;}
+.pg.active{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── PAGE HEADERS ─── */
+.ph{margin-bottom:24px;}
+.ph-row{display:flex;align-items:center;gap:12px;}
+.ph-bar{width:4px;height:28px;background:linear-gradient(180deg,var(--acc),var(--acc2));border-radius:2px;flex-shrink:0;}
+.ph-title{font-size:24px;color:var(--t1);}
+.ph-sub{font-size:12.5px;color:var(--t2);margin-top:3px;}
+.bc{font-size:11px;color:var(--t4);font-family:var(--fm);margin-bottom:8px;}
+.bc span{color:var(--acc);}
+
+/* ─── CARDS ─── */
+.card{background:var(--card);border:1px solid var(--b0);border-radius:var(--rl);padding:20px;transition:border .2s;}
+.card:hover{border-color:var(--b1);}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--b0);}
+.ct{font-size:13px;font-weight:600;color:var(--t1);display:flex;align-items:center;gap:8px;}
+
+/* ─── STATS ─── */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:24px;}
+.stat{
+  background:var(--card);border:1px solid var(--b0);border-radius:var(--rl);
+  padding:18px 20px;position:relative;overflow:hidden;transition:all .22s;
+}
+.stat:hover{border-color:var(--b1);transform:translateY(-1px);}
+.stat::after{content:'';position:absolute;bottom:-16px;right:-16px;width:64px;height:64px;border-radius:50%;opacity:.15;}
+.stat.a::after{background:var(--acc);}
+.stat.b::after{background:var(--gold);}
+.stat.c::after{background:var(--grn);}
+.stat.d::after{background:var(--orn);}
+.stat.e::after{background:var(--pur);}
+.stat-label{font-size:11px;text-transform:uppercase;color:var(--t3);margin-bottom:6px;}
+.stat-val{font-family:var(--fm);font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;}
+.stat.a .stat-val{color:var(--acc);}
+.stat.b .stat-val{color:var(--gold);}
+.stat.c .stat-val{color:var(--grn);}
+.stat.d .stat-val{color:var(--orn);}
+.stat.e .stat-val{color:var(--pur);}
+.stat-sub{font-size:11.5px;color:var(--t3);}
+
+/* ─── GRIDS ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+
+/* ─── RESOLVER ─── */
+.resolver-hero{
+  background:linear-gradient(135deg,var(--card) 0%,rgba(0,112,243,.08) 100%);
+  border:1px solid var(--b1);border-radius:var(--rl);padding:28px 32px;margin-bottom:24px;
+  position:relative;overflow:hidden;
+}
+.resolver-hero::before{
+  content:'⚡';position:absolute;right:28px;top:50%;transform:translateY(-50%);
+  font-size:80px;opacity:.06;pointer-events:none;
+}
+.resolver-title{font-size:20px;color:var(--t1);margin-bottom:6px;}
+.resolver-sub{font-size:12.5px;color:var(--t2);margin-bottom:20px;}
+.inp-row{display:flex;gap:12px;align-items:flex-end;}
+.inp-grp{flex:1;}
+.inp-grp label{display:block;font-size:11px;text-transform:uppercase;color:var(--t3);margin-bottom:6px;}
+.inp{
+  width:100%;padding:11px 14px;background:var(--surf);
+  border:1px solid var(--b1);border-radius:var(--r);
+  color:var(--t1);font-size:14px;font-family:var(--fm);font-weight:600;
+  outline:none;transition:border .2s;
+}
+.inp:focus{border-color:var(--acc);}
+.inp::placeholder{color:var(--t4);font-weight:400;font-family:var(--fn);}
+.btn{
+  padding:11px 24px;background:linear-gradient(135deg,var(--acc2),var(--acc));
+  color:#000;font-weight:700;font-size:13px;font-family:var(--fn);
+  border:none;border-radius:var(--r);cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.btn:hover{opacity:.9;transform:translateY(-1px);}
+.btn:active{transform:translateY(0);}
+.btn-sec{
+  padding:11px 20px;background:var(--surf);border:1px solid var(--b1);
+  color:var(--t1);font-weight:600;font-size:13px;font-family:var(--fn);
+  border-radius:var(--r);cursor:pointer;transition:all .2s;
+}
+.btn-sec:hover{border-color:var(--acc);color:var(--acc);}
+
+/* ─── RESULT BOX ─── */
+.result{
+  background:var(--surf);border:1px solid var(--b1);border-radius:var(--rl);
+  padding:22px;margin-top:16px;display:none;
+  animation:fu .25s ease;
+}
+.result.show{display:block;}
+.result-route{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;
+  margin-bottom:14px;
+}
+.route-call{background:rgba(255,140,0,.15);color:var(--orn);border:1px solid rgba(255,140,0,.3);}
+.route-portal{background:var(--acc-dim);color:var(--acc);border:1px solid rgba(0,184,217,.3);}
+.route-adj{background:var(--pur-dim);color:var(--pur);border:1px solid rgba(168,85,247,.3);}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.result-block{background:var(--card);border-radius:var(--r);padding:14px;}
+.rb-label{font-size:10px;text-transform:uppercase;margin-bottom:6px;}
+.rb-code{font-family:var(--fm);font-size:18px;font-weight:700;margin-bottom:4px;}
+.rb-desc{font-size:12.5px;color:var(--t2);line-height:1.5;}
+.result-action{
+  background:linear-gradient(135deg,rgba(0,224,150,.06),rgba(0,112,243,.06));
+  border:1px solid rgba(0,224,150,.2);border-radius:var(--r);
+  padding:14px 16px;
+}
+.ra-label{font-size:10px;text-transform:uppercase;color:var(--grn);margin-bottom:6px;}
+.ra-text{font-size:13.5px;color:var(--t1);line-height:1.6;}
+
+/* ─── TABLES ─── */
+.tbl-controls{display:flex;gap:10px;margin-bottom:14px;align-items:center;}
+.tbl-search{
+  flex:1;background:var(--card);border:1px solid var(--b0);border-radius:var(--r);
+  padding:9px 14px;color:var(--t1);font-size:13px;font-family:var(--fn);
+  outline:none;transition:border .2s;
+}
+.tbl-search:focus{border-color:var(--acc);}
+.tbl-search::placeholder{color:var(--t4);}
+.filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.fchip{
+  padding:4px 12px;border-radius:20px;font-size:11.5px;font-weight:500;
+  cursor:pointer;transition:all .18s;border:1px solid var(--b1);
+  background:none;color:var(--t2);
+}
+.fchip:hover{border-color:var(--acc);color:var(--acc);}
+.fchip.active{background:var(--acc-dim);border-color:var(--acc);color:var(--acc);}
+.tbl-wrap{background:var(--card);border:1px solid var(--b0);border-radius:var(--rl);overflow:hidden;}
+.tbl-inner{overflow-x:auto;max-height:calc(100vh - 280px);}
+table{width:100%;border-collapse:collapse;}
+thead th{
+  background:var(--surf);padding:10px 14px;text-align:left;
+  font-size:11px;text-transform:uppercase;
+  color:var(--t3);position:sticky;top:0;z-index:10;border-bottom:1px solid var(--b0);
+}
+tbody tr{border-bottom:1px solid var(--b0);transition:background .15s;}
+tbody tr:hover{background:var(--raised);}
+tbody tr:last-child{border-bottom:none;}
+td{padding:10px 14px;vertical-align:top;font-size:12.5px;color:var(--t1);}
+td.code{font-family:var(--fm);font-weight:600;font-size:13px;white-space:nowrap;}
+td.desc{color:var(--t2);}
+td.res{color:var(--t1);line-height:1.5;}
+.tbl-count{font-size:11.5px;color:var(--t3);margin-left:auto;}
+
+/* ─── BADGES ─── */
+.bdg{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;}
+.bdg-carc{background:rgba(255,59,92,.12);color:var(--red);border:1px solid rgba(255,59,92,.2);}
+.bdg-rarc{background:var(--acc-dim);color:var(--acc);border:1px solid rgba(0,184,217,.2);}
+.bdg-tech{background:var(--grn-dim);color:var(--grn);border:1px solid rgba(0,224,150,.2);}
+.bdg-rad{background:var(--pur-dim);color:var(--pur);border:1px solid rgba(168,85,247,.2);}
+.bdg-pay{background:var(--gold-dim);color:var(--gold);border:1px solid rgba(245,166,35,.2);}
+.bdg-clin{background:var(--orn-dim);color:var(--orn);border:1px solid rgba(255,140,0,.2);}
+.bdg-elig{background:var(--tel-dim);color:var(--tel);border:1px solid rgba(0,191,165,.2);}
+.bdg-mod{background:var(--pur-dim);color:#C084FC;border:1px solid rgba(192,132,252,.2);}
+.bdg-gen{background:var(--raised);color:var(--t2);border:1px solid var(--b1);}
+
+/* ─── PAYER CARDS ─── */
+.payer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.payer-card{
+  background:var(--card);border:1px solid var(--b0);border-radius:var(--rl);
+  padding:18px;transition:all .2s;position:relative;overflow:hidden;
+}
+.payer-card:hover{border-color:var(--b1);transform:translateY(-1px);}
+.payer-card::before{content:'';position:absolute;top:0;left:0;width:3px;bottom:0;border-radius:3px 0 0 3px;}
+.pc-mac::before{background:var(--acc);}
+.pc-bcbs::before{background:var(--acc2);}
+.pc-hum::before{background:var(--grn);}
+.pc-aet::before{background:var(--gold);}
+.pc-uhc::before{background:var(--pur);}
+.pc-med::before{background:var(--red);}
+.payer-id{font-family:var(--fm);font-size:11px;color:var(--t3);margin-bottom:4px;}
+.payer-name{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:10px;}
+.payer-row{display:flex;gap:8px;margin-bottom:4px;font-size:12px;}
+.payer-key{color:var(--t3);width:70px;flex-shrink:0;}
+.payer-val{color:var(--t1);}
+.payer-callable{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:600;margin-top:8px;}
+.pc-yes{background:var(--grn-dim);color:var(--grn);border:1px solid rgba(0,224,150,.2);}
+.pc-no{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,59,92,.2);}
+
+/* ─── INSURANCE DIR ─── */
+.ins-table tbody tr td:first-child{min-width:220px;}
+.phone-link{color:var(--acc);font-family:var(--fm);text-decoration:none;font-size:12.5px;}
+.phone-link:hover{text-decoration:underline;}
+
+/* ─── SOP ─── */
+.sop-wrap{max-width:1100px;}
+.sop-toc{
+  background:var(--card);border:1px solid var(--b0);border-radius:var(--rl);
+  padding:20px;margin-bottom:24px;
+}
+.sop-toc-title{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sop-toc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.sop-link{
+  padding:7px 12px;background:var(--surf);border:1px solid var(--b0);
+  border-radius:6px;font-size:12px;color:var(--t2);cursor:pointer;
+  transition:all .18s;text-decoration:none;display:block;
+}
+.sop-link:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-dim);}
+.sop-section{
+  background:var(--card);border:1px solid var(--b0);border-radius:var(--rl);
+  padding:28px 32px;margin-bottom:20px;scroll-margin-top:20px;
+}
+.sop-sh{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;}
+.sop-snum{
+  width:42px;height:42px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fm);font-size:15px;font-weight:700;
+}
+.sop-stitle{font-size:20px;color:var(--t1);}
+.sop-sdesc{font-size:12.5px;color:var(--t2);margin-top:3px;}
+.h2s{font-size:14px;font-weight:600;color:var(--t1);margin:20px 0 10px;padding-left:12px;border-left:3px solid var(--b1);}
+.h3s{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t3);margin:16px 0 8px;}
+.body-p{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:8px;}
+.step-list{margin:10px 0;}
+.step-item{display:flex;gap:12px;margin-bottom:8px;align-items:flex-start;}
+.step-n{
+  width:22px;height:22px;border-radius:50%;background:var(--acc2);
+  color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;margin-top:2px;font-family:var(--fm);
+}
+.step-t{font-size:13px;color:var(--t1);line-height:1.6;}
+.callout{display:flex;gap:11px;border-radius:var(--r);padding:12px 16px;margin:10px 0;font-size:12.5px;}
+.callout-ic{font-size:16px;flex-shrink:0;margin-top:1px;}
+.callout-b{color:var(--t2);line-height:1.5;}
+.callout-b strong{display:block;font-weight:600;margin-bottom:2px;color:var(--t1);}
+.callout.info{background:var(--acc-dim);border-left:3px solid var(--acc);}
+.callout.warn{background:var(--orn-dim);border-left:3px solid var(--orn);}
+.callout.danger{background:var(--red-dim);border-left:3px solid var(--red);}
+.callout.success{background:var(--grn-dim);border-left:3px solid var(--grn);}
+.sop-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0 14px;}
+.sop-table thead th{
+  background:var(--surf);padding:9px 12px;text-align:left;
+  font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--t3);
+}
+.sop-table tbody tr{border-bottom:1px solid var(--b0);}
+.sop-table tbody tr:hover{background:var(--raised);}
+.sop-table td{padding:9px 12px;color:var(--t1);vertical-align:top;line-height:1.5;}
+.sop-table td:first-child{color:var(--t2);}
+.sop-tbl-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--b0);border-radius:var(--r);}
+
+/* ─── DASH HERO ─── */
+.dash-hero{
+  background:linear-gradient(135deg,var(--card) 0%,rgba(0,112,243,.07) 60%,rgba(0,184,217,.04) 100%);
+  border:1px solid var(--b1);border-radius:var(--rl);padding:28px 32px;margin-bottom:24px;
+  position:relative;overflow:hidden;
+}
+.dash-hero::after{
+  content:'RCM';position:absolute;right:24px;bottom:-16px;
+  font-family:var(--fd);font-size:120px;color:rgba(255,255,255,.025);
+  pointer-events:none;line-height:1;
+}
+.dh-title{font-size:22px;color:var(--t1);margin-bottom:4px;}
+.dh-sub{font-size:13px;color:var(--t2);}
+.dh-client{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--acc-dim);border:1px solid rgba(0,184,217,.2);
+  border-radius:4px;padding:3px 10px;font-size:11.5px;color:var(--acc);
+  margin-top:10px;
+}
+
+/* ─── EMPTY STATE ─── */
+.empty{text-align:center;padding:48px 24px;color:var(--t3);}
+.empty-ic{font-size:40px;margin-bottom:12px;}
+.empty-t{font-size:14px;font-weight:600;color:var(--t2);margin-bottom:4px;}
+.empty-s{font-size:12.5px;}
+
+/* ─── PRINT ─── */
+@media print{.sidebar,.topbar{display:none!important;}.wrap{padding-top:0!important;}.main{margin-left:0!important;}}
+</style>
 </head>
-<body>
-
-    <div class="sidebar">
-        <div class="sidebar-header"><h2>RCM </h2></div>
-        <div class="nav-item active" id="nav-home" onclick="showView('home')">🏠 Dashboard</div>
-        <div class="nav-item" id="nav-resolver" onclick="showView('resolver')">⚡ Smart Resolver</div>
-        <div class="nav-item" id="nav-matrix" onclick="showView('matrix')">🔍 Denial Matrix</div>
-        <div class="nav-item" id="nav-radiology" onclick="showView('radiology')">🩻 Radiology & MA</div>
-        <div class="nav-item" id="nav-payer" onclick="showView('payer')">🏢 Payer Rules</div>
-    </div>
-
-    <div class="main">
-        <div class="top-bar">
-            <b id="view-title">DASHBOARD</b>
-            <div style="display:flex; gap:10px;">
-                <div class="clock-box">IST: <span id="ist-clock">00:00</span></div>
-                <div class="clock-box">EST: <span id="est-clock">00:00</span></div>
-            </div>
-        </div>
-        <div id="view-port" class="view-container">Initializing RCM Database...</div>
-    </div>
-
-    <script>
-        let masterData = [];
-
-        function startClocks() {
-            function update() {
-                const now = new Date();
-                document.getElementById('ist-clock').innerText = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit' });
-                document.getElementById('est-clock').innerText = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: false, hour: '2-digit', minute: '2-digit' });
-            }
-            update(); setInterval(update, 1000);
-        }
-
-        async function loadData() {
-            try {
-                const res = await fetch('rcm_master_all.csv');
-                if (!res.ok) throw new Error("File not found");
-                const text = await res.text();
-                masterData = text.split('\n').slice(1).map(l => {
-                    const p = l.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                    if (p.length < 4) return null;
-                    let cleanCode = p[0].replace(/"/g, '').trim();
-                    if(cleanCode.includes(' ')) cleanCode = cleanCode.split(' ').pop(); // Handle "CO 16" -> "16"
-                    return { 
-                        code: cleanCode, 
-                        cat: p[1].replace(/"/g, '').trim(), 
-                        desc: p[2].replace(/"/g, '').trim(), 
-                        res: p[3].replace(/"/g, '').trim() 
-                    };
-                }).filter(d => d !== null);
-                console.log("Database Loaded. Count:", masterData.length);
-                showView('home');
-            } catch (e) {
-                document.getElementById('view-port').innerHTML = `<h2 style="color:red;">CRITICAL ERROR: rcm_master_all.csv missing or corrupted.</h2>`;
-            }
-        }
-
-        function resolveDenial() {
-            const carc = document.getElementById('carcInput').value.trim().toUpperCase();
-            const rarc = document.getElementById('rarcInput').value.trim().toUpperCase();
-            const resultBox = document.getElementById('logicResult');
-            
-            let carcMatch = masterData.find(d => d.code === carc);
-            let rarcMatch = masterData.find(d => d.code === rarc);
-
-            if (carcMatch || rarcMatch) {
-                const callableCodes = ['22', '24', '26', '27', '31', '32', '33', '109', '197', '226', '227'];
-                let badge = callableCodes.includes(carc) ? '<div class="route-call">☎️ CALL PAYER REQUIRED</div>' : '<div class="route-portal">💻 PORTAL FIX / APPEAL</div>';
-                
-                resultBox.style.display = "block";
-                resultBox.innerHTML = `
-                    ${badge}
-                    <h3 style="margin-top:5px; color:var(--success);">Analysis Results</h3>
-                    <p><b>CARC ${carc}:</b> ${carcMatch ? carcMatch.desc : 'No match.'}</p>
-                    <p><b>RARC ${rarc}:</b> ${rarcMatch ? rarcMatch.desc : 'No match.'}</p>
-                    <hr style="border:0; border-top:1px solid #ddd; margin:15px 0;">
-                    <p style="font-size:1.1rem;"><b>ACTION:</b> ${rarcMatch ? rarcMatch.res : (carcMatch ? carcMatch.res : 'Review manual.')}</p>
-                `;
-            } else {
-                resultBox.style.display = "block";
-                resultBox.innerHTML = "<p style='color:var(--danger);'>Codes not found. Please verify spelling.</p>";
-            }
-        }
-
-        function showView(view) {
-            const port = document.getElementById('view-port');
-            document.getElementById('view-title').innerText = view.toUpperCase().replace('MATRIX', 'DENIAL MATRIX');
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.getElementById('nav-' + view).classList.add('active');
-
-            if (view === 'home') {
-                port.innerHTML = `
-                    <div class="card">
-                        <h1>RCM  Dashboard</h1>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-                            <div style="border: 1px solid #3498db; padding: 20px; background: #ebf5fb; border-radius:8px;">
-                                <h3 style="color:#2980b9; margin-top:0;">📘 Florida Blue (BCBS)</h3>
-                                <p>• <b>TFL:</b> 365 Days | <b>Portal:</b> Availity<br>• <b>Call Policy:</b> Non-callable for status or DX fixes. Use portal.</p>
-                            </div>
-                            <div style="border: 1px solid #27ae60; padding: 20px; background: #eafaf1; border-radius:8px;">
-                                <h3 style="color:#27ae60; margin-top:0;">🏥 FL Medicaid Rules</h3>
-                                <p>• <b>TFL:</b> 12 Months (FFS) | 180 Days (Managed Care)<br>• <b>Note:</b> QMB patients cannot be balance billed.</p>
-                            </div>
-                        </div>
-                    </div>`;
-            } else if (view === 'resolver') {
-                port.innerHTML = `
-                    <div class="resolver-box">
-                        <h2>⚡ Smart Resolver Engine</h2>
-                        <div class="resolver-input-group">
-                            <input type="text" id="carcInput" class="res-input" placeholder="CARC (e.g. 16)">
-                            <input type="text" id="rarcInput" class="res-input" placeholder="RARC (e.g. N922)">
-                            <button class="res-btn" onclick="resolveDenial()">GENERATE</button>
-                        </div>
-                        <div id="logicResult" class="logic-alert"></div>
-                    </div>`;
-            } else {
-                let filtered = [];
-                if (view === 'matrix') {
-                    // MATRIX: Short denial codes (1, 16, N51, etc.)
-                    filtered = masterData.filter(d => d.code.length < 5 && !['A','Q'].includes(d.code[0]) && !d.code.startsWith('MA'));
-                } else if (view === 'radiology') {
-                    // RADIOLOGY: CPTs (5 digits), Contrast (A/Q), and MA codes
-                    filtered = masterData.filter(d => d.code.length === 5 || ['A','Q'].includes(d.code[0]) || d.code.startsWith('MA'));
-                } else if (view === 'payer') {
-                    // PAYER RULES: Codes that are actually Payer names or start with LCD/NCD
-                    filtered = masterData.filter(d => d.cat.toLowerCase().includes('payer') || d.code.startsWith('LCD') || d.code.startsWith('NCD') || d.cat.includes('Clinical'));
-                }
-                renderTable(port, filtered);
-            }
-        }
-
-        function renderTable(port, data) {
-            if (data.length === 0) {
-                port.innerHTML = `<h3>No data found. Ensure your CSV has codes matching this category.</h3>`;
-                return;
-            }
-            port.innerHTML = `
-                <input type="text" class="search-box" id="s" onkeyup="f()" placeholder="Search in this view...">
-                <div class="table-wrap"><table id="t">
-                    <thead><tr><th>Code</th><th>Category</th><th>Description</th><th>Resolution Logic</th></tr></thead>
-                    <tbody>${data.map(d => {
-                        let badgeClass = d.code.length === 5 ? 'technical' : (d.code.length < 4 ? 'carc' : 'rarc');
-                        return `<tr><td><b>${d.code}</b></td><td><span class="badge ${badgeClass}">${d.cat}</span></td><td>${d.desc}</td><td>${d.res}</td></tr>`;
-                    }).join('')}</tbody>
-                </table></div>`;
-        }
-
-        function f() {
-            let v = document.getElementById('s').value.toUpperCase();
-            let r = document.querySelector("#t tbody").rows;
-            for(let i=0; i<r.length; i++) r[i].style.display = r[i].innerText.toUpperCase().includes(v) ? "" : "none";
-        }
-
-        window.onload = () => { startClocks(); loadData(); };
-    </script>
-</body>
-</html>
